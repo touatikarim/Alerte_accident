@@ -1,3 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AlertAccident</string>
+    <string name="app_name">Alert Accident</string>
+    <string name="login">Account Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign">Sign in</string>
+    <string name="forget">Forget Password?</string>
+    <string name="email_address">Please insert email address</string>
+    <string name="valid_address">Please enter a valid email address</string>
+    <string name="valid_password">Please enter a valid password</string>
+    <string name="success">Login Success</string>
+    <string name="logo">mobelite</string>
+    <string name="name">Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="signup">Sign Up</string>
+    <string name="create">Create Account ?</string>
+    <!-- BOTTOM NAVIGATION VIEW -->
+    <string name="bottom_navigation_menu_landscape">Alerts</string>
+    <string name="bottom_navigation_menu_logos">Home</string>
+    <string name="bottom_navigation_menu_android">Map</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="log">Account Sign up</string>
+    <string name="existinguser">Existing User</string>
+    <string name="account">Don\'t have an account?</string>
+    <string name="guest">Use as a guest</string>
+    <string name="noaccount">Without Account</string>
+    <string name="Separater">Or</string>
+    <string name="Remember">Remember me</string>
+
 </resources>
