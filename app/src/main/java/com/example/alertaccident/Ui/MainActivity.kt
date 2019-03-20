@@ -1,8 +1,9 @@
-package com.example.alertaccident
+package com.example.alertaccident.Ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import com.example.alertaccident.R
 
 class MainActivity : AppCompatActivity() {
 
