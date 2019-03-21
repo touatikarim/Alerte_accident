@@ -13,4 +13,6 @@ class MainActivity : AppCompatActivity() {
         val host: NavHostFragment = supportFragmentManager
             .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
     }
-}
+
+    }
+
