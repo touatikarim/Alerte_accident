@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
-            android:background="@color/white"
+            android:background="@color/light_blue"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
         <TextView
@@ -18,10 +18,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="@string/app_name"
-                android:textColor="@color/blue5fb0c9"
+                android:textColor="@color/dark_blue"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
 
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="80dp"
-                android:background="@color/blue5fb0c9"
+                android:background="@color/light_blue"
                 android:orientation="vertical"
                 android:padding="20dp">
             <LinearLayout
@@ -52,7 +52,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@color/dark_blue"
                         android:text="@string/sign"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -69,7 +69,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@color/dark_blue"
                         android:text="@string/signup"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -96,11 +96,11 @@
                         android:paddingTop="5dp"
                         android:text="@string/noaccount"/>
                 <Button
-                        android:id="@+id/btn_signup"
+                        android:id="@+id/btn_guest"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@color/dark_blue"
                         android:text="@string/guest"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -117,7 +117,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@+id/login_title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/user_profile_image_background"
                 android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
     </RelativeLayout>

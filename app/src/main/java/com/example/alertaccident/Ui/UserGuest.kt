@@ -30,5 +30,8 @@ class UserGuest : Fragment() {
         view.findViewById<View>(R.id.btn_sign).setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_userGuest_to_signUp)
         )
+        view.findViewById<View>(R.id.btn_guest).setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_userGuest_to_home2)
+        )
     }
 }

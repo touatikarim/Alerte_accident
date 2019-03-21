@@ -14,6 +14,7 @@
         <action android:id="@+id/action_userGuest_to_signUp" app:destination="@id/signUp"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_userGuest_to_home2" app:destination="@id/home2"/>
     </fragment>
 
     <fragment android:id="@+id/signIn" android:name="com.example.alertaccident.Ui.login.SignIn"
@@ -30,4 +31,10 @@
               tools:layout="@layout/fragment_sign_up"/>
     <activity android:id="@+id/home2" android:name="com.example.alertaccident.Ui.Home" android:label="activity_home"
               tools:layout="@layout/activity_home"/>
+
+
+    <activity android:id="@+id/splash" android:name="com.example.alertaccident.Ui.Splash.Splash"
+              android:label="activity_splash" tools:layout="@layout/activity_splash"/>
+
+
 </navigation>
