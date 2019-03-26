@@ -9,6 +9,7 @@
     <color name="colorAccentDark">#4aa87a</color>
     <color name="dark_blue">#4ba3c7</color>
     <color name="light_blue">#b2ebf2</color>
+    <color name="stroke">#878787</color>
 
 
 </resources>

@@ -3,14 +3,14 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".Ui.UserGuest">
+             tools:context="com.example.alertaccident.Ui.UserGuest">
 
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
-            android:background="@color/light_blue"
+            android:background="@drawable/gradient"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
         <TextView
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="80dp"
-                android:background="@color/light_blue"
+                android:background="@drawable/grad"
                 android:orientation="vertical"
                 android:padding="20dp">
             <LinearLayout
@@ -48,15 +48,18 @@
                         android:paddingTop="5dp"
                         android:text="@string/existinguser"/>
                 <Button
+
                         android:id="@+id/btn_login"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/dark_blue"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/sign"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+
+                       />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -69,7 +72,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/dark_blue"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/signup"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -100,7 +103,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/dark_blue"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/guest"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

@@ -3,8 +3,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:background="@color/light_blue"
-             tools:context=".Ui.Splash.Splash">
+             android:background="@drawable/gradient"
+             tools:context="com.example.alertaccident.Ui.Splash.Splash">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
