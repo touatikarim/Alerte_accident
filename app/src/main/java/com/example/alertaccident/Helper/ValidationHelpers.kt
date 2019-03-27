@@ -3,6 +3,7 @@ package com.example.alertaccident.Helper
 import android.text.TextUtils
 import android.util.Patterns
 import java.util.regex.Pattern
+const val MIN_CREDENTIAL_LENGTH = 8
 
 fun isPasswordValid(password: String?): Boolean{
     val expression  ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}).*\$"
@@ -19,6 +20,20 @@ fun isPasswordValid(password: String?): Boolean{
     val matcher3 = pattern3.matcher(password)
     return (matcher.matches() || matcher1.matches() || matcher2.matches() || matcher3.matches())
 }
+
+fun isUsernameValid(username: String):Boolean {
+
+ return username.length >= MIN_CREDENTIAL_LENGTH
+}
+fun isPhoneValid(phone: String):Boolean {
+
+    return phone.length == MIN_CREDENTIAL_LENGTH
+}
+
+fun arePasswordsSame(password: String, repeatPassword: String):Boolean {
+    return isPasswordValid(password) && isPasswordValid(repeatPassword) && password == repeatPassword
+}
+
 fun isDataValid(email:String,password:String):Int {
     if(TextUtils.isEmpty(email))
         return 0
@@ -28,4 +43,19 @@ fun isDataValid(email:String,password:String):Int {
         return 2
     else
         return -1
+}
+fun isRegistrationValid(email:String,password: String,username: String,phone: String,repeatPassword: String):Int
+{   if (!isUsernameValid(username))
+     return 0
+else if (!isPhoneValid(phone))
+    return 1
+    else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        return 2
+    else if (!isPasswordValid(password))
+        return 3
+    else if (!arePasswordsSame(password, repeatPassword))
+        return 4
+    else
+        return -1
+
 }

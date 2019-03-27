@@ -32,31 +32,31 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
-            <ImageButton
-                    android:id="@+id/user_profile_photo"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:background="@drawable/user_profile_image_background"
-                    android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
+
                 <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="30dp"
+                        android:layout_marginTop="40dp"
                         android:background="@drawable/grad"
                         android:orientation="vertical"
                         android:padding="20dp">
 
-
                     <LinearLayout
-                            android:paddingTop="30dp"
+                            android:paddingTop="10dp"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" tools:ignore="ExtraText">
 
+                        <ImageButton
+                                android:id="@+id/user_profile_photo"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/user_profile_image_background"
+                                android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
 
                         <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/text_input_layout"
