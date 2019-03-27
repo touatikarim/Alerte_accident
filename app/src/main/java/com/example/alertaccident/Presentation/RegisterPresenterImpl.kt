@@ -1,7 +1,7 @@
-package com.example.alertaccident.Presentation
+package com.example.alertaccident.presentation
 
-import com.example.alertaccident.Helper.isRegistrationValid
-import com.example.alertaccident.Ui.Register.SignupView
+import com.example.alertaccident.helper.isRegistrationValid
+import com.example.alertaccident.ui.register.SignupView
 
 class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresenter {
     override fun onRegister(email: String, password: String, username: String, phone: String, repeatPassword: String) {

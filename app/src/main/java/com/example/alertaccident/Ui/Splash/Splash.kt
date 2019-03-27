@@ -1,4 +1,4 @@
-package com.example.alertaccident.Ui.Splash
+package com.example.alertaccident.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.alertaccident.R
-import com.example.alertaccident.Ui.MainActivity
+import com.example.alertaccident.ui.MainActivity
 
 class Splash : AppCompatActivity() {
 

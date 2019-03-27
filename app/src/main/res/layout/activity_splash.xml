@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              android:background="@drawable/gradient"
-             tools:context="com.example.alertaccident.Ui.Splash.Splash">
+             tools:context="com.example.alertaccident.ui.splash.Splash">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"

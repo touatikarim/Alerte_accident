@@ -1,9 +1,14 @@
-package com.example.alertaccident.Helper
+package com.example.alertaccident.helper
 
+import android.content.Context
 import android.text.TextUtils
 import android.util.Patterns
+import android.widget.Toast
+import es.dmoral.toasty.Toasty
 import java.util.regex.Pattern
 const val MIN_CREDENTIAL_LENGTH = 8
+
+
 
 fun isPasswordValid(password: String?): Boolean{
     val expression  ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}).*\$"

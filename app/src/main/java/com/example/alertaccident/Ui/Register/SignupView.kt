@@ -1,4 +1,4 @@
-package com.example.alertaccident.Ui.Register
+package com.example.alertaccident.ui.register
 
 interface SignupView {
     fun onSuccess(message:String)

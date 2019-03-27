@@ -1,4 +1,4 @@
-package com.example.alertaccident.Ui
+package com.example.alertaccident.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

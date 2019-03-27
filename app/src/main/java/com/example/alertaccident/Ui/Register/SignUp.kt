@@ -1,4 +1,4 @@
-package com.example.alertaccident.Ui.Register
+package com.example.alertaccident.ui.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.alertaccident.Helper.isRegistrationValid
-import com.example.alertaccident.Presentation.IregisterPresenter
-import com.example.alertaccident.Presentation.RegisterPresenterImpl
+import com.example.alertaccident.helper.isRegistrationValid
+import com.example.alertaccident.presentation.IregisterPresenter
+import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*

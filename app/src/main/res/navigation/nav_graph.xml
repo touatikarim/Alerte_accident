@@ -5,7 +5,7 @@
             app:startDestination="@id/userGuest"
 >
 
-    <fragment android:id="@+id/userGuest" android:name="com.example.alertaccident.Ui.UserGuest"
+    <fragment android:id="@+id/userGuest" android:name="com.example.alertaccident.ui.UserGuest"
               android:label="fragment_user_guest" tools:layout="@layout/fragment_user_guest">
         <action android:id="@+id/action_userGuest_to_signIn" app:destination="@id/signIn"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
@@ -19,7 +19,7 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
-    <fragment android:id="@+id/signIn" android:name="com.example.alertaccident.Ui.login.SignIn"
+    <fragment android:id="@+id/signIn" android:name="com.example.alertaccident.ui.login.SignIn"
               android:label="fragment_sign_in"
               tools:layout="@layout/fragment_sign_in">
         <action android:id="@+id/action_signIn_to_home2" app:destination="@id/home2"
@@ -28,7 +28,7 @@
                 app:popUpTo="@+id/home2" app:popUpToInclusive="false"/>
     </fragment>
 
-    <fragment android:id="@+id/signUp" android:name="com.example.alertaccident.Ui.Register.SignUp"
+    <fragment android:id="@+id/signUp" android:name="com.example.alertaccident.ui.register.SignUp"
               android:label="fragment_sign_up"
               tools:layout="@layout/fragment_sign_up">
         <action android:id="@+id/action_signUp_to_signIn" app:destination="@id/signIn"
@@ -36,11 +36,11 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/signUp"/>
     </fragment>
-    <activity android:id="@+id/home2" android:name="com.example.alertaccident.Ui.Home" android:label="activity_home"
+    <activity android:id="@+id/home2" android:name="com.example.alertaccident.ui.Home" android:label="activity_home"
               tools:layout="@layout/activity_home"/>
 
 
-    <activity android:id="@+id/splash" android:name="com.example.alertaccident.Ui.Splash.Splash"
+    <activity android:id="@+id/splash" android:name="com.example.alertaccident.ui.splash.Splash"
               android:label="activity_splash" tools:layout="@layout/activity_splash"/>
 
 
