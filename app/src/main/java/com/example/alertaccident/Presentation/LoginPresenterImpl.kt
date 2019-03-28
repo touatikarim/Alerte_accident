@@ -1,9 +1,7 @@
 package com.example.alertaccident.presentation
 
 
-import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
+
 import com.example.alertaccident.helper.isDataValid
 import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.User

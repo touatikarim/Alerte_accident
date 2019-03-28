@@ -23,7 +23,7 @@
               android:label="fragment_sign_in"
               tools:layout="@layout/fragment_sign_in">
         <action android:id="@+id/action_signIn_to_home2" app:destination="@id/home2"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:enterAnim="@anim/fade_in" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/home2" app:popUpToInclusive="false"/>
     </fragment>
@@ -38,10 +38,6 @@
     </fragment>
     <activity android:id="@+id/home2" android:name="com.example.alertaccident.ui.Home" android:label="activity_home"
               tools:layout="@layout/activity_home"/>
-
-
-    <activity android:id="@+id/splash" android:name="com.example.alertaccident.ui.splash.Splash"
-              android:label="activity_splash" tools:layout="@layout/activity_splash"/>
 
 
 </navigation>
