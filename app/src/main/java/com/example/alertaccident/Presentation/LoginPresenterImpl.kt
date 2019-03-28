@@ -16,13 +16,7 @@ import retrofit2.*
 
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
-    override fun observe():MutableLiveData<String> {
-        return signInResponse
 
-    }
-
-
-    val signInResponse = MutableLiveData<String>()
     override fun login(email:String,password:String) {
         val retrofit = RetrofitClient.getInstance()
         val ilogin = retrofit.create(ILogin::class.java)
@@ -32,8 +26,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                     if (response.isSuccessful)
                     {
                         signinview.onSuccess(response.body()!!.message)
-                       signInResponse.postValue(response.message())
-                        //Log.e("response",response.message())
+                       if (response.code()==200)
+                       {signinview.navigate()}
 
                     }
                 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
@@ -18,6 +19,10 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
 class SignIn : Fragment(),SigninView {
+    override fun navigate() {
+        findNavController().navigate(R.id.home2)
+    }
+
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -45,7 +50,7 @@ class SignIn : Fragment(),SigninView {
         super.onViewCreated(view, savedInstanceState)
 
         loginpresnter = LoginPresenterImpl(this)
-       val respo= loginpresnter.observe().value
+
 
         btn_login.setOnClickListener {
             val  email=id_email.text.toString()
