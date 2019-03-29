@@ -1,3 +1,3 @@
 package com.example.alertaccident.model
 
-data class RegisterModel (var email:String,var password:String,var phone:String,var name:String,var repeatpass:String)
+data class RegisterModel (var nom:String,var password:String,var telephone:String,var email:String,var CIN:String )

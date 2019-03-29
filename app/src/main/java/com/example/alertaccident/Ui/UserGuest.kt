@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.alertaccident.R
 
 
@@ -24,14 +28,22 @@ class UserGuest : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<View>(R.id.btn_login).setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_userGuest_to_signIn)
-        )
-        view.findViewById<View>(R.id.btn_sign).setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_userGuest_to_signUp)
-        )
-        view.findViewById<View>(R.id.btn_guest).setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_userGuest_to_home2)
-        )
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
+        view.findViewById<Button>(R.id.btn_login)?.setOnClickListener {
+            findNavController().navigate(R.id.action_userGuest_to_signIn, null, options)
+        }
+        view.findViewById<Button>(R.id.btn_sign)?.setOnClickListener {
+            findNavController().navigate(R.id.action_userGuest_to_signUp, null, options)
+        }
+        view.findViewById<Button>(R.id.btn_guest)?.setOnClickListener {
+            findNavController().navigate(R.id.action_userGuest_to_home2, null, options)
+        }
     }
 }

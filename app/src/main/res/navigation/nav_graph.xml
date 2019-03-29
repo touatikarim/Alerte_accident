@@ -15,15 +15,18 @@
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action android:id="@+id/action_userGuest_to_home2" app:destination="@id/home2"
-                app:exitAnim="@anim/nav_default_exit_anim" app:enterAnim="@anim/fade_in"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:exitAnim="@anim/slide_out_left" app:enterAnim="@anim/slide_in_right"
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"
+        />
+                <!--app:popEnterAnim="@anim/fade_out" app:popExitAnim="@anim/fade_in"-->
+
     </fragment>
 
     <fragment android:id="@+id/signIn" android:name="com.example.alertaccident.ui.login.SignIn"
               android:label="fragment_sign_in"
               tools:layout="@layout/fragment_sign_in">
         <action android:id="@+id/action_signIn_to_home2" app:destination="@id/home2"
-                app:enterAnim="@anim/fade_in" app:exitAnim="@anim/nav_default_exit_anim"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/home2" app:popUpToInclusive="false"/>
     </fragment>
@@ -32,7 +35,7 @@
               android:label="fragment_sign_up"
               tools:layout="@layout/fragment_sign_up">
         <action android:id="@+id/action_signUp_to_signIn" app:destination="@id/signIn"
-                app:enterAnim="@anim/fade_in" app:exitAnim="@anim/nav_default_exit_anim"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/signUp"/>
     </fragment>

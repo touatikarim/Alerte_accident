@@ -16,6 +16,10 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUp : Fragment(),SignupView {
+    override fun navigate() {
+        findNavController().navigate(R.id.action_signUp_to_signIn)
+    }
+
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext,message, Toast.LENGTH_SHORT).show()
     }
@@ -38,20 +42,13 @@ class SignUp : Fragment(),SignupView {
         super.onViewCreated(view, savedInstanceState)
         registerpresnter=RegisterPresenterImpl(this)
         btn_submit.setOnClickListener {
-            val username=id_name.text.toString()
-            val  email=id_email.text.toString()
+            val nom=id_name.text.toString()
+            val email=id_email.text.toString()
             val password=id_password.text.toString()
-            val phone=id_phone.text.toString()
-            val repeat_password=id_confirm_password.text.toString()
-            if (isRegistrationValid(email,password,username,phone,repeat_password) == -1) {
-                registerpresnter.onRegister(id_email.text.toString(), id_password.text.toString(),id_name.text.toString()
-                ,id_phone.text.toString(),id_confirm_password.text.toString())
-                findNavController().navigate(R.id.signIn)
-            }
-            else {
-                registerpresnter.onRegister(id_email.text.toString(), id_password.text.toString(),id_name.text.toString()
-                    ,id_phone.text.toString(),id_confirm_password.text.toString())
-            }
+            val telephone=id_phone.text.toString()
+            val cin=id_CIN.text.toString()
+
+            registerpresnter.Register(nom,email,password,telephone,cin)
         }
     }
 }

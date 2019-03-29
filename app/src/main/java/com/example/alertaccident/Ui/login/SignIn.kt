@@ -1,6 +1,8 @@
 package com.example.alertaccident.ui.login
 
+
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
@@ -18,7 +21,18 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignIn : Fragment(),SigninView {
     override fun navigate() {
-       findNavController().navigate(R.id.action_signIn_to_home2)
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
+        val progressBar=login
+        progressBar.setVisibility(View.VISIBLE)
+        Handler().postDelayed({findNavController().navigate(R.id.action_signIn_to_home2,null,options);progressBar.setVisibility(View.GONE)},1500)
+
 
     }
 
@@ -54,7 +68,7 @@ class SignIn : Fragment(),SigninView {
         btn_login.setOnClickListener {
             val  email=id_email.text.toString()
             val password=id_password.text.toString()
-            loginpresnter.onLogin(email, password)
+           // loginpresnter.onLogin(email, password)
             loginpresnter.login(email,password)
 
         }

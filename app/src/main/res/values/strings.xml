@@ -37,5 +37,10 @@
     <string name="submit">Submit</string>
     <string name="create_acc">Create Account</string>
     <string name="number">Phone Number</string>
+    <string name="cin">CIN</string>
+    <string name="username">Username</string>
+    <string name="licence">Driving licence</string>
+    <string name="insurance">Insurance company</string>
+    <string name="address">Adress</string>
 
 </resources>
