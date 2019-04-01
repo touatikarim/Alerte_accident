@@ -14,6 +14,7 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.UiUtils
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
@@ -61,7 +62,7 @@ class SignIn : Fragment(),SigninView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        UiUtils.hideKeyboardOntouch(view,activity!!)
         loginpresnter = LoginPresenterImpl(this)
 
 

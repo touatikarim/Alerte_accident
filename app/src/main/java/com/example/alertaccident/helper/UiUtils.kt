@@ -15,7 +15,7 @@ object UiUtils {
                        try{
                        UiUtils.hideKeyboardByElement(activity)}
                        catch (e: Exception) {
-                           Log.d("heree", e.message)
+                           Log.d("error", e.message)
                        }
                        return false
                    }

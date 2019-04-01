@@ -11,6 +11,7 @@ import com.example.alertaccident.helper.isRegistrationValid
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.UiUtils
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
@@ -40,6 +41,7 @@ class SignUp : Fragment(),SignupView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        UiUtils.hideKeyboardOntouch(view,activity!!)
         registerpresnter=RegisterPresenterImpl(this)
         btn_submit.setOnClickListener {
             val nom=id_name.text.toString()
