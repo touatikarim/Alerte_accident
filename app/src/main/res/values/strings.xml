@@ -42,5 +42,10 @@
     <string name="licence">Driving licence</string>
     <string name="insurance">Insurance company</string>
     <string name="address">Adress</string>
+    <string name="Server">Server Error</string>
+    <string name="valid_user">Please enter a valid username</string>
+    <string name="valid_number">Please enter a valid phone number</string>
+    <string name="identical_pass">Passwords are not identical</string>
+    <string name="account_creation">Account created</string>
 
 </resources>
