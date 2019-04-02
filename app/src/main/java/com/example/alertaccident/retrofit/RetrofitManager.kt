@@ -26,8 +26,8 @@ class  RetrofitManager {
             val retrofitManager = RetrofitManager()
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
-            val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build()
+            val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).connectTimeout(5, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS).build()
             retrofitManager.retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)

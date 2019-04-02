@@ -1,13 +1,15 @@
 package com.example.alertaccident.ui.register
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.alertaccident.helper.isRegistrationValid
+import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
@@ -18,8 +20,20 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class SignUp : Fragment(),SignupView {
     override fun navigate() {
-        findNavController().navigate(R.id.action_signUp_to_signIn)
-    }
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
+            val progressBar = submit
+            progressBar.setVisibility(View.VISIBLE)
+            Handler().postDelayed({
+                findNavController().navigate(R.id.action_signUp_to_signIn,null,options);progressBar.setVisibility(View.GONE) }, 1500)
+        }
+    
 
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext,message, Toast.LENGTH_SHORT).show()
@@ -43,13 +57,16 @@ class SignUp : Fragment(),SignupView {
         super.onViewCreated(view, savedInstanceState)
         UiUtils.hideKeyboardOntouch(view,activity!!)
         registerpresnter=RegisterPresenterImpl(this)
+       registerpresnter.setMainViewContext(activity!!.baseContext)
+
         btn_submit.setOnClickListener {
             val nom=id_name.text.toString()
             val email=id_email.text.toString()
             val password=id_password.text.toString()
             val telephone=id_phone.text.toString()
             val cin=id_CIN.text.toString()
-
+            val repeatpassword=id_confirm_password.text.toString()
+           // registerpresnter.onRegister(email,password,repeatpassword,nom,telephone)
             registerpresnter.Register(nom,email,password,telephone,cin)
         }
     }

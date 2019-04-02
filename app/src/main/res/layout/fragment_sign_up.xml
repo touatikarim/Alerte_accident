@@ -161,7 +161,7 @@
                                     tools:targetApi="m"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/pass_input_layout"
+                                android:id="@+id/confirm_pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/confirmpassword"
@@ -194,6 +194,16 @@
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
 
+                        />
+                        <ProgressBar
+                                android:id="@+id/submit"
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:indeterminate="true"
+                                android:layout_marginTop="8dp"
                         />
 
 

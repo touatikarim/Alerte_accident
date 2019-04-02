@@ -38,7 +38,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                     }
 
                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                        signinview.onError(context.getString(R.string.Server))
+                        signinview.onError(t.message!!)//context.getString(R.string.Server))
                     }
                 })
 

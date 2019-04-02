@@ -64,12 +64,14 @@ class SignIn : Fragment(),SigninView {
         super.onViewCreated(view, savedInstanceState)
         UiUtils.hideKeyboardOntouch(view,activity!!)
         loginpresnter = LoginPresenterImpl(this)
+        loginpresnter.setMainViewContext(activity!!.baseContext)
 
 
         btn_login.setOnClickListener {
             val  email=id_email.text.toString()
             val password=id_password.text.toString()
-           // loginpresnter.onLogin(email, password)
+
+            loginpresnter.onLogin(email, password)
             loginpresnter.login(email,password)
 
         }

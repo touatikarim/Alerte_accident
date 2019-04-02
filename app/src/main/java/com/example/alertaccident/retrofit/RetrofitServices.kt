@@ -3,6 +3,7 @@ package com.example.alertaccident.retrofit
 import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.model.User
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
