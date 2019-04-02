@@ -3,42 +3,57 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".UserGuest">
+             tools:context="com.example.alertaccident.ui.UserGuest">
 
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
-            android:background="@color/blue5fb0c9"
+            android:background="@drawable/gradient"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+        >
         <TextView
                 android:id="@+id/login_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:text="@string/app_name"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_blue"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
+
         <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/login_title"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="70dp"
-                android:background="@color/white"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/grad"
                 android:orientation="vertical"
                 android:padding="20dp">
             <LinearLayout
-                    android:paddingTop="30dp"
+                    android:paddingTop="10dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" tools:ignore="ExtraText">
+                <ImageButton
+                        android:id="@+id/user_profile_photo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user_profile_image_background"
+                        android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -47,15 +62,18 @@
                         android:paddingTop="5dp"
                         android:text="@string/existinguser"/>
                 <Button
+
                         android:id="@+id/btn_login"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/sign"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+
+                       />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,7 +86,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/signup"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -95,11 +113,11 @@
                         android:paddingTop="5dp"
                         android:text="@string/noaccount"/>
                 <Button
-                        android:id="@+id/btn_signup"
+                        android:id="@+id/btn_guest"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="22dp"
-                        android:background="@color/yellow_d67601"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/guest"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -110,15 +128,8 @@
 
             </LinearLayout>
         </RelativeLayout>
-        <ImageButton
-                android:id="@+id/user_profile_photo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_below="@+id/login_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/user_profile_image_background"
-                android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
+        </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 

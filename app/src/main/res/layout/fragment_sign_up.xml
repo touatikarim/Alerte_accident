@@ -2,8 +2,219 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".SignUp">
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context="com.example.alertaccident.ui.register.SignUp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Interface.MainActivity"
+            android:background="@drawable/gradient"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+        >
+
+                <TextView
+                        android:id="@+id/login_title"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/create_acc"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/grad"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                    <LinearLayout
+                            android:paddingTop="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" tools:ignore="ExtraText">
+                        <ImageButton
+                                android:id="@+id/user_profile_photo"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/user_profile_image_background"
+                                android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/name_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/name">
+                            <EditText
+                                    android:id="@+id/id_name"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="textEmailAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_person_black_24dp"
+                                    android:padding="8dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/number_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/number">
+                            <EditText
+                                    android:id="@+id/id_phone"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="phone"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                                    android:padding="8dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/CIN_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/cin">
+                            <EditText
+                                    android:id="@+id/id_CIN"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="phone"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                                    android:padding="8dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/email">
+                            <EditText
+                                    android:id="@+id/id_email"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="textEmailAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_email_black_24dp"
+                                    android:padding="8dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/pass_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/password"
+                                tools:ignore="DuplicateIds">
+                            <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                                    android:id="@+id/id_password"
+                                    android:inputType="textPassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="30dp"
+                                    android:singleLine="true"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                                    app:drawable_show="@drawable/ic_visibility_black_24dp"
+                                    app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
+                                    android:padding="8dp"
+                                    tools:targetApi="m"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/confirm_pass_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/confirmpassword"
+                                tools:ignore="DuplicateIds">
+                        <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                                android:id="@+id/id_confirm_password"
+                                android:inputType="textPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:singleLine="true"
+                                android:drawableTint="@color/grad_color"
+                                android:background="@drawable/rounded_edittext"
+                                android:drawableStart="@drawable/ic_lock_black_24dp"
+                                app:drawable_show="@drawable/ic_visibility_black_24dp"
+                                app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
+                                android:padding="8dp"
+                                tools:targetApi="m"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                                android:id="@+id/btn_submit"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="22dp"
+
+                                android:background="@drawable/buttonshape"
+                                android:text="@string/submit"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+
+                        />
+                        <ProgressBar
+                                android:id="@+id/submit"
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:indeterminate="true"
+                                android:layout_marginTop="8dp"
+                        />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+        </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 
 
