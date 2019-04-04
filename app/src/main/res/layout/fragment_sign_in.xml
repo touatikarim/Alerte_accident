@@ -39,7 +39,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="30dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="30dp"
                         android:background="@drawable/grad"
                         android:orientation="vertical"
                         android:padding="20dp">
@@ -73,7 +73,7 @@
                                     android:layout_gravity="center"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_email_black_24dp"
-                                    android:padding="8dp"
+                                    android:padding="12dp"
                                     tools:targetApi="m"
                                     tools:ignore="Autofill,LabelFor"/>
 
@@ -97,7 +97,7 @@
                                     android:drawableStart="@drawable/ic_lock_black_24dp"
                                     app:drawable_show="@drawable/ic_visibility_black_24dp"
                                     app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
-                                    android:padding="8dp"
+                                    android:padding="12dp"
                                     tools:targetApi="m"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <CheckBox android:id="@+id/checkbox_meat"
