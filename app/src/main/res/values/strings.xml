@@ -22,7 +22,7 @@
     <string name="bottom_navigation_menu_android">Map</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="log">Account Sign up</string>
-    <string name="existinguser">Existing User</string>
+    <string name="existinguser">Already Registred?</string>
     <string name="account">Don\'t have an account?</string>
     <string name="guest">Use as a guest</string>
     <string name="noaccount">Without Account</string>
@@ -48,6 +48,8 @@
     <string name="identical_pass">Passwords are not identical</string>
     <string name="account_creation">Account created</string>
     <string name="valid_CIN">Please enter a valid CIN</string>
+    <string name="alreadyregistred">You already have an account</string>
+    <string name="no_account">You have to create an account before you get access to the application</string>
 
 
 </resources>

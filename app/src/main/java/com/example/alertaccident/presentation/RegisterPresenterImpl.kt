@@ -40,7 +40,8 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                                    .asJsonObject["message"]
                                    .asString
                                signupview.load()
-                               Handler().postDelayed({ signupview.onError(message) }, 1500)
+                               if(message.compareTo("Utilisateur existe déjà...")==0)
+                               Handler().postDelayed({ signupview.onError(context.getString(R.string.alreadyregistred)) }, 1500)
                            }
                        }
                    }

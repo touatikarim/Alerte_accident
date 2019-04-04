@@ -39,8 +39,13 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                                     .asJsonObject["message"]
                                     .asString
                                 signinview.load()
-                                Handler().postDelayed({ signinview.onError(message) }, 1500)
+                                if(message.compareTo("User not found...")==0)
+                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) }, 1500)
+                                else
+                                    Handler().postDelayed({ signinview.onError(message) }, 1500)
+                               // Handler().postDelayed({ signinview.onError(message) }, 1500)
                                 //response.raw().message())
+
                             }
                         }
                     }
