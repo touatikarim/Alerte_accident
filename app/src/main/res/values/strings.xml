@@ -47,5 +47,7 @@
     <string name="valid_number">Please enter a valid phone number</string>
     <string name="identical_pass">Passwords are not identical</string>
     <string name="account_creation">Account created</string>
+    <string name="valid_CIN">Please enter a valid CIN</string>
+
 
 </resources>

@@ -13,6 +13,7 @@ import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.RetrofitServices
 import com.example.alertaccident.ui.register.SignupView
+import com.google.gson.JsonParser
 
 import retrofit2.*
 
@@ -29,11 +30,17 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                .enqueue(object : Callback<ApiResponse> {
                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
 
-                       if (response!!.isSuccessful) {
-                           Handler().postDelayed({signupview.onSuccess(response.body()!!.message)},1500)
-                          //Log.e("response", response.body().toString())
+                       if (response != null) {
                            if (response.code() == 200) {
                                signupview.navigate()
+                               Handler().postDelayed({ signupview.onSuccess(response.body()!!.message) }, 1500)
+                           } else {
+                               val errorJsonString = response.errorBody()?.string()
+                               var message = JsonParser().parse(errorJsonString)
+                                   .asJsonObject["message"]
+                                   .asString
+                               signupview.load()
+                               Handler().postDelayed({ signupview.onError(message) }, 1500)
                            }
                        }
                    }
@@ -42,37 +49,26 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                        signupview.onError(t.message!!)//context.getString(R.string.Server))
                    }
                })
-//           CoroutineScope(Dispatchers.IO).launch {
-//               val request =  RetrofitManager.getInstance(Constants.baseurl).service!!.registeruser(register)
-//               withContext(Dispatchers.Default) {
-//                   try {
-//                       val response=request
-//                       Log.d("response", response.toString())
-//                   } catch (e: HttpException) {
-//                       signupview.onError("dsqmkqm")
 //
-//                   }
-//               }
-//
-//           }
-      // }
        }
 
 
 
 
-    override fun onRegister(email: String, password: String, repeatPassword: String,username:String,phone:String) {
-        val isRegistersucces= isRegistrationValid(email,password,repeatPassword,username,phone)
-       if (isRegistersucces==0)
-           signupview.onError(context.getString(R.string.valid_user))
-       else if (isRegistersucces==1)
-           signupview.onError(context.getString(R.string.valid_number))
-       else if (isRegistersucces==2)
-           signupview.onError(context.getString(R.string.valid_address))
-        else if (isRegistersucces==3)
-           signupview.onError(context.getString(R.string.valid_password))
-        else if  (isRegistersucces==4)
-           signupview.onError(context.getString(R.string.identical_pass))
+    override fun onRegister(email: String, password: String, repeatPassword: String, username: String, phone: String,CIN: String) {
+        val isRegistersucces = isRegistrationValid(email, password, repeatPassword, username, phone,CIN)
+        if (isRegistersucces == 0)
+            signupview.onError(context.getString(R.string.valid_user))
+        else if (isRegistersucces == 1)
+            signupview.onError(context.getString(R.string.valid_number))
+        else if(isRegistersucces==2)
+            signupview.onError(context.getString(R.string.valid_CIN))
+        else if (isRegistersucces == 3)
+            signupview.onError(context.getString(R.string.valid_address))
+        else if (isRegistersucces == 4)
+            signupview.onError(context.getString(R.string.valid_password))
+        else if (isRegistersucces == 5)
+            signupview.onError(context.getString(R.string.identical_pass))
 
     }
 

@@ -111,7 +111,7 @@
                                     android:layout_marginTop="16dp"
                                     android:layout_gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                                    android:drawableStart="@drawable/idcard"
                                     android:padding="8dp"
                                     tools:targetApi="m"
                                     tools:ignore="Autofill,LabelFor"/>
