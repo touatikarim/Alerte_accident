@@ -39,7 +39,7 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/signUp"/>
     </fragment>
-    <activity android:id="@+id/home2" android:name="com.example.alertaccident.ui.Home" android:label="activity_home"
+    <activity android:id="@+id/home2" android:name="com.example.alertaccident.ui.User" android:label="activity_home"
               tools:layout="@layout/activity_home"/>
 
 

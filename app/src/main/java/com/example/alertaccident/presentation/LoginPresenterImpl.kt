@@ -8,7 +8,7 @@ import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
 import com.example.alertaccident.model.ApiResponse
-import com.example.alertaccident.model.User
+import com.example.alertaccident.model.LoginModel
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
@@ -23,7 +23,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
     lateinit  var context: Context
     override fun login(email:String,password:String) {
 
-        var user = User(email, password)
+        var user = LoginModel(email, password)
         if (isDataValid(email, password) == -1) {
             RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(user)
                 .enqueue(object : Callback<ApiResponse> {
