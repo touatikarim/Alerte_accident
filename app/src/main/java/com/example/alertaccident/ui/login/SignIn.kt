@@ -21,6 +21,12 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
 class SignIn : Fragment(),SigninView {
+    override fun load() {
+        val progressBar=login
+        progressBar.setVisibility(View.VISIBLE)
+        Handler().postDelayed({progressBar.setVisibility(View.GONE)},1500)
+    }
+
     override fun navigate() {
         val options = navOptions {
             anim {
@@ -30,9 +36,8 @@ class SignIn : Fragment(),SigninView {
                 popExit = R.anim.slide_out_right
             }
         }
-        val progressBar=login
-        progressBar.setVisibility(View.VISIBLE)
-        Handler().postDelayed({findNavController().navigate(R.id.action_signIn_to_home2,null,options);progressBar.setVisibility(View.GONE)},1500)
+        load()
+        Handler().postDelayed({findNavController().navigate(R.id.action_signIn_to_home2,null,options)},1500)
 
 
     }

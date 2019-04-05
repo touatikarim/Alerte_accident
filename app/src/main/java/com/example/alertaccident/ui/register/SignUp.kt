@@ -19,6 +19,13 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUp : Fragment(),SignupView {
+    override fun load() {
+        val progressBar = submit
+        progressBar.setVisibility(View.VISIBLE)
+        Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
+
+    }
+
     override fun navigate() {
         val options = navOptions {
             anim {
@@ -28,12 +35,13 @@ class SignUp : Fragment(),SignupView {
                 popExit = R.anim.slide_out_right
             }
         }
-            val progressBar = submit
-            progressBar.setVisibility(View.VISIBLE)
-            Handler().postDelayed({
-                findNavController().navigate(R.id.action_signUp_to_signIn,null,options);progressBar.setVisibility(View.GONE) }, 1500)
-        }
-    
+        load()
+        Handler().postDelayed({
+            findNavController().navigate(R.id.action_signUp_to_signIn, null, options)
+        }, 1500)
+    }
+
+
 
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext,message, Toast.LENGTH_SHORT).show()

@@ -11,6 +11,7 @@ import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.User
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.ui.login.SigninView
+import com.google.gson.JsonParser
 
 import retrofit2.*
 
@@ -28,12 +29,23 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                 .enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
 
-                        if (response!!.isSuccessful) {
-                            Handler().postDelayed({ signinview.onSuccess(response.body()!!.message) }, 1500)
+                        if (response != null) {
+
                             if (response.code() == 200) {
                                 signinview.navigate()
-                            }
+                                Handler().postDelayed({ signinview.onSuccess(response.body()!!.message) }, 1500)
+                            } else {
+                                val errorJsonString = response.errorBody()?.string()
+                                var message = JsonParser().parse(errorJsonString)
+                                    .asJsonObject["message"]
+                                    .asString
+                                signinview.load()
+                                    Handler().postDelayed({ signinview.onError(message) }, 1500)
 
+                                // Handler().postDelayed({ signinview.onError(message) }, 1500)
+                                //response.raw().message())
+
+                            }
                         }
                     }
 

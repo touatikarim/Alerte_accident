@@ -13,6 +13,7 @@ import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.RetrofitServices
 import com.example.alertaccident.ui.register.SignupView
+import com.google.gson.JsonParser
 
 import retrofit2.*
 
@@ -28,12 +29,17 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
            RetrofitManager.getInstance(Constants.baseurl).service!!.registeruser(register)
                .enqueue(object : Callback<ApiResponse> {
                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
-
-                       if (response!!.isSuccessful) {
-                           Handler().postDelayed({signupview.onSuccess(response.body()!!.message)},1500)
-                          //Log.e("response", response.body().toString())
+                       if (response != null) {
                            if (response.code() == 200) {
                                signupview.navigate()
+                               Handler().postDelayed({ signupview.onSuccess(response.body()!!.message) }, 1500)
+                           } else {
+                               val errorJsonString = response.errorBody()?.string()
+                               var message = JsonParser().parse(errorJsonString)
+                                   .asJsonObject["message"]
+                                   .asString
+                               signupview.load()
+                                   Handler().postDelayed({ signupview.onError(message) }, 1500)
                            }
                        }
                    }
@@ -42,20 +48,7 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                        signupview.onError(t.message!!)//context.getString(R.string.Server))
                    }
                })
-//           CoroutineScope(Dispatchers.IO).launch {
-//               val request =  RetrofitManager.getInstance(Constants.baseurl).service!!.registeruser(register)
-//               withContext(Dispatchers.Default) {
-//                   try {
-//                       val response=request
-//                       Log.d("response", response.toString())
-//                   } catch (e: HttpException) {
-//                       signupview.onError("dsqmkqm")
-//
-//                   }
-//               }
-//
-//           }
-      // }
+
        }
 
 
