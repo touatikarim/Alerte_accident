@@ -18,7 +18,7 @@
         <activity android:name="com.example.alertaccident.ui.Connexion">
 
         </activity>
-        <activity android:name="com.example.alertaccident.ui.User">
+        <activity android:name="com.example.alertaccident.ui.home.HomeActivity">
         </activity>
     </application>
 
