@@ -14,7 +14,7 @@ import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
 
 import retrofit2.*
-
+import kotlin.math.sign
 
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
@@ -42,7 +42,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                                 if(message.compareTo("User not found...")==0)
                                     Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) }, 1500)
                                 else
-                                    Handler().postDelayed({ signinview.onError(message) }, 1500)
+                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.authen_error)) }, 1500)
                                // Handler().postDelayed({ signinview.onError(message) }, 1500)
                                 //response.raw().message())
 
@@ -67,6 +67,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
         else if (isLoginsucces==1)
             signinview.onError(context.getString(R.string.valid_address))
         else if(isLoginsucces==2)
+            signinview.onError(context.getString(R.string.nopassword))
+        else if(isLoginsucces==3)
             signinview.onError(context.getString(R.string.valid_password))
 
 

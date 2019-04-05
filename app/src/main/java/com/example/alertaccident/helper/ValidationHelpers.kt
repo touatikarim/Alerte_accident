@@ -2,6 +2,7 @@ package com.example.alertaccident.helper
 
 import android.text.TextUtils
 import android.util.Patterns
+import org.w3c.dom.Text
 import java.util.regex.Pattern
 
 const val MIN_CREDENTIAL_LENGTH = 8
@@ -42,8 +43,10 @@ fun isDataValid(email:String,password:String):Int {
         return 0
     else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         return 1
-    else if (!isPasswordValid(password))
+    else if (TextUtils.isEmpty(password))
         return 2
+    else if (!isPasswordValid(password))
+        return 3
     else
         return -1
 }
@@ -51,16 +54,20 @@ fun isRegistrationValid(email:String,password: String,repeatPassword: String,use
 {
     if (TextUtils.isEmpty(username))
         return 0
-    else if (!isPhoneValid(phone))
+    if (!isPhoneValid(phone))
         return 1
-    else if(!isCINValid(CIN))
+     if(!isCINValid(CIN))
         return 2
-    else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+    if(TextUtils.isEmpty(email))
         return 3
-    else if (!isPasswordValid(password))
+     if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         return 4
-    else if (!arePasswordsSame(password, repeatPassword))
+    if(TextUtils.isEmpty(password))
         return 5
+     if (!isPasswordValid(password))
+        return 6
+     if (!arePasswordsSame(password, repeatPassword))
+        return 7
     else
         return -1
 

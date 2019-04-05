@@ -60,16 +60,21 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
         val isRegistersucces = isRegistrationValid(email, password, repeatPassword, username, phone,CIN)
         if (isRegistersucces == 0)
             signupview.onError(context.getString(R.string.valid_user))
-        else if (isRegistersucces == 1)
+         if (isRegistersucces == 1)
             signupview.onError(context.getString(R.string.valid_number))
-        else if(isRegistersucces==2)
+         if(isRegistersucces==2)
             signupview.onError(context.getString(R.string.valid_CIN))
-        else if (isRegistersucces == 3)
+         if (isRegistersucces == 3)
+            signupview.onError(context.getString(R.string.email_address))
+         if (isRegistersucces == 4)
             signupview.onError(context.getString(R.string.valid_address))
-        else if (isRegistersucces == 4)
+         if (isRegistersucces == 5)
+            signupview.onError(context.getString(R.string.nopassword))
+         if(isRegistersucces==6)
             signupview.onError(context.getString(R.string.valid_password))
-        else if (isRegistersucces == 5)
+         if(isRegistersucces==7)
             signupview.onError(context.getString(R.string.identical_pass))
+
 
     }
 
