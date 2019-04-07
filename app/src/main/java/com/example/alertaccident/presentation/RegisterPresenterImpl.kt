@@ -3,7 +3,6 @@ package com.example.alertaccident.presentation
 
 import android.content.Context
 import android.os.Handler
-import android.util.Log
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isRegistrationValid
 import com.example.alertaccident.R
@@ -11,7 +10,7 @@ import com.example.alertaccident.R
 import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.retrofit.RetrofitManager
-import com.example.alertaccident.retrofit.RetrofitServices
+
 import com.example.alertaccident.ui.register.SignupView
 import com.google.gson.JsonParser
 

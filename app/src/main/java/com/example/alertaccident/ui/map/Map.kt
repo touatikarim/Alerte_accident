@@ -1,4 +1,4 @@
-package com.example.alertaccident.ui.home
+package com.example.alertaccident.ui.map
 
 import android.content.Context
 import android.net.Uri
@@ -7,14 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupWithNavController
 
 import com.example.alertaccident.R
-import kotlinx.android.synthetic.main.activity_user.*
 
 
-class Home : Fragment() {
+class Map : Fragment() {
+
 
 
     override fun onCreateView(
@@ -22,11 +20,8 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-    }
 }
