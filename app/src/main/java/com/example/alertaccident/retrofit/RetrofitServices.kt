@@ -14,7 +14,7 @@ interface RetrofitServices {
     @POST("auth/Login/")
    fun loginuser(@Body body:User): Call<ApiResponse>
 
-    @POST("user/Post/")
+    @POST("user/addUser/")
     fun registeruser(@Body body:RegisterModel):Call<ApiResponse>
 
 }
