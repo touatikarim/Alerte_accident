@@ -2,7 +2,7 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_first_fragment"
+                android:id="@+id/settings_dest"
                 android:icon="@drawable/settingsgears"
                 android:title="Contacts" />
         <item
