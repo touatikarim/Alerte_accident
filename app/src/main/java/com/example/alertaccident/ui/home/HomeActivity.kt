@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
 
 import androidx.navigation.ui.setupWithNavController
 import com.example.alertaccident.R
 
 import kotlinx.android.synthetic.main.activity_user.*
+import kotlinx.android.synthetic.main.nav_header.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -25,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
         setupBottomNavMenu(navController)
         setupSideNavigationMenu(navController)
         setupActionBar(navController)
+        //getargs()
+
 
     }
 
@@ -42,13 +47,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
    private fun setupActionBar(navController: NavController){
-       NavigationUI.setupActionBarWithNavController(this,navController,drawer_layout)    }
+       NavigationUI.setupActionBarWithNavController(this,navController,drawer_layout)
+   }
 
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.drawer_view,menu)
-//        return true
+//    private fun getargs(){
+//        val args=HomeActivityArgs.fromBundle(intent.extras).usermail
+//        user_email_id.text=args
 //    }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val navController=Navigation.findNavController(this,R.id.my_nav_user_fragment)

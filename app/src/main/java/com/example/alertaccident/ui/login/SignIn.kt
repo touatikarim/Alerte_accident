@@ -37,6 +37,7 @@ class SignIn : Fragment(),SigninView {
             }
         }
         load()
+
         Handler().postDelayed({findNavController().navigate(R.id.action_signIn_to_home2,null,options)},1500)
 
 
@@ -77,7 +78,12 @@ class SignIn : Fragment(),SigninView {
             val password=id_password.text.toString()
 
             loginpresnter.onLogin(email, password)
+//            val action=SignInDirections.actionSignInToHome2()
+//            action.setUsermail(email)
             loginpresnter.login(email,password)
+
+
+
 
         }
 
