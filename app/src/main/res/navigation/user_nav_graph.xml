@@ -32,5 +32,11 @@
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment android:id="@+id/settings_dest" android:name="com.example.alertaccident.ui.settings.Settings"
-              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings">
+        <action android:id="@+id/action_settings_dest_to_update_profile" app:destination="@id/update_profile"
+                app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment android:id="@+id/update_profile" android:name="com.example.alertaccident.ui.update.Update_profile"
+              android:label="fragment_update_profile" tools:layout="@layout/fragment_update_profile"/>
 </navigation>

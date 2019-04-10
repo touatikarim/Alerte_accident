@@ -4,14 +4,21 @@
         <item
                 android:id="@+id/settings_dest"
                 android:icon="@drawable/settingsgears"
-                android:title="Contacts" />
+                android:title="@string/setting" />
         <item
                 android:id="@+id/nav_second_fragment"
-                android:icon="@drawable/settingsgears"
-                android:title="Settings" />
+                android:icon="@drawable/contact"
+                android:title="@string/contact" />
         <item
                 android:id="@+id/nav_third_fragment"
-                android:icon="@drawable/settingsgears"
-                android:title="First Aids" />
+                android:icon="@drawable/aids"
+                android:title="@string/first_aids" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/logout"
+                android:icon="@drawable/logout"
+                android:title="@string/logout" />
     </group>
 </menu>

@@ -47,5 +47,18 @@
     <string name="valid_number">Please enter a valid phone number</string>
     <string name="identical_pass">Passwords are not identical</string>
     <string name="account_creation">Account created</string>
+    <string name="setting">Settings</string>
+    <string name="contact">Contacts</string>
+    <string name="first_aids">First Aids</string>
+    <string name="logout">Log out</string>
+    <string name="notification">Receive notifications</string>
+    <string name="GPS">Enable GPS</string>
+    <string name="accident">Enable automatic accidents detection</string>
+    <string name="profile"><u>Update profile</u></string>
+    <string name="change_pass"><u>Change password</u></string>
+    <string name="desac_acc"><u>Desactivate Account</u></string>
+    <string name="new_email">Enter new email</string>
+    <string name="new_name">Enter new name</string>
+    <string name="new_number">Enter new phone number</string>
 
 </resources>
