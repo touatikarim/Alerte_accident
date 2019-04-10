@@ -5,7 +5,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign">Sign in</string>
-    <string name="forget">Forget Password?</string>
+    <string name="forget">Forgot Password?</string>
     <string name="email_address">Email field should not be blank</string>
     <string name="valid_address">Please enter a valid email address</string>
     <string name="valid_password">Please enter a valid password</string>
