@@ -1,6 +1,9 @@
 package com.example.alertaccident.presentation
 
-interface IUpdateProfile{
+import android.content.Context
+
+interface IUpdateProfilePresenter{
     fun Updateprofile(nom:String,email:String,telephone:String)
+    fun setMainViewContext(context: Context)
 
 }

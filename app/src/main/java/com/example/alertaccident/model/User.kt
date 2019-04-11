@@ -1,3 +1,3 @@
 package com.example.alertaccident.model
 
-data class User (var email:String,var name:String,var pwd:String,var id:String)
+data class User (var email:String,var pwd:String,var name:String,var id:String)

@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 
 import com.example.alertaccident.R
-import com.example.alertaccident.ui.login.SignInDirections
 import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.nav_header.*

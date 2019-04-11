@@ -3,6 +3,8 @@ package com.example.alertaccident.ui.login
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.UserManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +63,7 @@ class SignIn : Fragment(),SigninView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
 
@@ -78,9 +81,10 @@ class SignIn : Fragment(),SigninView {
             val password=id_password.text.toString()
 
             loginpresnter.onLogin(email, password)
-//            val action=SignInDirections.actionSignInToHome2()
-//            action.setUsermail(email)
             loginpresnter.login(email,password)
+            val sp =com.example.alertaccident.retrofit.UserManager.getSharedPref(activity!!.baseContext)
+            val mail=sp.getString("USER_EMAIL","")
+
 
 
 

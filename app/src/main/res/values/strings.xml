@@ -57,7 +57,7 @@
     <string name="profile"><u>Update profile</u></string>
     <string name="change_pass"><u>Change password</u></string>
     <string name="desac_acc"><u>Desactivate Account</u></string>
-    <string name="new_email">Enter new email</string>
+    <string name="new_email">Confirm your email</string>
     <string name="new_name">Enter new name</string>
     <string name="new_number">Enter new phone number</string>
 

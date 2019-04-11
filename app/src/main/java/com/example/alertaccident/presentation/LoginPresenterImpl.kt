@@ -9,9 +9,13 @@ import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
 import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.LoginModel
+import com.example.alertaccident.model.User
 import com.example.alertaccident.retrofit.RetrofitManager
+import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
+import android.content.SharedPreferences
+import android.util.Log
 
 import retrofit2.*
 
@@ -23,17 +27,25 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
     lateinit  var context: Context
     override fun login(email:String,password:String) {
 
-        var user = LoginModel(email, password)
+        val loginModel = LoginModel(email, password)
+        val sp=UserManager.getSharedPref(context)
+
+
         if (isDataValid(email, password) == -1) {
-            RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(user)
+            RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)
                 .enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
 
                         if (response != null) {
 
                             if (response.code() == 200) {
+                                val id=response.body()!!.data._id
+                                val name=response.body()!!.data.nom
+                                val user = User(email,password,name,id)
+                                UserManager.saveCredentials(context,user)
                                 signinview.navigate()
                                 Handler().postDelayed({ signinview.onSuccess(response.body()!!.message) }, 1500)
+
                             } else {
                                 val errorJsonString = response.errorBody()?.string()
                                 var message = JsonParser().parse(errorJsonString)

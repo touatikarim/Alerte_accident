@@ -55,13 +55,37 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:src="@drawable/notification" tools:ignore="ContentDescription"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_input_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_email">
+
+                    <EditText
+                            android:id="@+id/email_id"
+                            android:drawableTint="#A6FFCB"
+                            android:background="@drawable/rounded_edittext"
+                            android:inputType="textEmailAddress"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_email_black_24dp"
+                            android:padding="8dp"
+                            tools:targetApi="m"
+                            tools:ignore="Autofill,LabelFor"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/name_input_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/new_name">
                     <EditText
-                            android:id="@+id/id_name"
+                            android:id="@+id/name_id"
                             android:drawableTint="@color/grad_color"
                             android:background="@drawable/rounded_edittext"
                             android:inputType="textEmailAddress"
@@ -75,34 +99,14 @@
                             tools:ignore="Autofill,LabelFor"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/text_input_layout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/new_email">
 
-                            <EditText
-                                    android:id="@+id/id_email"
-                                    android:drawableTint="#A6FFCB"
-                                    android:background="@drawable/rounded_edittext"
-                                    android:inputType="textEmailAddress"
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_gravity="center"
-                                    android:layout_height="wrap_content"
-                                    android:drawableStart="@drawable/ic_email_black_24dp"
-                                    android:padding="8dp"
-                                    tools:targetApi="m"
-                                    tools:ignore="Autofill,LabelFor"/>
-
-                        </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/number_input_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/new_number">
                     <EditText
-                            android:id="@+id/id_phone"
+                            android:id="@+id/phone_id"
                             android:drawableTint="@color/grad_color"
                             android:background="@drawable/rounded_edittext"
                             android:inputType="phone"
@@ -117,11 +121,22 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ProgressBar
+                        android:id="@+id/update"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:indeterminate="true"
+                        android:layout_marginTop="8dp"
+                />
+
 
 
 
                         <Button
-                                android:id="@+id/btn_submit"
+                                android:id="@+id/btn_sub"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="22dp"
