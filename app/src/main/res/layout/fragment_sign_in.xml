@@ -163,18 +163,24 @@
                                 android:textSize="18sp"
                         />
 
-                        <com.shobhitpuri.custombuttons.GoogleSignInButton
+                        <com.facebook.login.widget.LoginButton
                                 android:id="@+id/btn_login_fb"
-                                android:layout_width="fill_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="22dp"
                                 android:layout_gravity="center"
                                 app:isDarkTheme="true"
-                                android:text="@string/sign_facebook"
                                 android:textAllCaps="true"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
+                                android:paddingLeft="16dp"
+                                android:paddingRight="16dp"
+
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+
                         />
+
 
 
                     </LinearLayout>

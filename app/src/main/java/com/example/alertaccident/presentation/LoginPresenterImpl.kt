@@ -31,7 +31,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
         val sp=UserManager.getSharedPref(context)
 
 
-        if (isDataValid(email, password) == -1) {
+       // if (isDataValid(email, password) == -1) {
             RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)
                 .enqueue(object : Callback<ApiResponse> {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
@@ -66,7 +66,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter {
                     }
                 })
 
-        }
+       // }
     }
 
 

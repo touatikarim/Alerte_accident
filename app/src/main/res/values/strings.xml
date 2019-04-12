@@ -69,5 +69,6 @@
     <string name="reset">Change Password</string>
     <string name="old_pass">Enter your old password</string>
     <string name="new_pass">Enter a new password</string>
-
+    <string name="facebook_app_id">326457064678460</string>
+    <string name="fb_login_protocol_scheme">fb326457064678460</string>
 </resources>

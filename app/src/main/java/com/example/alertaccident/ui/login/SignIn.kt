@@ -1,6 +1,7 @@
 package com.example.alertaccident.ui.login
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.UserManager
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 
 import androidx.navigation.fragment.findNavController
@@ -17,9 +19,14 @@ import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.UiUtils
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-
+import java.util.*
 
 
 class SignIn : Fragment(),SigninView {
@@ -55,6 +62,7 @@ class SignIn : Fragment(),SigninView {
 
 
     internal lateinit var loginpresnter: IloginPresenter
+    private var callbackManager: CallbackManager? = null
 
 
 
@@ -91,8 +99,40 @@ class SignIn : Fragment(),SigninView {
 
         }
 
+
+        btn_login_fb.setOnClickListener {
+            // Login
+            callbackManager = CallbackManager.Factory.create()
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+            LoginManager.getInstance().registerCallback(callbackManager,
+                object : FacebookCallback<LoginResult> {
+                    override fun onSuccess(loginResult: LoginResult) {
+                        Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
+                       findNavController().navigate(R.id.action_signIn_to_home2)
+                    }
+
+                    override fun onCancel() {
+                        Log.d("MainActivity", "Facebook onCancel.")
+
+                    }
+
+                    override fun onError(error: FacebookException) {
+                        Log.d("MainActivity", "Facebook onError.")
+
+                    }
+                })
+        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
+    }
+
+
 }
+
 
 
 
