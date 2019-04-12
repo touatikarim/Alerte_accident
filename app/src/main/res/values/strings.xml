@@ -5,8 +5,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign">Sign in</string>
-    <string name="forget">Forget Password?</string>
-    <string name="email_address">Please insert email address</string>
+    <string name="forget">Forgot Password?</string>
+    <string name="email_address">Email field should not be blank</string>
     <string name="valid_address">Please enter a valid email address</string>
     <string name="valid_password">Please enter a valid password</string>
     <string name="success">Login Success</string>
@@ -22,7 +22,7 @@
     <string name="bottom_navigation_menu_android">Map</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="log">Account Sign up</string>
-    <string name="existinguser">Existing User</string>
+    <string name="existinguser">Already Registred?</string>
     <string name="account">Don\'t have an account?</string>
     <string name="guest">Use as a guest</string>
     <string name="noaccount">Without Account</string>
@@ -41,11 +41,17 @@
     <string name="username">Username</string>
     <string name="licence">Driving licence</string>
     <string name="insurance">Insurance company</string>
-    <string name="address">Adress</string>
+    <string name="address">Address</string>
     <string name="Server">Server Error</string>
-    <string name="valid_user">Please enter a valid username</string>
+    <string name="valid_user">Username field should not be blank</string>
     <string name="valid_number">Please enter a valid phone number</string>
     <string name="identical_pass">Passwords are not identical</string>
     <string name="account_creation">Account created</string>
+    <string name="valid_CIN">Please enter a valid CIN</string>
+    <string name="alreadyregistred">The email address you entered is already in use</string>
+    <string name="no_account">You have to create an account before you get access to the application</string>
+    <string name="authen_error">Incorrect Email or password.Please try again.</string>
+    <string name="nopassword">Password field should not be blank.</string>
+
 
 </resources>
