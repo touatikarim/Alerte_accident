@@ -40,5 +40,9 @@ class Settings : Fragment() {
         view.findViewById<TextView>(R.id.id_update)?.setOnClickListener {
             findNavController().navigate(R.id.action_settings_dest_to_update_profile, null, options)
         }
+
+        view.findViewById<TextView>(R.id.id_change_pass)?.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_dest_to_reset_pass,null,options)
+        }
     }
 }

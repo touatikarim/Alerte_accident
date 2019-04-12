@@ -5,7 +5,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign">Sign in</string>
-    <string name="forget">Forget Password?</string>
+    <string name="forget">Forgot Password?</string>
     <string name="email_address">Please insert email address</string>
     <string name="valid_address">Please enter a valid email address</string>
     <string name="valid_password">Please enter a valid password</string>
@@ -54,11 +54,20 @@
     <string name="notification">Receive notifications</string>
     <string name="GPS">Enable GPS</string>
     <string name="accident">Enable automatic accidents detection</string>
-    <string name="profile"><u>Update profile</u></string>
-    <string name="change_pass"><u>Change password</u></string>
-    <string name="desac_acc"><u>Desactivate Account</u></string>
+    <string name="profile">
+        <u>Update profile</u>
+    </string>
+    <string name="change_pass">
+        <u>Change password</u>
+    </string>
+    <string name="desac_acc">
+        <u>Desactivate Account</u>
+    </string>
     <string name="new_email">Confirm your email</string>
     <string name="new_name">Enter new name</string>
     <string name="new_number">Enter new phone number</string>
+    <string name="reset">Change Password</string>
+    <string name="old_pass">Enter your old password</string>
+    <string name="new_pass">Enter a new password</string>
 
 </resources>

@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-             tools:context="com.example.alertaccident.ui.login.SignIn">
+             tools:context=".ui.resetpassword.Reset_pass">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -21,18 +21,17 @@
                           android:orientation="vertical"
             >
 
-        <TextView
-                android:id="@+id/login_title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text="@string/login"
-                android:textColor="@color/dark_blue"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
+                <TextView
+                        android:id="@+id/login_title"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/reset"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
                 <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -50,40 +49,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" tools:ignore="ExtraText">
 
-                        <ImageButton
+                        <ImageView
                                 android:id="@+id/user_profile_photo"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/user_profile_image_background"
-                                android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/text_input_layout"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/email">
-                            <EditText
-                                    android:id="@+id/id_email"
-                                    android:drawableTint="#A6FFCB"
-                                    android:background="@drawable/rounded_edittext"
-                                    android:inputType="textEmailAddress"
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="16dp"
-                                    android:layout_gravity="center"
-                                    android:layout_height="wrap_content"
-                                    android:drawableStart="@drawable/ic_email_black_24dp"
-                                    android:padding="12dp"
-                                    tools:targetApi="m"
-                                    tools:ignore="Autofill,LabelFor"/>
-
-                        </com.google.android.material.textfield.TextInputLayout>
+                                android:src="@drawable/notification" tools:ignore="ContentDescription"/>
 
                         <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/password"
+                                android:hint="@string/old_pass"
                                 tools:ignore="DuplicateIds">
                             <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                                     android:id="@+id/id_password"
@@ -100,22 +77,77 @@
                                     android:padding="12dp"
                                     tools:targetApi="m"/>
                         </com.google.android.material.textfield.TextInputLayout>
-                        <CheckBox android:id="@+id/checkbox_meat"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:hint="@string/Remember"
-                                  android:textSize="14sp"
-                                  tools:ignore="SmallSp"/>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/new_pass_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/new_pass">
+                            <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                                    android:id="@+id/newpass_id"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="textEmailAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                                    app:drawable_show="@drawable/ic_visibility_black_24dp"
+                                    app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
+                                    android:padding="12dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/confirmpass_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/confirmpassword">
+                            <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                                    android:id="@+id/confirmpass_id"
+                                    android:drawableTint="@color/grad_color"
+                                    android:background="@drawable/rounded_edittext"
+                                    android:inputType="phone"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                                    app:drawable_show="@drawable/ic_visibility_black_24dp"
+                                    app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
+                                    android:padding="12dp"
+                                    tools:targetApi="m"
+                                    tools:ignore="Autofill,LabelFor"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ProgressBar
+                                android:id="@+id/update"
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:indeterminate="true"
+                                android:layout_marginTop="8dp"
+                        />
+
+
 
 
                         <Button
-                                android:id="@+id/btn_login"
-                                android:layout_width="fill_parent"
+                                android:id="@+id/btn_sub"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="22dp"
+                                android:layout_gravity="center_horizontal"
 
                                 android:background="@drawable/buttonshape"
-                                android:text="@string/sign"
+                                android:text="@string/submit"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
@@ -130,62 +162,14 @@
                                 android:gravity="center"
                                 android:indeterminate="true"
                                 android:layout_marginTop="8dp"
-                                 />
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="@string/forget"/>
-                        <TextView
-                                android:id="@+id/or"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:paddingTop="5dp"
-                                android:text="@string/Separater"/>
-
-
-                        <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray"/>
                         />
-                        <com.shobhitpuri.custombuttons.GoogleSignInButton
-                                android:id="@+id/btn_login_google"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="22dp"
-                                android:layout_gravity="center"
-                                app:isDarkTheme="false"
-                                android:text="@string/sign_google"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                        />
-
-                        <com.shobhitpuri.custombuttons.GoogleSignInButton
-                                android:id="@+id/btn_login_fb"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="22dp"
-                                android:layout_gravity="center"
-                                app:isDarkTheme="true"
-                                android:text="@string/sign_facebook"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                        />
-
-
                     </LinearLayout>
-
-
                 </RelativeLayout>
+            </LinearLayout>
 
 
-        </LinearLayout>
+
+
         </ScrollView>
     </RelativeLayout>
-
-
 </FrameLayout>
