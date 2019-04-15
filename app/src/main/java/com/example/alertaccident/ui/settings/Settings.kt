@@ -12,6 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.common.api.ResultCallback
+import com.google.android.gms.common.api.Status
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 class Settings : Fragment() {
@@ -44,5 +50,8 @@ class Settings : Fragment() {
         view.findViewById<TextView>(R.id.id_change_pass)?.setOnClickListener {
             findNavController().navigate(R.id.action_settings_dest_to_reset_pass,null,options)
         }
+
+
+
     }
 }

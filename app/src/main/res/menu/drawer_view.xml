@@ -15,10 +15,5 @@
                 android:title="@string/first_aids" />
     </group>
 
-    <group android:checkableBehavior="single">
-        <item
-                android:id="@+id/logout"
-                android:icon="@drawable/logout"
-                android:title="@string/logout" />
-    </group>
+
 </menu>

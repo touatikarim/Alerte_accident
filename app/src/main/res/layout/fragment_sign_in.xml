@@ -121,6 +121,7 @@
                                 android:textSize="18sp"
 
                         />
+
                         <ProgressBar
                                 android:id="@+id/login"
                                 android:visibility="gone"
@@ -162,6 +163,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                         />
+
 
                         <com.facebook.login.widget.LoginButton
                                 android:id="@+id/btn_login_fb"

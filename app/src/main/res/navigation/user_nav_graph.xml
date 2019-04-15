@@ -37,9 +37,12 @@
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
         <action android:id="@+id/action_settings_dest_to_reset_pass" app:destination="@id/reset_pass"/>
+        <action android:id="@+id/action_settings_dest_to_connexion" app:destination="@id/connexion"/>
     </fragment>
     <fragment android:id="@+id/update_profile" android:name="com.example.alertaccident.ui.update.Update_profile"
               tools:layout="@layout/fragment_update_profile" android:label="Settings"/>
     <fragment android:id="@+id/reset_pass" android:name="com.example.alertaccident.ui.resetpassword.Reset_pass"
               android:label="fragment_reset_pass" tools:layout="@layout/fragment_reset_pass"/>
+    <activity android:id="@+id/connexion" android:name="com.example.alertaccident.ui.Connexion"
+              android:label="activity_main" tools:layout="@layout/activity_main"/>
 </navigation>
