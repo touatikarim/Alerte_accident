@@ -3,7 +3,7 @@ package com.example.alertaccident.presentation
 
 
 
-import android.app.PendingIntent.getActivity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
@@ -19,25 +19,23 @@ import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
 
 import android.util.Log
-import androidx.core.app.ActivityCompat.startActivityForResult
+
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import com.example.alertaccident.ui.Connexion
 
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
 import retrofit2.*
 import java.util.*
+import com.facebook.GraphResponse
+import org.json.JSONObject
+import com.facebook.GraphRequest
+
+
+
 
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
@@ -111,6 +109,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     Log.d("token", "Facebook token: " + loginResult.accessToken.token)
+                    UserManager.saveFacebookToken(context,loginResult.accessToken.token)
                     signinview.navigate()
 
                 }

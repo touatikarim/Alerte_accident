@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
@@ -16,6 +18,10 @@ import androidx.navigation.ui.NavigationUI
 import com.example.alertaccident.R
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
+import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,6 +32,7 @@ import com.google.android.material.navigation.NavigationView
 
 import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -40,9 +47,16 @@ class HomeActivity : AppCompatActivity() {
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
+
+
+
         setupBottomNavMenu(navController)
+
         setupSideNavigationMenu(navController,mail,name)
+
         setupActionBar(navController)
+
+        setsize(logoutfb)
         setsize(logout)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -52,23 +66,49 @@ class HomeActivity : AppCompatActivity() {
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
             .build()
         mGoogleApiClient.connect()
-        logout.setOnClickListener {
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                object : ResultCallback<Status> {
-                    override fun onResult(status: Status) {
+        if(AccessToken.getCurrentAccessToken() != null){
+            logoutfb.setVisibility(View.VISIBLE)
+            logoutfb.setOnClickListener {
+                if (AccessToken.getCurrentAccessToken() != null) {
+                    GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+                        AccessToken.setCurrentAccessToken(null)
+                        LoginManager.getInstance().logOut()
 
-                        val intent = Intent(applicationContext, Connexion::class.java)
-                       startActivity(intent)
-                        finish()
+                    }).executeAsync()
+                }
+                val intent = Intent(applicationContext, Connexion::class.java)
+                load()
+                Handler().postDelayed({startActivity(intent);finish()},1500)
 
-                    }
-                })
+
+            }
+
         }
+        else  {
+            logout.setVisibility(View.VISIBLE)
+            logout.setOnClickListener {
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    object : ResultCallback<Status> {
+                        override fun onResult(status: Status) {
+                            val intent = Intent(applicationContext, Connexion::class.java)
+                            load()
+                            Handler().postDelayed({startActivity(intent);finish()},1500)
+
+
+                        }
+                    })
+            }
+       }
 
 
 
     }
 
+    private fun load() {
+        val progressBar = logout_bar
+        progressBar.setVisibility(View.VISIBLE)
+        Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
+    }
     private fun setupBottomNavMenu(navController: NavController){
         bottom_nav?.let {
             NavigationUI.setupWithNavController(it,navController)

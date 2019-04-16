@@ -22,7 +22,7 @@
     <string name="bottom_navigation_menu_android">Map</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="log">Account Sign up</string>
-    <string name="existinguser">Existing User</string>
+    <string name="existinguser">Already Registred?</string>
     <string name="account">Don\'t have an account?</string>
     <string name="guest">Use as a guest</string>
     <string name="noaccount">Without Account</string>
@@ -71,5 +71,6 @@
     <string name="new_pass">Enter a new password</string>
     <string name="facebook_app_id">326457064678460</string>
     <string name="fb_login_protocol_scheme">fb326457064678460</string>
-    <string name="forgot_msg">Please enter your email address or phone number to search for your account:</string>
+    <string name="forgot_msg">Please enter your email address to search for your account:</string>
+    <string name="forgot_email">Enter your email adress</string>
 </resources>

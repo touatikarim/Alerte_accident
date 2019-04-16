@@ -21,4 +21,22 @@ object UserManager {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         return sharedPref
     }
+    fun saveFacebookToken(context: Context, token: String)
+    {
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("FACEBOOK_SIGNED_IN", token)
+        editor.putString("GOOGLE_SIGNED_IN",null)
+       // editor.putString("USER_TYPE","FACEBOOK_SIGNED_IN")
+        editor.apply()
+    }
+    fun saveGoogleToken(context: Context, token: String)
+    {
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("FACEBOOK_SIGNED_IN", null)
+        editor.putString("GOOGLE_SIGNED_IN",token)
+        //editor.putString("USER_TYPE","GOOGLE_SIGNED_IN")
+        editor.apply()
+    }
 }

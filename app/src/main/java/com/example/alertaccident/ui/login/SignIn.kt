@@ -1,18 +1,21 @@
 package com.example.alertaccident.ui.login
 
 
+import android.accounts.Account
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+
 import android.util.Log
 
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.alertaccident.retrofit.UserManager
 import android.widget.EditText
 
 import android.widget.Toast
@@ -24,9 +27,12 @@ import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.model.User
 import com.facebook.CallbackManager
+import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInApi
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
@@ -37,11 +43,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
-
-
-
-
-
+import java.io.IOException
 
 
 class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener {
@@ -50,7 +52,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     }
 
     internal lateinit var loginpresnter: IloginPresenter
-    lateinit var callbackManager: CallbackManager
     lateinit var mGoogleApiClient: GoogleApiClient
     private val RC_SIGN_IN = 9001
     val options = navOptions {
@@ -121,6 +122,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestId()
             .requestEmail()
             .build()
 
@@ -130,6 +132,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
              mGoogleApiClient.connect()
 
         btn_login_google.setOnClickListener {
+
             val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
             startActivityForResult(signInIntent, RC_SIGN_IN)
 
@@ -141,23 +144,30 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        mGoogleApiClient.connect()
-        val alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
-        if (alreadyloggedAccount != null) {
-            Log.d("dqsd", "Already Logged In")
-
-        } else {
-            Log.d("azea", "Not logged in")
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        mGoogleApiClient.connect()
+//        val alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
+//        if (alreadyloggedAccount != null) {
+//            Log.d("dqsd", "Already Logged In")
+//
+//        } else {
+//            Log.d("azea", "Not logged in")
+//        }
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        loginpresnter.onActivityResult(requestCode,resultCode, data)
+       loginpresnter.onActivityResult(requestCode,resultCode, data)
         if (requestCode == RC_SIGN_IN) {
+            val account=GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
+            val personEmail = account?.email
+            val name=account?.displayName
+            val user=User(personEmail!!,"",name!!,"")
+            UserManager.saveCredentials(activity!!.baseContext,user)
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            val token=result.signInAccount?.id.toString()
+            UserManager.saveGoogleToken(activity!!.baseContext,token)
             if (result.isSuccess)
                 navigate()
         }
