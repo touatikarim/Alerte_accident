@@ -17,6 +17,7 @@ import com.example.alertaccident.R
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
@@ -55,9 +56,11 @@ class HomeActivity : AppCompatActivity() {
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 object : ResultCallback<Status> {
                     override fun onResult(status: Status) {
+
                         val intent = Intent(applicationContext, Connexion::class.java)
-                        startActivity(intent)
+                       startActivity(intent)
                         finish()
+
                     }
                 })
         }

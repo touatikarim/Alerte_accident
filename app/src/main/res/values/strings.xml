@@ -71,4 +71,5 @@
     <string name="new_pass">Enter a new password</string>
     <string name="facebook_app_id">326457064678460</string>
     <string name="fb_login_protocol_scheme">fb326457064678460</string>
+    <string name="forgot_msg">Please enter your email address or phone number to search for your account:</string>
 </resources>

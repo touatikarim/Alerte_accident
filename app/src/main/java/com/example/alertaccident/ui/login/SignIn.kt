@@ -2,6 +2,8 @@ package com.example.alertaccident.ui.login
 
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -50,6 +53,14 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     lateinit var callbackManager: CallbackManager
     lateinit var mGoogleApiClient: GoogleApiClient
     private val RC_SIGN_IN = 9001
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
 
 
     override fun load() {
@@ -59,16 +70,8 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     }
 
     override fun navigate() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-        load()
 
+        load()
         Handler().postDelayed({ findNavController().navigate(R.id.action_signIn_to_home2, null, options) }, 1500)
 
 
@@ -90,6 +93,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
+
 
     }
 
@@ -131,6 +135,9 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
         }
 
+    forget_pass.setOnClickListener {
+        findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
+    }
 
     }
 
@@ -157,6 +164,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
 
     }
+
 
 
 }

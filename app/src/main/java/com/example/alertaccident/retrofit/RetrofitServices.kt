@@ -22,4 +22,7 @@ interface RetrofitServices {
     @PUT("user/updateUser/{email}")
     fun updateuser(@Path("email") email:String,@Body body: UpdateModel):Call<ApiResponse>
 
+    @POST("user/forgotPassword/")
+    fun forgetpass(@Body body:LoginModel):Call<ApiResponse>
+
 }
