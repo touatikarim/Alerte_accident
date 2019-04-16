@@ -26,6 +26,7 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.model.User
 import com.facebook.CallbackManager
@@ -111,7 +112,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password)
-            val sp = com.example.alertaccident.retrofit.UserManager.getSharedPref(activity!!.baseContext)
+            val sp = UserManager.getSharedPref(activity!!.baseContext)
             val mail = sp.getString("USER_EMAIL", "")
 
         }
@@ -123,6 +124,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestId()
+            .requestIdToken(Constants.clientid)
             .requestEmail()
             .build()
 
@@ -144,17 +146,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        mGoogleApiClient.connect()
-//        val alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
-//        if (alreadyloggedAccount != null) {
-//            Log.d("dqsd", "Already Logged In")
-//
-//        } else {
-//            Log.d("azea", "Not logged in")
-//        }
-//    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -166,7 +158,8 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
             val user=User(personEmail!!,"",name!!,"")
             UserManager.saveCredentials(activity!!.baseContext,user)
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            val token=result.signInAccount?.id.toString()
+            val token=result.signInAccount?.idToken.toString()
+            Log.d("tokennnn",token)
             UserManager.saveGoogleToken(activity!!.baseContext,token)
             if (result.isSuccess)
                 navigate()

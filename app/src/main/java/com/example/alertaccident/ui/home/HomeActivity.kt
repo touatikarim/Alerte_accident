@@ -1,5 +1,6 @@
 package com.example.alertaccident.ui.home
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +38,6 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class HomeActivity : AppCompatActivity() {
 
-
     lateinit var mGoogleApiClient: GoogleApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,16 +69,19 @@ class HomeActivity : AppCompatActivity() {
         if(AccessToken.getCurrentAccessToken() != null){
             logoutfb.setVisibility(View.VISIBLE)
             logoutfb.setOnClickListener {
-                if (AccessToken.getCurrentAccessToken() != null) {
-                    GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
-                        AccessToken.setCurrentAccessToken(null)
-                        LoginManager.getInstance().logOut()
-
-                    }).executeAsync()
-                }
+//                if (AccessToken.getCurrentAccessToken() != null) {
+//                    GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
+//                        AccessToken.setCurrentAccessToken(null)
+//                        LoginManager.getInstance().logOut()
+//
+//                    }).executeAsync()
+//                }
+                AccessToken.setCurrentAccessToken(null)
+                LoginManager.getInstance().logOut()
+                val options=ActivityOptions.makeCustomAnimation(this,R.anim.slide_in_left,R.anim.slide_out_right)
                 val intent = Intent(applicationContext, Connexion::class.java)
                 load()
-                Handler().postDelayed({startActivity(intent);finish()},1500)
+                Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 
 
             }
@@ -90,9 +93,10 @@ class HomeActivity : AppCompatActivity() {
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     object : ResultCallback<Status> {
                         override fun onResult(status: Status) {
+                            val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
                             val intent = Intent(applicationContext, Connexion::class.java)
                             load()
-                            Handler().postDelayed({startActivity(intent);finish()},1500)
+                            Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 
 
                         }
