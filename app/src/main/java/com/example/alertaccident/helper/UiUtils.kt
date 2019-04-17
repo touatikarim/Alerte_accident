@@ -2,7 +2,9 @@ package com.example.alertaccident.helper
 
 import android.app.Activity
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +15,7 @@ import com.facebook.AccessToken
 import com.facebook.GraphRequest
 
 object UiUtils {
+
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -51,32 +54,16 @@ object UiUtils {
 
     }
 
-    fun hideKeyboad(activity: Activity) {
-        //or use android:windowSoftInputMode="stateHidden" to hide Keyboard onStart
-        activity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+
+    fun isDeviceConnectedToInternet(context: Context) : Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        return (activeNetwork != null)
     }
 
-    fun setMenu(activity: Activity, menuItems: Int, menu: Menu) {
-        activity.menuInflater.inflate(menuItems, menu)
-    }
-    fun getFacebookUserProfileWithGraphApi(context: Context) {
 
-        if (AccessToken.getCurrentAccessToken() != null){
-            val activity = context as Activity
-            val request = GraphRequest.newMeRequest(
-                AccessToken.getCurrentAccessToken()
-            ) { jsonObject, _ ->
-                val email = jsonObject?.get("email")?.toString() ?: ""
-                val name = jsonObject.get("name").toString()
-                UserManager.saveCredentials(context, User(email,"",name,"" ))
-            }
 
-            val parameters = Bundle()
-            parameters.putString("fields", "id,name,email")
-            request.parameters = parameters
-            request.executeAsync()
-        }
-    }
+
 
 
 

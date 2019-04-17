@@ -78,4 +78,5 @@
     <string name="alreadyregistred">The email address you entered is already in use</string>
     <string name="authen_error">Incorrect Email or password.Please try again.</string>
     <string name="no_account">You have to create an account before you get access to the application</string>
+    <string name="no_connection">No internet Connection</string>
 </resources>

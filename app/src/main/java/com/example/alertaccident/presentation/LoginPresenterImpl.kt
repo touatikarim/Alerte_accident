@@ -4,8 +4,10 @@ package com.example.alertaccident.presentation
 
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.Handler
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
@@ -21,21 +23,12 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.model.*
+import com.facebook.*
 
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import retrofit2.*
 import java.util.*
-
-
-
-
-
-
-
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
      {
@@ -116,9 +109,22 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
-                    //Log.d("token", "Facebook token: " + loginResult.accessToken.token)
+                    if (AccessToken.getCurrentAccessToken() != null){
+                        val activity = context as Activity
+                        val request = GraphRequest.newMeRequest(
+                            AccessToken.getCurrentAccessToken()
+                        ) { jsonObject, _ ->
+                            val email = jsonObject?.get("email")?.toString() ?: ""
+                            val name = jsonObject.get("name").toString()
+                            registerFacebook(name,email,"Mobelite007",loginResult.accessToken.token)
+                            UserManager.saveCredentials(context,User(email,"",name,""))
+                        }
+                        val parameters = Bundle()
+                        parameters.putString("fields", "id,name,email")
+                        request.parameters = parameters
+                        request.executeAsync()
+                    }
                     UserManager.saveFacebookToken(context,loginResult.accessToken.token)
-
 
                     signinview.navigate()
 
@@ -135,19 +141,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
     }
 
-    override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-        UiUtils.getFacebookUserProfileWithGraphApi(context)
-        val sp = UserManager.getSharedPref(context)
-        val mail=sp.getString("USER_EMAIL","")
-        Log.d("mail",mail)
-        val name=sp.getString("USER_NAME","")
-        val token=sp.getString("FACEBOOK_SIGNED_IN","")
-        registerFacebook(name,mail,"Mobelite007",token)
 
-
-
-    }
          override fun registerGoogle(nom:String,email:String,password:String,googleToken:String) {
              val registerGoogleModel= RegisterGoogleModel(nom, email, password, googleToken)
              RetrofitManager.getInstance(Constants.baseurl).service!!.registerusergoogle(registerGoogleModel)
@@ -196,6 +190,18 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                      }
 
                  })
+         }
+         override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+             callbackManager?.onActivityResult(requestCode, resultCode, data)
+
+//
+//             val mail=sp.getString("USER_EMAIL","")
+//             Log.d("mail",mail)
+//             val name=sp.getString("USER_NAME","")
+//             v
+//             registerFacebook(name,mail,"Mobelite007",token)
+
+
          }
 
 

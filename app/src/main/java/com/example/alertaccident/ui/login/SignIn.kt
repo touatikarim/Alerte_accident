@@ -28,6 +28,7 @@ import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.User
 import com.facebook.CallbackManager
 import com.google.android.gms.auth.GoogleAuthUtil
@@ -115,7 +116,10 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
         }
 
         btn_login_fb.setOnClickListener {
+            if(isDeviceConnectedToInternet(activity!!.baseContext))
             loginpresnter.signinfb(this)
+            else
+                onError(activity!!.baseContext.getString(R.string.no_connection))
         }
 
 
@@ -131,8 +135,12 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
              mGoogleApiClient.connect()
 
         btn_login_google.setOnClickListener {
+            if(isDeviceConnectedToInternet(activity!!.baseContext))
+            {
             val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            startActivityForResult(signInIntent, RC_SIGN_IN)}
+            else
+                onError(activity!!.baseContext.getString(R.string.no_connection))
         }
 
     forget_pass.setOnClickListener {
@@ -154,7 +162,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
             UserManager.saveCredentials(activity!!.baseContext,user)
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             val token=result.signInAccount?.idToken.toString()
-            Log.d("tokennnn",token)
             UserManager.saveGoogleToken(activity!!.baseContext,token)
             if (result.isSuccess){
                 loginpresnter.registerGoogle(name,personEmail,"Mobelite007",token)
