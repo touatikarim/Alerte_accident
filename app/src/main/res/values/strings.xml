@@ -73,4 +73,9 @@
     <string name="fb_login_protocol_scheme">fb326457064678460</string>
     <string name="forgot_msg">Please enter your email address to search for your account:</string>
     <string name="forgot_email">Enter your email adress</string>
+    <string name="valid_CIN">Please enter a valid CIN</string>
+    <string name="nopassword">Password field should not be blank.</string>
+    <string name="alreadyregistred">The email address you entered is already in use</string>
+    <string name="authen_error">Incorrect Email or password.Please try again.</string>
+    <string name="no_account">You have to create an account before you get access to the application</string>
 </resources>

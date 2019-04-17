@@ -95,8 +95,8 @@
                                     android:drawableTint="#A6FFCB"
                                     android:background="@drawable/rounded_edittext"
                                     android:drawableStart="@drawable/ic_lock_black_24dp"
-                                    app:drawable_show="@drawable/ic_visibility_black_24dp"
-                                    app:drawable_hide="@drawable/ic_visibility_off_black_24dp"
+                                    app:drawable_show="@drawable/ic_visibility_off_black_24dp"
+                                    app:drawable_hide="@drawable/ic_visibility_black_24dp"
                                     android:padding="12dp"
                                     tools:targetApi="m"/>
                         </com.google.android.material.textfield.TextInputLayout>
@@ -179,7 +179,6 @@
                                 android:textSize="18sp"
                                 android:paddingLeft="16dp"
                                 android:paddingRight="16dp"
-
                                 android:paddingTop="10dp"
                                 android:paddingBottom="10dp"
 

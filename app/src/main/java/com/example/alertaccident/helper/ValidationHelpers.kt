@@ -24,9 +24,9 @@ fun isPasswordValid(password: String?): Boolean{
     return (matcher.matches() || matcher1.matches() || matcher2.matches() || matcher3.matches())
 }
 
-fun isUsernameValid(username: String):Boolean {
+fun isCINValid(CIN:String):Boolean{
+    return CIN.length== MIN_CREDENTIAL_LENGTH
 
-    return username.length >= MIN_CREDENTIAL_LENGTH
 }
 fun isPhoneValid(phone: String):Boolean {
 
@@ -42,23 +42,31 @@ fun isDataValid(email:String,password:String):Int {
         return 0
     else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         return 1
-    else if (!isPasswordValid(password))
-        return 2
-    else
-        return -1
-}
-fun isRegistrationValid(email:String,password: String,repeatPassword: String,username:String,phone:String):Int
-{
-    if (!isUsernameValid((username)))
-        return 0
-    else if (!isPhoneValid(phone))
-        return 1
-    else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+    else if (TextUtils.isEmpty(password))
         return 2
     else if (!isPasswordValid(password))
         return 3
-    else if (!arePasswordsSame(password, repeatPassword))
+    else
+        return -1
+}
+fun isRegistrationValid(email:String,password: String,repeatPassword: String,username:String,phone:String,CIN: String):Int
+{
+    if (TextUtils.isEmpty(username))
+        return 0
+    if (!isPhoneValid(phone))
+        return 1
+    if(!isCINValid(CIN))
+        return 2
+    if(TextUtils.isEmpty(email))
+        return 3
+    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         return 4
+    if(TextUtils.isEmpty(password))
+        return 5
+    if (!isPasswordValid(password))
+        return 6
+    if (!arePasswordsSame(password, repeatPassword))
+        return 7
     else
         return -1
 

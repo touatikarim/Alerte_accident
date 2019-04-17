@@ -10,9 +10,6 @@ import android.os.Handler
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
-import com.example.alertaccident.model.ApiResponse
-import com.example.alertaccident.model.LoginModel
-import com.example.alertaccident.model.User
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
@@ -22,6 +19,8 @@ import android.util.Log
 
 
 import androidx.fragment.app.Fragment
+import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.model.*
 
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -30,9 +29,9 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import retrofit2.*
 import java.util.*
-import com.facebook.GraphResponse
-import org.json.JSONObject
-import com.facebook.GraphRequest
+
+
+
 
 
 
@@ -40,10 +39,13 @@ import com.facebook.GraphRequest
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
      {
-    private var callbackManager: CallbackManager? = null
-    lateinit  var context: Context
-    override fun login(email:String,password:String) {
 
+
+         private var callbackManager: CallbackManager? = null
+        lateinit  var context: Context
+
+
+         override fun login(email:String,password:String) {
         val loginModel = LoginModel(email, password)
 
 
@@ -69,10 +71,13 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                     .asJsonObject["message"]
                                     .asString
                                 signinview.load()
-                                    Handler().postDelayed({ signinview.onError(message) }, 1500)
+                                if(message.compareTo("User not found...")==0)
+                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) }, 1500)
+                                else
+                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.authen_error)) }, 1500)
 
-                                // Handler().postDelayed({ signinview.onError(message) }, 1500)
-                                //response.raw().message())
+
+
 
                             }
                         }
@@ -87,18 +92,21 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
     }
 
 
-    override fun onLogin(email: String, password: String) {
-        val isLoginsucces= isDataValid(email,password)
-        if (isLoginsucces==0)
-            signinview.onError(context.getString(R.string.email_address))
-        else if (isLoginsucces==1)
-            signinview.onError(context.getString(R.string.valid_address))
-        else if(isLoginsucces==2)
-            signinview.onError(context.getString(R.string.valid_password))
+         override fun onLogin(email: String, password: String) {
+             val isLoginsucces= isDataValid(email,password)
+             if (isLoginsucces==0)
+                 signinview.onError(context.getString(R.string.email_address))
+             else if (isLoginsucces==1)
+                 signinview.onError(context.getString(R.string.valid_address))
+             else if(isLoginsucces==2)
+                 signinview.onError(context.getString(R.string.nopassword))
+             else if(isLoginsucces==3)
+                 signinview.onError(context.getString(R.string.valid_password))
 
 
-}
-    override fun setMainViewContext(context: Context) {
+         }
+
+         override fun setMainViewContext(context: Context) {
         this.context=context
     }
 
@@ -108,8 +116,10 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
-                    Log.d("token", "Facebook token: " + loginResult.accessToken.token)
+                    //Log.d("token", "Facebook token: " + loginResult.accessToken.token)
                     UserManager.saveFacebookToken(context,loginResult.accessToken.token)
+
+
                     signinview.navigate()
 
                 }
@@ -127,8 +137,66 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
     override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager?.onActivityResult(requestCode, resultCode, data)
+        UiUtils.getFacebookUserProfileWithGraphApi(context)
+        val sp = UserManager.getSharedPref(context)
+        val mail=sp.getString("USER_EMAIL","")
+        Log.d("mail",mail)
+        val name=sp.getString("USER_NAME","")
+        val token=sp.getString("FACEBOOK_SIGNED_IN","")
+        registerFacebook(name,mail,"Mobelite007",token)
+
+
 
     }
+         override fun registerGoogle(nom:String,email:String,password:String,googleToken:String) {
+             val registerGoogleModel= RegisterGoogleModel(nom, email, password, googleToken)
+             RetrofitManager.getInstance(Constants.baseurl).service!!.registerusergoogle(registerGoogleModel)
+                 .enqueue(object :Callback<ApiResponse>{
+                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                         if (response.isSuccessful){
+                             signinview.onSuccess(response.body()!!.message)
+                         }
+                         else{
+                             val errorJsonString = response.errorBody()?.string()
+                             val message = JsonParser().parse(errorJsonString)
+                                 .asJsonObject["message"]
+                                 .asString
+                             signinview.load()
+                             signinview.onError(message)}
+                     }
+                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                         signinview.onError(t.message!!)
+                     }
+
+                 })
+         }
+
+         override fun registerFacebook(nom: String, email: String, password: String, FbToken: String) {
+            val registerFbModel=RegisterFbModel(nom, email, password,FbToken)
+             RetrofitManager.getInstance(Constants.baseurl).service!!.registeruserfacebook(registerFbModel)
+                 .enqueue(object : Callback<ApiResponse>{
+
+                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                         if(response.isSuccessful){
+                             signinview.onSuccess(response.body()!!.message)
+                         }
+                         else {
+                             val errorJsonString = response.errorBody()?.string()
+                             val message = JsonParser().parse(errorJsonString)
+                                 .asJsonObject["message"]
+                                 .asString
+                             signinview.load()
+                             signinview.onError(message)
+                         }
+
+                         }
+
+                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                         signinview.onError(t.message!!)
+                     }
+
+                 })
+         }
 
 
 

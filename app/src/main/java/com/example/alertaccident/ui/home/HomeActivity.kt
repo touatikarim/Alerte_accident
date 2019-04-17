@@ -78,6 +78,7 @@ class HomeActivity : AppCompatActivity() {
 //                }
                 AccessToken.setCurrentAccessToken(null)
                 LoginManager.getInstance().logOut()
+                UserManager.clearSharedPref(this)
                 val options=ActivityOptions.makeCustomAnimation(this,R.anim.slide_in_left,R.anim.slide_out_right)
                 val intent = Intent(applicationContext, Connexion::class.java)
                 load()
@@ -95,6 +96,7 @@ class HomeActivity : AppCompatActivity() {
                         override fun onResult(status: Status) {
                             val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
                             val intent = Intent(applicationContext, Connexion::class.java)
+                            UserManager.clearSharedPref(this@HomeActivity)
                             load()
                             Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 

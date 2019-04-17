@@ -112,9 +112,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password)
-            val sp = UserManager.getSharedPref(activity!!.baseContext)
-            val mail = sp.getString("USER_EMAIL", "")
-
         }
 
         btn_login_fb.setOnClickListener {
@@ -134,10 +131,8 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
              mGoogleApiClient.connect()
 
         btn_login_google.setOnClickListener {
-
             val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
             startActivityForResult(signInIntent, RC_SIGN_IN)
-
         }
 
     forget_pass.setOnClickListener {
@@ -161,8 +156,10 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
             val token=result.signInAccount?.idToken.toString()
             Log.d("tokennnn",token)
             UserManager.saveGoogleToken(activity!!.baseContext,token)
-            if (result.isSuccess)
+            if (result.isSuccess){
+                loginpresnter.registerGoogle(name,personEmail,"Mobelite007",token)
                 navigate()
+            }
         }
 
 

@@ -8,6 +8,7 @@ import com.example.alertaccident.helper.isRegistrationValid
 import com.example.alertaccident.R
 
 import com.example.alertaccident.model.ApiResponse
+import com.example.alertaccident.model.RegisterGoogleModel
 import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.retrofit.RetrofitManager
 
@@ -19,6 +20,8 @@ import retrofit2.*
 
 
 class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresenter {
+
+
     lateinit  var context: Context
    override fun Register(nom: String, password: String, telephone: String, email: String,CIN:String) {
        val register=RegisterModel(nom, password, telephone,
@@ -38,9 +41,11 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                                    .asJsonObject["message"]
                                    .asString
                                signupview.load()
-                                   Handler().postDelayed({ signupview.onError(message) }, 1500)
+                               if(message.compareTo("Utilisateur existe déjà...")==0)
+                                   Handler().postDelayed({ signupview.onError(context.getString(R.string.alreadyregistred)) }, 1500)
                            }
                        }
+
                    }
 
                    override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
@@ -53,20 +58,28 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
 
 
 
-    override fun onRegister(email: String, password: String, repeatPassword: String,username:String,phone:String) {
-        val isRegistersucces= isRegistrationValid(email,password,repeatPassword,username,phone)
-       if (isRegistersucces==0)
-           signupview.onError(context.getString(R.string.valid_user))
-       else if (isRegistersucces==1)
-           signupview.onError(context.getString(R.string.valid_number))
-       else if (isRegistersucces==2)
-           signupview.onError(context.getString(R.string.valid_address))
-        else if (isRegistersucces==3)
-           signupview.onError(context.getString(R.string.valid_password))
-        else if  (isRegistersucces==4)
-           signupview.onError(context.getString(R.string.identical_pass))
+    override fun onRegister(email: String, password: String, repeatPassword: String, username: String, phone: String,CIN: String) {
+        val isRegistersucces = isRegistrationValid(email, password, repeatPassword, username, phone,CIN)
+        if (isRegistersucces == 0)
+            signupview.onError(context.getString(R.string.valid_user))
+        if (isRegistersucces == 1)
+            signupview.onError(context.getString(R.string.valid_number))
+        if(isRegistersucces==2)
+            signupview.onError(context.getString(R.string.valid_CIN))
+        if (isRegistersucces == 3)
+            signupview.onError(context.getString(R.string.email_address))
+        if (isRegistersucces == 4)
+            signupview.onError(context.getString(R.string.valid_address))
+        if (isRegistersucces == 5)
+            signupview.onError(context.getString(R.string.nopassword))
+        if(isRegistersucces==6)
+            signupview.onError(context.getString(R.string.valid_password))
+        if(isRegistersucces==7)
+            signupview.onError(context.getString(R.string.identical_pass))
+
 
     }
+
 
     override fun setMainViewContext(context: Context) {this.context=context }
 

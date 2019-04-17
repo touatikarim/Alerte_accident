@@ -14,6 +14,7 @@ import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.helper.isRegistrationValid
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
@@ -68,14 +69,17 @@ class SignUp : Fragment(),SignupView {
        registerpresnter.setMainViewContext(activity!!.baseContext)
 
         btn_submit.setOnClickListener {
-            val nom=id_name.text.toString()
-            val email=id_email.text.toString()
-            val password=id_password.text.toString()
-            val telephone=id_phone.text.toString()
-            val cin=id_CIN.text.toString()
-            val repeatpassword=id_confirm_password.text.toString()
-           // registerpresnter.onRegister(email,password,repeatpassword,nom,telephone)
-            registerpresnter.Register(nom,email,password,telephone,cin)
+            val nom = id_name.text.toString()
+            val email = id_email.text.toString()
+            val password = id_password.text.toString()
+            val telephone = id_phone.text.toString()
+            val cin = id_CIN.text.toString()
+            val repeatpassword = id_confirm_password.text.toString()
+            if(isRegistrationValid(email, password, repeatpassword, nom, telephone,cin)==-1)
+            { registerpresnter.Register(nom, email, password, telephone, cin)}
+            else
+                registerpresnter.onRegister(email, password, repeatpassword, nom, telephone,cin)
+
         }
     }
 }

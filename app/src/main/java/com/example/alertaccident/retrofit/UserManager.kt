@@ -39,4 +39,13 @@ object UserManager {
         //editor.putString("USER_TYPE","GOOGLE_SIGNED_IN")
         editor.apply()
     }
+
+    fun clearSharedPref(context:Context)
+    {
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("USER_EMAIL", null)
+        editor.putString("USER_NAME", null)
+        editor.apply()
+    }
 }
