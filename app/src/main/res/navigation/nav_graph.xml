@@ -11,7 +11,7 @@
               android:label="fragment_user_guest"
               tools:layout="@layout/fragment_user_guest">
         <action android:id="@+id/action_userGuest_to_signIn"
-                app:destination="@id/signIn"
+                app:destination="@+id/signIn"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"

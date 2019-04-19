@@ -13,13 +13,18 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.isRegistrationValid
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
-class SignUp : Fragment(),SignupView {
+class SignUp : Fragment(),SignupView, OnBackPressedListener {
+    override fun onBackPressed() {
+        activity!!.supportFragmentManager.popBackStack()
+    }
+
     override fun load() {
         val progressBar = submit
         progressBar.setVisibility(View.VISIBLE)
@@ -80,6 +85,9 @@ class SignUp : Fragment(),SignupView {
             else
                 registerpresnter.onRegister(email, password, repeatpassword, nom, telephone,cin)
 
+        }
+        back_signup.setOnClickListener {
+            onBackPressed()
         }
     }
 }

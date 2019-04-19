@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.ForgotPassPresnterImpl
 import com.example.alertaccident.presentation.IForgotPassPresenter
@@ -21,7 +22,10 @@ import kotlinx.android.synthetic.main.fragment_forgot__pass.*
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
-class Forgot_Pass : Fragment(),ForgotPassView {
+class Forgot_Pass : Fragment(),ForgotPassView,OnBackPressedListener {
+    override fun onBackPressed() {
+        activity!!.supportFragmentManager.popBackStack()
+    }
 
 
     override fun load() {
@@ -71,6 +75,9 @@ class Forgot_Pass : Fragment(),ForgotPassView {
         btn_sub.setOnClickListener {
             val email=id_fogot_email.text.toString()
             forgetpasspresenter.forgetpass(email)
+        }
+        back_forgetpass.setOnClickListener {
+            onBackPressed()
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.alertaccident.ui.login
 
 
 import android.accounts.Account
+import android.app.ActionBar
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -19,7 +20,10 @@ import com.example.alertaccident.retrofit.UserManager
 import android.widget.EditText
 
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.Navigation
 
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -27,9 +31,11 @@ import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.User
+import com.example.alertaccident.ui.Connexion
 import com.facebook.CallbackManager
 import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.android.gms.auth.api.Auth
@@ -45,10 +51,16 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 
 
-class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener {
+class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,OnBackPressedListener {
+    override fun onBackPressed() {
+        activity!!.supportFragmentManager.popBackStack()
+
+    }
+
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("bett", "onConnectionFailed:" + connectionResult)
     }
@@ -100,6 +112,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         UiUtils.hideKeyboardOntouch(view, activity!!)
@@ -145,6 +158,9 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     forget_pass.setOnClickListener {
         findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
+    }
+    back.setOnClickListener {
+        onBackPressed()
     }
 
     }

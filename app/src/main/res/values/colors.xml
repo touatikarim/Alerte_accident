@@ -3,12 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="black">#000000</color>
     <color name="blue5fb0c9">#b6ffff</color>
     <color name="white">#fff</color>
     <color name ="yellow_d67601">#d67601</color>
     <color name="colorAccentDark">#4aa87a</color>
     <color name="dark_blue">#4ba3c7</color>
     <color name="light_blue">#b2ebf2</color>
+    <color name="twitter_blue">#38A1F3</color>
     <color name="stroke">#878787</color>
     <color name="grad_color">#A6FFCB</color>
 

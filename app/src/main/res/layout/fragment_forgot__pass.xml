@@ -9,7 +9,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
-            android:background="@drawable/gradient"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,44 +20,48 @@
                           android:orientation="vertical"
             >
 
-                <TextView
-                        android:id="@+id/login_title"
-                        android:layout_width="fill_parent"
+                <ImageView
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/back_forgetpass"
+                        android:src="@drawable/ic_arrow_back_black_24dp"
+                        android:focusable="true"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/forget"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="26sp"
-                        android:textStyle="bold"/>
-                <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginBottom="30dp"
-                        android:layout_marginTop="40dp"
-                        android:background="@drawable/grad"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        tools:ignore="ContentDescription"/>
+                <ImageButton
+                        android:id="@+id/user_profile_photo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user_profile_image_background"
+                        android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
 
-                    <LinearLayout
+                <LinearLayout
                             android:paddingTop="10dp"
                             android:orientation="vertical"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" tools:ignore="ExtraText">
+                        <TextView
+                                android:id="@+id/login_title"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginTop="20dp"
+                                android:gravity="center_horizontal"
+                                android:text="@string/forget"
+                                android:textColor="@color/black"
+                                android:textSize="26sp"
+                                android:textStyle="bold"/>
 
-                        <ImageView
-                                android:id="@+id/user_profile_photo"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/notification" tools:ignore="ContentDescription"/>
+
 
                         <TextView android:layout_width="match_parent"
                                   android:layout_height="match_parent"
                                   android:paddingTop="30dp"
+                                  android:textColor="@color/black"
                                   android:text="@string/forgot_msg"
                         />
 
@@ -66,7 +69,7 @@
                                 android:id="@+id/pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/forgot_email"
+                                android:hint="@string/email"
                                 tools:ignore="DuplicateIds">
                             <EditText
                                     android:id="@+id/id_fogot_email"
@@ -75,14 +78,12 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="30dp"
                                     android:singleLine="true"
-                                    android:drawableTint="#A6FFCB"
-                                    android:background="@drawable/rounded_edittext"
+                                    android:drawableTint="@color/twitter_blue"
                                     android:drawableStart="@drawable/ic_email_black_24dp"
                                     android:padding="12dp"
                                     tools:targetApi="m"
                                     tools:ignore="Autofill,LabelFor"/>
                         </com.google.android.material.textfield.TextInputLayout>
-
 
 
                         <ProgressBar
@@ -124,7 +125,6 @@
                                 android:layout_marginTop="8dp"
                         />
                     </LinearLayout>
-                </RelativeLayout>
             </LinearLayout>
 
 

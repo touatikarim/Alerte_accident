@@ -4,13 +4,13 @@
     <corners android:radius="1000dp" />
     <gradient  android:type="linear"
                android:centerX="50%"
-               android:startColor="#1fa2ff"
-               android:centerColor="#12D8FA"
-               android:endColor="#A6FFCB"
+               android:startColor="@color/twitter_blue"
+               android:centerColor="@color/twitter_blue"
+               android:endColor="@color/twitter_blue"
                android:angle="45"/>
     <stroke
             android:width="3dip"
-            android:color="#12D8FA" />
+            android:color="@color/twitter_blue" />
     <padding
             android:bottom="4dp"
             android:left="4dp"

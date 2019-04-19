@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Alert Accident</string>
-    <string name="login">Account Login</string>
+    <string name="login">Log in to Alert Accident</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign">Sign in</string>
-    <string name="forget">Forgot Password?</string>
+    <string name="forget">Find your account</string>
     <string name="email_address">Please insert email address</string>
     <string name="valid_address">Please enter a valid email address</string>
     <string name="valid_password">Please enter a valid password</string>
@@ -35,7 +35,7 @@
     <string name="sign_google">Sign In via Google</string>
     <string name="sign_facebook">Sign in via Facebook</string>
     <string name="submit">Submit</string>
-    <string name="create_acc">Create Account</string>
+    <string name="create_acc">Create your account</string>
     <string name="number">Phone Number</string>
     <string name="cin">CIN</string>
     <string name="username">Username</string>
@@ -71,7 +71,7 @@
     <string name="new_pass">Enter a new password</string>
     <string name="facebook_app_id">326457064678460</string>
     <string name="fb_login_protocol_scheme">fb326457064678460</string>
-    <string name="forgot_msg">Please enter your email address to search for your account:</string>
+    <string name="forgot_msg">Please enter your email address to reset your password:</string>
     <string name="forgot_email">Enter your email adress</string>
     <string name="valid_CIN">Please enter a valid CIN</string>
     <string name="nopassword">Password field should not be blank.</string>
@@ -79,4 +79,5 @@
     <string name="authen_error">Incorrect Email or password.Please try again.</string>
     <string name="no_account">You have to create an account before you get access to the application</string>
     <string name="no_connection">No internet Connection</string>
+    <string name="forget_pass">Forgot password?</string>
 </resources>

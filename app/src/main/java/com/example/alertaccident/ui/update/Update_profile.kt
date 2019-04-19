@@ -44,11 +44,8 @@ class Update_profile : Fragment(),UpdateprofileView {
         Toasty.error(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
     override fun navigate() {
-
         load()
         Handler().postDelayed({ findNavController().navigate(R.id.action_update_profile_to_Home,null, options) }, 1500)
-
-
     }
 
 

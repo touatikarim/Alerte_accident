@@ -7,9 +7,9 @@
     <gradient
             android:angle="45"
             android:centerX="35%"
-            android:startColor="#1fa2ff"
-            android:centerColor="#12D8FA"
-            android:endColor="#A6FFCB"
+            android:startColor="@color/twitter_blue"
+            android:centerColor="@color/twitter_blue"
+            android:endColor="@color/twitter_blue"
             android:type="linear"
     />
     <padding
@@ -19,8 +19,8 @@
             android:bottom="0dp"
     />
     <size
-            android:width="200dp"
-            android:height="30dp"
+            android:width="100dp"
+            android:height="20dp"
     />
 
 </shape>
