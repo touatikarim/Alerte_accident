@@ -2,6 +2,7 @@ package com.example.alertaccident.helper
 
 import android.text.TextUtils
 import android.util.Patterns
+import org.w3c.dom.Text
 import java.util.regex.Pattern
 
 const val MIN_CREDENTIAL_LENGTH = 8
