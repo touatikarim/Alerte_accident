@@ -2,29 +2,23 @@ package com.example.alertaccident.ui.home
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.alertaccident.R
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.facebook.AccessToken
-import com.facebook.GraphRequest
-import com.facebook.HttpMethod
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
@@ -32,8 +26,7 @@ import com.google.android.gms.common.api.Status
 import com.google.android.material.navigation.NavigationView
 
 import kotlinx.android.synthetic.main.activity_user.*
-import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.fragment_sign_in.*
+
 
 
 class HomeActivity : AppCompatActivity() {

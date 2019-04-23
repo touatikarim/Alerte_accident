@@ -8,7 +8,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
-            android:background="@drawable/gradient"
             android:orientation="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,20 +19,10 @@
                           android:orientation="vertical"
             >
 
-                <TextView
-                        android:id="@+id/login_title"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
-                        android:text="@string/setting"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="26sp"
-                        android:textStyle="bold"/>
 
                         <ImageView
                                 android:id="@+id/user_profile_photo"
+                                android:layout_marginTop="50dp"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"

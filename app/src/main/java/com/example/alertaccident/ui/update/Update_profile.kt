@@ -13,6 +13,7 @@ import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.helper.isUpdateValid
 import com.example.alertaccident.model.User
 import com.example.alertaccident.presentation.IUpdateProfilePresenter
 import com.example.alertaccident.presentation.UpdateProfilePresenterImpl
@@ -66,18 +67,21 @@ class Update_profile : Fragment(),UpdateprofileView {
         updateprofilePresenter.setMainViewContext(activity!!.baseContext)
         val sp= UserManager.getSharedPref(activity!!.baseContext)
         val usermail=sp.getString("USER_EMAIL","")
+        val nameuser=sp.getString("USER_NAME","")
+        val phone=sp.getString("USER_PHONE","")
+        phone_id.setHint(phone)
+        name_id.setHint(nameuser)
         btn_sub.setOnClickListener {
            val name = name_id.text.toString()
-           val email = email_id.text.toString()
            val telephone=phone_id.text.toString()
-            if(usermail!!.contentEquals(email)){
-            updateprofilePresenter.Updateprofile(name,email,telephone)
-                UserManager.saveCredentials(activity!!.baseContext, User(email,"",name,""))
-                navigate()
-            }
+            if(isUpdateValid(telephone,name)==-1){
+            updateprofilePresenter.Updateprofile(name,usermail,telephone)
+                UserManager.saveCredentials(activity!!.baseContext, User(usermail,"",name,"",telephone))
+                navigate() }
             else
-            {load()
-              Handler().postDelayed({onError("Wrong email")},1500)}
+                updateprofilePresenter.OnUpdate(name,telephone)
+            }
+
         }
     }
-}
+

@@ -81,7 +81,14 @@ class SignUp : Fragment(),SignupView, OnBackPressedListener {
             val cin = id_CIN.text.toString()
             val repeatpassword = id_confirm_password.text.toString()
             if(isRegistrationValid(email, password, repeatpassword, nom, telephone,cin)==-1)
-            { registerpresnter.Register(nom, email, password, telephone, cin)}
+            {  if (UiUtils.isDeviceConnectedToInternet(activity!!.baseContext))
+                registerpresnter.Register(nom, email, password, telephone, cin)
+                else
+            {
+                load()
+                Handler().postDelayed({onError(activity!!.baseContext.getString(R.string.no_connection))},1500)
+            }
+            }
             else
                 registerpresnter.onRegister(email, password, repeatpassword, nom, telephone,cin)
 

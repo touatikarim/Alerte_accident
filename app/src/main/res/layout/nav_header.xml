@@ -3,17 +3,19 @@
              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
              android:layout_height="192dp"
              android:orientation="vertical"
-             android:background="@drawable/gradient"
+             android:background="@color/twitter_blue"
             >
     <ImageView
             android:layout_width="104dp"
             android:layout_height="104dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center|top"
             android:src="@drawable/notification"
             tools:ignore="ContentDescription,ObsoleteLayoutParam"/>
     <TextView
             android:id="@+id/user_name_id"
             android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/white"

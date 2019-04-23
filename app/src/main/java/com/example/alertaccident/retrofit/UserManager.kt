@@ -2,6 +2,7 @@ package com.example.alertaccident.retrofit
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.model.User
 
 object UserManager {
@@ -14,7 +15,9 @@ object UserManager {
         editor.putString("USER_ID", user.id)
         editor.putString("USER_NAME", user.name)
         editor.putString("USER_PWD", user.pwd)
+        editor.putString("USER_PHONE",user.telephone)
         editor.apply()
+
     }
     fun getSharedPref(context: Context): SharedPreferences
     {
@@ -48,4 +51,6 @@ object UserManager {
         editor.putString("USER_NAME", null)
         editor.apply()
     }
+
+
 }

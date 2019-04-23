@@ -6,7 +6,7 @@
     <string name="password">Password</string>
     <string name="sign">Sign in</string>
     <string name="forget">Find your account</string>
-    <string name="email_address">Please insert email address</string>
+    <string name="email_address">Email field should not be blank.</string>
     <string name="valid_address">Please enter a valid email address</string>
     <string name="valid_password">Please enter a valid password</string>
     <string name="success">Login Success</string>
@@ -66,8 +66,8 @@
     <string name="new_email">Confirm your email</string>
     <string name="new_name">Enter new name</string>
     <string name="new_number">Enter new phone number</string>
-    <string name="reset">Change Password</string>
-    <string name="old_pass">Enter your old password</string>
+    <string name="reset">Change your Password</string>
+    <string name="old_pass">Current password</string>
     <string name="new_pass">Enter a new password</string>
     <string name="facebook_app_id">326457064678460</string>
     <string name="fb_login_protocol_scheme">fb326457064678460</string>
@@ -78,6 +78,9 @@
     <string name="alreadyregistred">The email address you entered is already in use</string>
     <string name="authen_error">Incorrect Email or password.Please try again.</string>
     <string name="no_account">You have to create an account before you get access to the application</string>
-    <string name="no_connection">No internet Connection</string>
+    <string name="no_connection">Please check your internet connection or try again later</string>
     <string name="forget_pass">Forgot password?</string>
+    <string name="profile_update">Update your profile</string>
+    <string name="telephone">Telephone field should not be empty.</string>
+    <string name="no_name">Name field should not be empty.</string>
 </resources>

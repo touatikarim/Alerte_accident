@@ -21,7 +21,7 @@ import android.util.Log
 
 
 import androidx.fragment.app.Fragment
-import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
 import com.facebook.*
 
@@ -39,63 +39,73 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
 
          override fun login(email:String,password:String) {
-        val loginModel = LoginModel(email, password)
+             val loginModel = LoginModel(email, password)
 
 
 
-        if (isDataValid(email, password) == -1) {
-            RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)
-                .enqueue(object : Callback<ApiResponse> {
-                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
+                 if (isDataValid(email, password) == -1) {
+                     if (isDeviceConnectedToInternet(context)) {
+                     RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)
+                         .enqueue(object : Callback<ApiResponse> {
+                             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
 
-                        if (response != null) {
+                                 if (response != null) {
 
-                            if (response.code() == 200) {
-                                val id=response.body()!!.data._id
-                                val name=response.body()!!.data.nom
-                                val user = User(email,password,name,id)
-                                UserManager.saveCredentials(context,user)
-                                signinview.navigate()
-                                Handler().postDelayed({ signinview.onSuccess(response.body()!!.message) }, 1500)
+                                     if (response.code() == 200) {
+                                         val id = response.body()!!.data._id
+                                         val name = response.body()!!.data.nom
+                                         val phone = response.body()!!.data.telephone.toString()
+                                         val user = User(email, password, name, id, phone)
+                                         UserManager.saveCredentials(context, user)
+                                         signinview.navigate()
+                                         Handler().postDelayed(
+                                             { signinview.onSuccess(response.body()!!.message) },
+                                             1500
+                                         )
 
-                            } else {
-                                val errorJsonString = response.errorBody()?.string()
-                                val message = JsonParser().parse(errorJsonString)
-                                    .asJsonObject["message"]
-                                    .asString
-                                signinview.load()
-                                if(message.compareTo("User not found...")==0)
-                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) }, 1500)
-                                else
-                                    Handler().postDelayed({ signinview.onError(context.getString(R.string.authen_error)) }, 1500)
+                                     } else {
+                                         val errorJsonString = response.errorBody()?.string()
+                                         val message = JsonParser().parse(errorJsonString)
+                                             .asJsonObject["message"]
+                                             .asString
+                                         signinview.load()
+                                         if (message.compareTo("User not found...") == 0)
+                                             Handler().postDelayed(
+                                                 { signinview.onError(context.getString(R.string.no_account)) },
+                                                 1500
+                                             )
+                                         else
+                                             Handler().postDelayed(
+                                                 { signinview.onError(context.getString(R.string.authen_error)) },
+                                                 1500
+                                             )
 
 
+                                     }
+                                 }
+                             }
 
+                             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                                 signinview.onError(t.message!!)//context.getString(R.string.Server))
+                             }
+                         })
 
-                            }
-                        }
-                    }
+                 }
+                     else {
+                         signinview.load()
+                       Handler().postDelayed({signinview.onError(context.getString(R.string.no_connection))},1500)
+                     }
+             }
 
-                    override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                        signinview.onError(t.message!!)//context.getString(R.string.Server))
-                    }
-                })
-
-       }
-    }
+         }
 
 
          override fun onLogin(email: String, password: String) {
              val isLoginsucces= isDataValid(email,password)
              if (isLoginsucces==0)
                  signinview.onError(context.getString(R.string.email_address))
-             else if (isLoginsucces==1)
-                 signinview.onError(context.getString(R.string.valid_address))
              else if(isLoginsucces==2)
                  signinview.onError(context.getString(R.string.nopassword))
-             else if(isLoginsucces==3)
-                 signinview.onError(context.getString(R.string.valid_password))
-
 
          }
 
@@ -117,7 +127,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                             val email = jsonObject?.get("email")?.toString() ?: ""
                             val name = jsonObject.get("name").toString()
                             registerFacebook(name,email,"Mobelite007",loginResult.accessToken.token)
-                            UserManager.saveCredentials(context,User(email,"",name,""))
+                            UserManager.saveCredentials(context,User(email,"",name,"",""))
                         }
                         val parameters = Bundle()
                         parameters.putString("fields", "id,name,email")

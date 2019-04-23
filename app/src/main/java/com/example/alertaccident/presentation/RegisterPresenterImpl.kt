@@ -11,6 +11,7 @@ import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.RegisterGoogleModel
 import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.retrofit.RetrofitManager
+import com.example.alertaccident.retrofit.UserManager
 
 import com.example.alertaccident.ui.register.SignupView
 import com.google.gson.JsonParser

@@ -71,3 +71,12 @@ fun isRegistrationValid(email:String,password: String,repeatPassword: String,use
         return -1
 
 }
+
+fun isUpdateValid(telephone:String,name:String):Int {
+    if (TextUtils.isEmpty(name))
+        return 0
+    if (TextUtils.isEmpty(telephone))
+        return 1
+    else
+        return -1
+}

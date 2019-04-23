@@ -8,6 +8,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.isUpdateValid
 import com.example.alertaccident.model.ApiResponse
 import com.example.alertaccident.model.UpdateModel
 import com.example.alertaccident.model.User
@@ -23,10 +24,11 @@ import java.util.logging.Handler
 
 class UpdateProfilePresenterImpl(internal var updateprofileView: UpdateprofileView):IUpdateProfilePresenter {
 
+
     lateinit  var context: Context
     override fun Updateprofile(nom: String, email: String, telephone: String) {
-        val options= ActivityOptions.makeCustomAnimation(context, R.anim.slide_in_left, R.anim.slide_out_right)
-        val intent = Intent(context, Home::class.java)
+//        val options= ActivityOptions.makeCustomAnimation(context, R.anim.slide_in_left, R.anim.slide_out_right)
+//        val intent = Intent(context, Home::class.java)
         val updateModel=UpdateModel(nom,telephone)
         val sp= UserManager.getSharedPref(context)
         val usermail=sp.getString("USER_EMAIL","")
@@ -43,6 +45,15 @@ class UpdateProfilePresenterImpl(internal var updateprofileView: UpdateprofileVi
                 }
 
             })
+
+
+    }
+    override fun OnUpdate(nom: String, telephone: String) {
+        val isUpdatesucces= isUpdateValid(telephone,nom)
+        if (isUpdatesucces==0)
+            updateprofileView.onError(context.getString(R.string.no_name))
+        else if(isUpdatesucces==1)
+            updateprofileView.onError(context.getString(R.string.telephone))
 
 
     }
