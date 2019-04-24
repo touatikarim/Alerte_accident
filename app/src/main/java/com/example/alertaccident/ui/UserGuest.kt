@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.alertaccident.R
-
+import kotlinx.android.synthetic.main.activity_user.*
 
 
 class UserGuest : Fragment() {
@@ -23,7 +24,9 @@ class UserGuest : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_user_guest, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

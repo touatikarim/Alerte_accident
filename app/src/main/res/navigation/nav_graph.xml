@@ -1,46 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
             app:startDestination="@id/userGuest"
 >
 
-    <fragment android:id="@+id/userGuest" android:name="com.example.alertaccident.ui.UserGuest"
-              android:label="fragment_user_guest" tools:layout="@layout/fragment_user_guest">
-        <action android:id="@+id/action_userGuest_to_signIn" app:destination="@id/signIn"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+    <fragment android:id="@+id/userGuest"
+              android:name="com.example.alertaccident.ui.UserGuest"
+              android:label="fragment_user_guest"
+              tools:layout="@layout/fragment_user_guest">
+        <action android:id="@+id/action_userGuest_to_signIn"
+                app:destination="@+id/signIn"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
         />
-        <action android:id="@+id/action_userGuest_to_signUp" app:destination="@id/signUp"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        <action android:id="@+id/action_userGuest_to_home2" app:destination="@id/home2"
-                app:exitAnim="@anim/slide_out_left" app:enterAnim="@anim/slide_in_right"
-                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"
+        <action android:id="@+id/action_userGuest_to_signUp"
+                app:destination="@id/signUp"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_userGuest_to_home2"
+                app:destination="@id/home2"
+                app:exitAnim="@anim/slide_out_left"
+                app:enterAnim="@anim/slide_in_right"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
         />
                 <!--app:popEnterAnim="@anim/fade_out" app:popExitAnim="@anim/fade_in"-->
 
     </fragment>
 
-    <fragment android:id="@+id/signIn" android:name="com.example.alertaccident.ui.login.SignIn"
+    <fragment android:id="@+id/signIn"
+              android:name="com.example.alertaccident.ui.login.SignIn"
               android:label="fragment_sign_in"
               tools:layout="@layout/fragment_sign_in">
-        <action android:id="@+id/action_signIn_to_home2" app:destination="@id/home2"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
-                app:popUpTo="@+id/home2" app:popUpToInclusive="false"/>
+        <action android:id="@+id/action_signIn_to_home2" app:destination="@id/home2"/>
+        <action android:id="@+id/action_signIn_to_forgot_Pass" app:destination="@id/forgot_Pass"/>
     </fragment>
 
-    <fragment android:id="@+id/signUp" android:name="com.example.alertaccident.ui.register.SignUp"
+    <fragment android:id="@+id/signUp"
+              android:name="com.example.alertaccident.ui.register.SignUp"
               android:label="fragment_sign_up"
               tools:layout="@layout/fragment_sign_up">
-        <action android:id="@+id/action_signUp_to_signIn" app:destination="@id/signIn"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        <action android:id="@+id/action_signUp_to_signIn"
+                app:destination="@id/signIn"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/signUp"/>
     </fragment>
-    <activity android:id="@+id/home2" android:name="com.example.alertaccident.ui.Home" android:label="activity_home"
-              tools:layout="@layout/activity_home"/>
+    <activity android:id="@+id/home2"
+              android:name="com.example.alertaccident.ui.home.HomeActivity"
+              android:label="activity_home"
+              tools:layout="@layout/activity_user">
+
+        <argument android:name="usermail"
+                  app:argType="string"
+                  android:defaultValue="null"/>
+    </activity>
+    <fragment android:id="@+id/forgot_Pass" android:name="com.example.alertaccident.ui.Forgotpassword.Forgot_Pass"
+              android:label="fragment_forgot__pass" tools:layout="@layout/fragment_forgot__pass">
+        <action android:id="@+id/action_forgot_Pass_to_signIn" app:destination="@id/signIn"/>
+    </fragment>
 
 
 </navigation>

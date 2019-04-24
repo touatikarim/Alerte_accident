@@ -13,13 +13,18 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.isRegistrationValid
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
-class SignUp : Fragment(),SignupView {
+class SignUp : Fragment(),SignupView, OnBackPressedListener {
+    override fun onBackPressed() {
+        activity!!.supportFragmentManager.popBackStack()
+    }
+
     override fun load() {
         val progressBar = submit
         progressBar.setVisibility(View.VISIBLE)
@@ -41,6 +46,8 @@ class SignUp : Fragment(),SignupView {
             findNavController().navigate(R.id.action_signUp_to_signIn, null, options)
         }, 1500)
     }
+
+
 
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext,message, Toast.LENGTH_SHORT).show()
@@ -74,10 +81,20 @@ class SignUp : Fragment(),SignupView {
             val cin = id_CIN.text.toString()
             val repeatpassword = id_confirm_password.text.toString()
             if(isRegistrationValid(email, password, repeatpassword, nom, telephone,cin)==-1)
-            { registerpresnter.Register(nom, email, password, telephone, cin)}
+            {  if (UiUtils.isDeviceConnectedToInternet(activity!!.baseContext))
+                registerpresnter.Register(nom, email, password, telephone, cin)
+                else
+            {
+                load()
+                Handler().postDelayed({onError(activity!!.baseContext.getString(R.string.no_connection))},1500)
+            }
+            }
             else
                 registerpresnter.onRegister(email, password, repeatpassword, nom, telephone,cin)
 
+        }
+        back_signup.setOnClickListener {
+            onBackPressed()
         }
     }
 }

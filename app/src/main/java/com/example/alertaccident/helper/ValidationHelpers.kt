@@ -56,19 +56,28 @@ fun isRegistrationValid(email:String,password: String,repeatPassword: String,use
         return 0
     if (!isPhoneValid(phone))
         return 1
-     if(!isCINValid(CIN))
+    if(!isCINValid(CIN))
         return 2
     if(TextUtils.isEmpty(email))
         return 3
-     if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         return 4
     if(TextUtils.isEmpty(password))
         return 5
-     if (!isPasswordValid(password))
+    if (!isPasswordValid(password))
         return 6
-     if (!arePasswordsSame(password, repeatPassword))
+    if (!arePasswordsSame(password, repeatPassword))
         return 7
     else
         return -1
 
+}
+
+fun isUpdateValid(telephone:String,name:String):Int {
+    if (TextUtils.isEmpty(name))
+        return 0
+    if (TextUtils.isEmpty(telephone))
+        return 1
+    else
+        return -1
 }
