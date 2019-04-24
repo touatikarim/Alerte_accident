@@ -30,7 +30,7 @@ object UserManager {
         val editor= sharedPref.edit()
         editor.putString("FACEBOOK_SIGNED_IN", token)
         editor.putString("GOOGLE_SIGNED_IN",null)
-       // editor.putString("USER_TYPE","FACEBOOK_SIGNED_IN")
+        editor.putString("SIGN_TOKEN",null)
         editor.apply()
     }
     fun saveGoogleToken(context: Context, token: String)
@@ -39,16 +39,29 @@ object UserManager {
         val editor= sharedPref.edit()
         editor.putString("FACEBOOK_SIGNED_IN", null)
         editor.putString("GOOGLE_SIGNED_IN",token)
-        //editor.putString("USER_TYPE","GOOGLE_SIGNED_IN")
+        editor.putString("SIGN_TOKEN",null)
+
         editor.apply()
     }
 
+    fun saveLoginToken(context: Context,token:String){
+        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("SIGN_TOKEN",token)
+        editor.putString("GOOGLE_SIGNED_IN",null)
+        editor.putString("FACEBOOK_SIGNED_IN", null)
+        editor.apply()
+
+    }
     fun clearSharedPref(context:Context)
     {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("USER_EMAIL", null)
         editor.putString("USER_NAME", null)
+        editor.putString("GOOGLE_SIGNED_IN",null)
+        editor.putString("FACEBOOK_SIGNED_IN",null)
+        editor.putString("SIGN_TOKEN",null)
         editor.apply()
     }
 

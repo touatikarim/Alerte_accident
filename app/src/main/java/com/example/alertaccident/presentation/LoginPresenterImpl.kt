@@ -23,6 +23,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
+import com.example.alertaccident.retrofit.UserManager.saveLoginToken
 import com.facebook.*
 
 import com.facebook.login.LoginManager
@@ -55,6 +56,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          val id = response.body()!!.data._id
                                          val name = response.body()!!.data.nom
                                          val phone = response.body()!!.data.telephone.toString()
+                                         val login_token=response.body()!!.token
+                                         saveLoginToken(context,login_token)
                                          val user = User(email, password, name, id, phone)
                                          UserManager.saveCredentials(context, user)
                                          signinview.navigate()
@@ -64,21 +67,24 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          )
 
                                      } else {
-                                         val errorJsonString = response.errorBody()?.string()
-                                         val message = JsonParser().parse(errorJsonString)
-                                             .asJsonObject["message"]
-                                             .asString
                                          signinview.load()
-                                         if (message.compareTo("User not found...") == 0)
-                                             Handler().postDelayed(
-                                                 { signinview.onError(context.getString(R.string.no_account)) },
-                                                 1500
-                                             )
-                                         else
-                                             Handler().postDelayed(
-                                                 { signinview.onError(context.getString(R.string.authen_error)) },
-                                                 1500
-                                             )
+                                         Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) },1500)
+//                                         val errorJsonString = response.errorBody()?.string()
+//                                         val message = JsonParser().parse(errorJsonString)
+//                                             .asJsonObject["message"]
+//                                             .asString
+//                                         val message=response.body()!!.message
+//                                         signinview.load()
+//                                         if (message.compareTo("User not found...") == 0)
+//                                             Handler().postDelayed(
+//                                                 { signinview.onError(context.getString(R.string.no_account)) },
+//                                                 1500
+//                                             )
+//                                         else
+//                                             Handler().postDelayed(
+//                                                 { signinview.onError(context.getString(R.string.authen_error)) },
+//                                                 1500
+//                                             )
 
 
                                      }

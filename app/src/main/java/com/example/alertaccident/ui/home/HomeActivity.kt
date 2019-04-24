@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -40,7 +41,8 @@ class HomeActivity : AppCompatActivity() {
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
-
+        val token_google=sp.getString("GOOGLE_SIGNED_IN","")
+        val token_login=sp.getString("SIGN_TOKEN","")
 
 
         setupBottomNavMenu(navController)
@@ -50,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
         setupActionBar(navController)
 
         setsize(logoutfb)
-        setsize(logout)
+        setsize(logoutgoogle)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -62,13 +64,6 @@ class HomeActivity : AppCompatActivity() {
         if(AccessToken.getCurrentAccessToken() != null){
             logoutfb.setVisibility(View.VISIBLE)
             logoutfb.setOnClickListener {
-//                if (AccessToken.getCurrentAccessToken() != null) {
-//                    GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
-//                        AccessToken.setCurrentAccessToken(null)
-//                        LoginManager.getInstance().logOut()
-//
-//                    }).executeAsync()
-//                }
                 AccessToken.setCurrentAccessToken(null)
                 LoginManager.getInstance().logOut()
                 UserManager.clearSharedPref(this)
@@ -81,9 +76,9 @@ class HomeActivity : AppCompatActivity() {
             }
 
         }
-        else  {
-            logout.setVisibility(View.VISIBLE)
-            logout.setOnClickListener {
+        else if(token_google!=null)  {
+            logoutgoogle.setVisibility(View.VISIBLE)
+            logoutgoogle.setOnClickListener {
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     object : ResultCallback<Status> {
                         override fun onResult(status: Status) {
@@ -93,11 +88,21 @@ class HomeActivity : AppCompatActivity() {
                             load()
                             Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 
-
                         }
                     })
             }
        }
+        else {
+            logout.setVisibility(View.VISIBLE)
+            logout.setOnClickListener {
+                val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
+                val intent = Intent(applicationContext, Connexion::class.java)
+                UserManager.clearSharedPref(this@HomeActivity)
+                load()
+                Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
+            }
+
+        }
 
 
 
@@ -155,4 +160,6 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
+
 }
