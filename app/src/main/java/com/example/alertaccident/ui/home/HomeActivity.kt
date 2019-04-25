@@ -5,9 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_user.*
 
@@ -37,18 +39,28 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
         setSupportActionBar(toolbar)
+       // val navigationView= findViewById<NavigationView>(R.id.nav_view)
+       // val headerLayout =navigationView.getHeaderView(0)
+       // val image=headerLayout.findViewById<ImageView>(R.id.image)
+       // val imageview=headerLayout.findViewById<ImageView>(R.id.user_image)
         val navController = Navigation.findNavController(this,R.id.my_nav_user_fragment)
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
         val token_google=sp.getString("GOOGLE_SIGNED_IN","")
-        val token_login=sp.getString("SIGN_TOKEN","")
+       // val imgurl=sp.getString("IMAGE_URL","")
+//        if (imgurl!="")
+//        {
+//        loadImage(imgurl)
+//        }
+//        else
+       // {
+       // imageview.setVisibility(View.GONE)
+            //image.setVisibility(View.VISIBLE)
 
 
         setupBottomNavMenu(navController)
-
         setupSideNavigationMenu(navController,mail,name)
-
         setupActionBar(navController)
 
         setsize(logoutfb)
@@ -133,6 +145,16 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+//    private fun loadImage(url:String){
+//        val navigationView= findViewById<NavigationView>(R.id.nav_view)
+//        val headerLayout =navigationView.getHeaderView(0)
+//        val imageview=headerLayout.findViewById<ImageView>(R.id.user_image)
+//        Picasso.with(this).load(url)
+//            .placeholder(R.drawable.notification)
+//            .error(R.drawable.notification)
+//            .into(imageview)
+//    }
+
    private fun setupActionBar(navController: NavController){
        NavigationUI.setupActionBarWithNavController(this,navController,drawer_layout)
    }
@@ -154,9 +176,9 @@ class HomeActivity : AppCompatActivity() {
         val density= getResources().getDisplayMetrics().density
         val width=Math.round(30 * density)
         val height = Math.round(24 * density)
-        val drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.logout, null);
+        val drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.logout, null)
         drawable!!.setBounds(0,0,width,height)
-        textView.setCompoundDrawables(drawable, null, null, null);
+        textView.setCompoundDrawables(drawable, null, null, null)
 
 
     }

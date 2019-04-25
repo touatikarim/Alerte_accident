@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.navigation.ui.setupWithNavController
 
 import com.example.alertaccident.R
@@ -19,7 +21,14 @@ import kotlinx.android.synthetic.main.nav_header.*
 
 
 class Home : Fragment() {
-
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +40,9 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        create_alert.setOnClickListener {
+            findNavController().navigate(R.id.action_home_dest_to_createAlert,null,options)
+        }
 
     }
 }

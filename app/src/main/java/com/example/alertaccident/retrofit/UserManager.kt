@@ -33,12 +33,13 @@ object UserManager {
         editor.putString("SIGN_TOKEN",null)
         editor.apply()
     }
-    fun saveGoogleToken(context: Context, token: String)
+    fun saveGoogleToken(context: Context, token: String,imgurl:String)
     {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor= sharedPref.edit()
         editor.putString("FACEBOOK_SIGNED_IN", null)
         editor.putString("GOOGLE_SIGNED_IN",token)
+        editor.putString("IMAGE_URL",imgurl)
         editor.putString("SIGN_TOKEN",null)
 
         editor.apply()
@@ -62,6 +63,7 @@ object UserManager {
         editor.putString("GOOGLE_SIGNED_IN",null)
         editor.putString("FACEBOOK_SIGNED_IN",null)
         editor.putString("SIGN_TOKEN",null)
+        editor.putString("IMAGE_URL",null)
         editor.apply()
     }
 

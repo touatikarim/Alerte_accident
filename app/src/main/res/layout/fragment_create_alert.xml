@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context=".ui.alertcreation.CreateAlert">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Interface.MainActivity"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+            >
+
+                <ImageButton
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/user_profile_photo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user_profile_image_background"
+                        android:src="@mipmap/mobelite_round" android:contentDescription="@string/logo"/>
+
+
+
+
+                <LinearLayout
+                        android:paddingTop="10dp"
+                        android:orientation="vertical"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" tools:ignore="ExtraText">
+                    <TextView
+                            android:id="@+id/login_title"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/create_alert"
+                            android:textColor="@color/black"
+                            android:textSize="26sp"
+                            android:textStyle="bold"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/name_input_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/desc">
+                        <EditText
+                                android:id="@+id/id_description"
+                                android:layout_marginBottom="30dp"
+                               android:background="@drawable/rounded_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="16dp"
+                                android:layout_gravity="center"
+                                android:gravity="top"
+                                android:layout_height="150dp"
+                                android:inputType="textMultiLine"
+                                android:singleLine="false"
+                                android:overScrollMode="always"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical"
+                                android:padding="8dp"
+                                tools:targetApi="m"
+                                tools:ignore="Autofill,LabelFor"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                            android:id="@+id/service"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/spinner"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:textStyle="bold"/>
+
+                    <Spinner
+                            android:id="@+id/spinner"
+                            android:backgroundTint="@color/twitter_blue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:prompt="@string/service"
+                            android:layout_margin="10dp"
+                            android:entries="@array/services" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
+</FrameLayout>

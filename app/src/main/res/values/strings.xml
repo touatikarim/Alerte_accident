@@ -83,4 +83,18 @@
     <string name="profile_update">Update your profile</string>
     <string name="telephone">Telephone field should not be empty.</string>
     <string name="no_name">Name field should not be empty.</string>
+    <string name="latitude">LAT:</string>
+    <string name="longitude">LNG:</string>
+    <string name="pos">Tunisie,Tunis,\n Centre Urbain Nord</string>
+    <string name="alert">Create Alert</string>
+    <string name="create_alert">Create your alert</string>
+    <string name="desc">Add description here</string>
+    <string name="service">Service Type</string>
+    <string name="spinner"><u>Chose Service:</u></string>
+    <string-array name="services">
+        <item>samu</item>
+        <item>police</item>
+        <item>hospital</item>
+        <item>emergency</item>
+    </string-array>
 </resources>
