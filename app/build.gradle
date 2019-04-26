@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -37,18 +39,20 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.android.support:cardview-v7:28.0.0'
-
+    implementation 'com.google.firebase:firebase-core:16.0.8'
 
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.9'
 
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03'
 
+    implementation 'com.google.firebase:firebase-database:16.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'

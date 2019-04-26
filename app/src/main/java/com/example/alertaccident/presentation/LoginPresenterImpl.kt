@@ -164,6 +164,9 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                  .enqueue(object :Callback<ApiResponse>{
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if (response.isSuccessful){
+                             val id = response.body()!!.data._id
+                             val user=User(email,password,nom,id,"")
+                             UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
                          }
                          else{

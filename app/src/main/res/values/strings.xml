@@ -91,6 +91,7 @@
     <string name="desc">Add description here</string>
     <string name="service">Service Type</string>
     <string name="spinner"><u>Chose Service:</u></string>
+    <string name="send_alert">Alert sent successfully</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>
