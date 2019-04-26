@@ -92,6 +92,9 @@
     <string name="service">Service Type</string>
     <string name="spinner"><u>Chose Service:</u></string>
     <string name="send_alert">Alert sent successfully</string>
+    <string name="victims">Number of victims:</string>
+    <string name="description">Description field should not be empty.</string>
+    <string name="noservice">Service field should not be empty.</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>

@@ -4,7 +4,7 @@ package com.example.alertaccident.presentation
 
 
 
-import android.app.Activity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -126,7 +126,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     if (AccessToken.getCurrentAccessToken() != null){
-                        val activity = context as Activity
+                        //val activity = context as Activity
                         val request = GraphRequest.newMeRequest(
                             AccessToken.getCurrentAccessToken()
                         ) { jsonObject, _ ->

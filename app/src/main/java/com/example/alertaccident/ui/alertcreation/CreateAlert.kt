@@ -1,7 +1,7 @@
 package com.example.alertaccident.ui.alertcreation
 
 
-import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
+
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -18,11 +18,12 @@ import com.example.alertaccident.retrofit.UserManager
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_create_alert.*
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.isAlertValid
 
 
 class CreateAlert : Fragment(),CreateAlertView {
 
-    var spinnerdialog: SpinnerDialog?=null
+
     lateinit var alertpresenter:IcreateAlertPresenter
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
@@ -46,22 +47,26 @@ class CreateAlert : Fragment(),CreateAlertView {
         UiUtils.hideKeyboardOntouch(view, activity!!)
         alertpresenter=CreateAlertPresenterImpl(this)
         alertpresenter.setMainViewContext(activity!!.baseContext)
-        spinnerdialog=SpinnerDialog(activity,Constants.list_of_services,"Select Service",R.style.DialogAnimations_SmileWindow)
-        spinnerdialog!!.bindOnSpinerListener{item,position->
-            service_chosen.setText(Constants.list_of_services[position])
-        }
 
-
+        alertpresenter.setstepper(Constants.min_value,Constants.max_value,stepperTouch,nbr)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
         val user_id=sp.getString("USER_ID","")
-        val usermail=sp.getString("USER_EMAIL","")
         btn_send.setOnClickListener {
+            val victims=nbr.text.toString()
             val description=id_description.text.toString()
             val service=service_chosen.text.toString()
-            alertpresenter.saveAlert(description,user_id,service)
+            if(UiUtils.isDeviceConnectedToInternet(activity!!.baseContext)){
+            if(isAlertValid(description,service,victims)==-1)
+            {alertpresenter.saveAlert(description,user_id,service,victims)}
+            else
+                alertpresenter.OncreateAlert(description,service,victims)
+        }
+            else {
+                onError(activity!!.baseContext.getString(R.string.no_connection))
+            }
         }
         service.setOnClickListener {
-            spinnerdialog!!.showSpinerDialog()
+            alertpresenter.setspinner(service_chosen,activity!!)
         }
     }
     override fun load() {

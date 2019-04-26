@@ -155,13 +155,14 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         super.onActivityResult(requestCode, resultCode, data)
        loginpresnter.onActivityResult(requestCode,resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-
+            val sp = UserManager.getSharedPref(activity!!.baseContext)
+            val user_id=sp.getString("USER_ID","")
             val account = GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
             val personEmail = account?.email
             val name = account?.displayName
             val imgurl=account?.photoUrl.toString()
             if (name != null && personEmail != null) {
-                val user = User(personEmail, "", name, "", "")
+                val user = User(personEmail, "", name, user_id, "")
                 Log.d("image",imgurl)
                 UserManager.saveCredentials(activity!!.baseContext, user)
                 val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)

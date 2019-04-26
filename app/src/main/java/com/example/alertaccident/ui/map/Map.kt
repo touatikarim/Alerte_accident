@@ -14,7 +14,6 @@ import com.example.alertaccident.R
 class Map : Fragment() {
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

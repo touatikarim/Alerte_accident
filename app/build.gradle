@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.9'
+    implementation 'com.github.DanielMartinus:Stepper-Touch:1.0.1'
 
 
 

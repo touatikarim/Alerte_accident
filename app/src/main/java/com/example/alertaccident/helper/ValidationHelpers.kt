@@ -72,6 +72,14 @@ fun isRegistrationValid(email:String,password: String,repeatPassword: String,use
         return -1
 
 }
+fun isAlertValid(desc:String,service:String,victims:String):Int{
+    if (TextUtils.isEmpty(desc))
+        return 0
+    if (TextUtils.isEmpty(service))
+        return 1
+    else
+        return -1
+}
 
 fun isUpdateValid(telephone:String,name:String):Int {
     if (TextUtils.isEmpty(name))
