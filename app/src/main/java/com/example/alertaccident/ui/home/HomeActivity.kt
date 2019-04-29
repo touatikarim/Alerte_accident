@@ -1,10 +1,14 @@
 package com.example.alertaccident.ui.home
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 
 import android.view.MenuItem
 import android.view.View
@@ -35,6 +39,7 @@ import kotlinx.android.synthetic.main.activity_user.*
 class HomeActivity : AppCompatActivity() {
 
     lateinit var mGoogleApiClient: GoogleApiClient
+    private var locationManager: LocationManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
@@ -182,6 +187,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

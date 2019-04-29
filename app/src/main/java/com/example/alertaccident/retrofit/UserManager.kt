@@ -64,6 +64,23 @@ object UserManager {
         editor.putString("FACEBOOK_SIGNED_IN",null)
         editor.putString("SIGN_TOKEN",null)
         editor.putString("IMAGE_URL",null)
+        editor.putString("USER_LAT",null)
+        editor.putString("USER_LNG",null)
+        editor.apply()
+    }
+    fun saveposition(latitude:String,longitude:String,context: Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("USER_LAT",latitude)
+        editor.putString("USER_LNG",longitude)
+        editor.apply()
+    }
+    fun saveplace(country:String?,city:String?,area:String?,context: Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("USER_COUNTRY",country)
+        editor.putString("USER_CITY",city)
+        editor.putString("USER_AREA",area)
         editor.apply()
     }
 

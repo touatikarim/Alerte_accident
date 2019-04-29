@@ -90,11 +90,16 @@
     <string name="create_alert">Create your alert</string>
     <string name="desc">Add description here</string>
     <string name="service">Service Type</string>
-    <string name="spinner"><u>Chose Service:</u></string>
+    <string name="spinner">Chose Service:</string>
     <string name="send_alert">Alert sent successfully</string>
     <string name="victims">Number of victims:</string>
     <string name="description">Description field should not be empty.</string>
     <string name="noservice">Service field should not be empty.</string>
+    <string name="services"><u>List of services</u></string>
+    <string name="location">Enable Location</string>
+    <string name="Gpsmsg">Your Locations Settings is set to \'Off\'.\n Please Enable Location to use this app</string>
+    <string name="pos_settings">Location Settings</string>
+    <string name="photo">Take a photo</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>

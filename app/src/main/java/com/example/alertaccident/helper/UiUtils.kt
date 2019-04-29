@@ -1,18 +1,16 @@
 package com.example.alertaccident.helper
 
 import android.app.Activity
+
 import android.content.Context
+import android.location.LocationManager
+
 import android.net.ConnectivityManager
-import android.os.Bundle
-import android.provider.ContactsContract
+
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.example.alertaccident.model.User
-import com.example.alertaccident.retrofit.UserManager
-import com.facebook.AccessToken
-import com.facebook.GraphRequest
 
 object UiUtils {
 
@@ -60,6 +58,7 @@ object UiUtils {
         val activeNetwork = cm.activeNetworkInfo
         return (activeNetwork != null)
     }
+
 
 
 

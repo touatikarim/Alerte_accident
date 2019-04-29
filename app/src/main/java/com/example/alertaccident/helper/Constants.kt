@@ -6,4 +6,8 @@ object Constants {
     val list_of_services= arrayListOf("samu","police","urgence","hospital","fire station")
     val max_value=20
     val min_value=1
+    val request_interval:Long=5000
+    val request_fastest_interval:Long=3000
+    val request_smallestDisplacement=10f
+    const val permission_code=1000
 }

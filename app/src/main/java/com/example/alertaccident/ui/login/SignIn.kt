@@ -101,18 +101,19 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         UiUtils.hideKeyboardOntouch(view, activity!!)
         loginpresnter = LoginPresenterImpl(this)
         loginpresnter.setMainViewContext(activity!!.baseContext)
-
+        loginpresnter.getLocation(activity!!)
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()
 
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password)
+
         }
 
         btn_login_fb.setOnClickListener {
             if(isDeviceConnectedToInternet(activity!!.baseContext))
-            loginpresnter.signinfb(this)
+            {loginpresnter.signinfb(this) }
             else
                 onError(activity!!.baseContext.getString(R.string.no_connection))
         }

@@ -2,36 +2,40 @@ package com.example.alertaccident.ui
 
 
 
+
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
-import androidx.navigation.NavController
-import androidx.navigation.ui.NavigationUI
-
-
+import android.provider.Settings
 import com.example.alertaccident.R
-import com.example.alertaccident.helper.OnBackPressedListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_user.*
-import kotlinx.android.synthetic.main.toolbar.*
-import androidx.navigation.Navigation
 import com.example.alertaccident.ui.login.SignIn
 
 
 class Connexion : AppCompatActivity(){
 
-
+    private var locationManager: LocationManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        if (!isLocationEnabled)
+        { showAlert()}
 
     }
 
-
+    private fun showAlert() {
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle(this.getString(R.string.location))
+            .setMessage(this.getString(R.string.Gpsmsg))
+            .setPositiveButton(this.getString(R.string.pos_settings)) { paramDialogInterface, paramInt ->
+                val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(myIntent)
+            }
+            .setNegativeButton("Cancel") { paramDialogInterface, paramInt -> finish() }
+        dialog.show()
+    }
 
     override fun onBackPressed() {
         tellFragments()
@@ -45,5 +49,10 @@ class Connexion : AppCompatActivity(){
                 f.onBackPressed()
         }
     }
+    private val isLocationEnabled: Boolean
+        get() {
+            locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            return locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        }
 }
 

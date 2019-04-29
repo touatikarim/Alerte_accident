@@ -38,6 +38,7 @@
                         android:orientation="vertical"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="30dp"
+                        android:backgroundTint="@color/twitter_blue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" tools:ignore="ExtraText">
                     <TextView
@@ -94,6 +95,7 @@
                             android:textStyle="bold"/>
                         <TextView
                                 android:id="@+id/service_chosen"
+                                android:text="@string/services"
                                 android:layout_width="match_parent"
                                   android:layout_height="match_parent"
                                   android:layout_marginStart="20dp"
@@ -142,16 +144,36 @@
                                 android:textSize="13sp"
                                 android:textStyle="bold"/>
                     </LinearLayout>
-                    <!--<Spinner-->
-                            <!--android:id="@+id/spinner"-->
-                            <!--android:background="@drawable/spinner_bg"-->
-                           <!--android:stateListAnimator="@animator/spinner_sla"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:prompt="@string/service"-->
-                            <!--android:layout_margin="10dp"-->
-                            <!--android:entries="@array/services" />-->
+                    <TextView
+                            android:id="@+id/photo"
+                            android:focusable="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
+                            android:text="@string/photo"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:textStyle="bold"/>
 
+                    <ImageView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/accident_photo"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:focusable="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_camera_alt_black_24dp"
+                            tools:ignore="ContentDescription"/>
+                    <ImageView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/photo_taken"
+                            android:layout_width="300dp"
+                            android:visibility="gone"
+                            android:layout_height="300dp"
+                            android:layout_gravity="center"
+                            tools:ignore="ContentDescription"/>
 
                     <Button
                             android:id="@+id/btn_send"

@@ -5,10 +5,18 @@ package com.example.alertaccident.presentation
 
 
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.provider.Settings
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
@@ -18,9 +26,15 @@ import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
 
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 
 
 import androidx.fragment.app.Fragment
+import com.example.alertaccident.helper.GPSUtils
+import com.example.alertaccident.helper.GPSUtils.locationCallback
+import com.example.alertaccident.helper.GPSUtils.locationRequest
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
 import com.example.alertaccident.retrofit.UserManager.saveLoginToken
@@ -28,6 +42,7 @@ import com.facebook.*
 
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.location.*
 import retrofit2.*
 import java.util.*
 
@@ -37,6 +52,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
          private var callbackManager: CallbackManager? = null
         lateinit  var context: Context
+         lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
 
          override fun login(email:String,password:String) {
@@ -220,9 +237,39 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 //             v
 //             registerFacebook(name,mail,"Mobelite007",token)
 
+         }
+
+         override fun getLocation(activity: Activity) {
+             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                 if (GPSUtils.checkLocationPermission(activity,context)) {
+                    GPSUtils.buildLocationRequest()
+                     GPSUtils.buildLocationCallback()
+                     fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+                     fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                     fusedLocationClient.lastLocation
+                         .addOnSuccessListener { location ->
+                             val latitude = location?.latitude
+                             val longitud = location?.longitude
+                             val geocoder=Geocoder(context)
+                             val adress=geocoder.getFromLocation(latitude!!,longitud!!,1)
+                             val country=adress.get(0).countryName
+                             var city=adress.get(0).locality
+                             var sub=adress.get(0).subAdminArea
+                             if (city==null){city="Not available"}
+                             if (sub==null){sub="Not available"}
+                             UserManager.saveplace(country,city,sub,context)
+                             UserManager.saveposition(latitude.toString(),longitud.toString(),context)
+                         }
+                 }
+             } else {
+             GPSUtils.buildLocationRequest()
+               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+            }
 
          }
 
+     }
 
 
-}
+
