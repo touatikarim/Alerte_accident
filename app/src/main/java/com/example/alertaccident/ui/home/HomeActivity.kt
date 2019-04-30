@@ -40,32 +40,18 @@ import kotlinx.android.synthetic.main.activity_user.*
 class HomeActivity : AppCompatActivity() {
 
     lateinit var mGoogleApiClient: GoogleApiClient
-    private var locationManager: LocationManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
         if (!GPSUtils.isLocationEnabled(this))
             GPSUtils.showAlert(this,this)
         setSupportActionBar(toolbar)
-       // val navigationView= findViewById<NavigationView>(R.id.nav_view)
-       // val headerLayout =navigationView.getHeaderView(0)
-       // val image=headerLayout.findViewById<ImageView>(R.id.image)
-       // val imageview=headerLayout.findViewById<ImageView>(R.id.user_image)
+
         val navController = Navigation.findNavController(this,R.id.my_nav_user_fragment)
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
         val token_google=sp.getString("GOOGLE_SIGNED_IN","")
-       // val imgurl=sp.getString("IMAGE_URL","")
-//        if (imgurl!="")
-//        {
-//        loadImage(imgurl)
-//        }
-//        else
-       // {
-       // imageview.setVisibility(View.GONE)
-            //image.setVisibility(View.VISIBLE)
-
 
         setupBottomNavMenu(navController)
         setupSideNavigationMenu(navController,mail,name)
@@ -153,15 +139,6 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-//    private fun loadImage(url:String){
-//        val navigationView= findViewById<NavigationView>(R.id.nav_view)
-//        val headerLayout =navigationView.getHeaderView(0)
-//        val imageview=headerLayout.findViewById<ImageView>(R.id.user_image)
-//        Picasso.with(this).load(url)
-//            .placeholder(R.drawable.notification)
-//            .error(R.drawable.notification)
-//            .into(imageview)
-//    }
 
    private fun setupActionBar(navController: NavController){
        NavigationUI.setupActionBarWithNavController(this,navController,drawer_layout)

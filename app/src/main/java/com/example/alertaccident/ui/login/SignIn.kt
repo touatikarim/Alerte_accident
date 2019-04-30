@@ -1,19 +1,16 @@
 package com.example.alertaccident.ui.login
 
 
-import android.app.Dialog
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-
 import android.util.Log
-
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.alertaccident.retrofit.UserManager
-
 import android.widget.Toast
 
 import androidx.navigation.fragment.findNavController
@@ -22,7 +19,6 @@ import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
-import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.User
@@ -37,11 +33,8 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
 
-class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,OnBackPressedListener {
-    override fun onBackPressed() {
-        activity!!.supportFragmentManager.popBackStack()
+class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener {
 
-    }
 
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("bett", "onConnectionFailed:" + connectionResult)
@@ -145,7 +138,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
     }
     back.setOnClickListener {
-        onBackPressed()
+        activity!!.supportFragmentManager.popBackStack()
     }
 
     }
