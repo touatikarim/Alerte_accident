@@ -49,4 +49,5 @@ class UserGuest : Fragment() {
             findNavController().navigate(R.id.action_userGuest_to_home2, null, options)
         }
     }
+
 }

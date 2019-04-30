@@ -30,6 +30,15 @@ class HomePresenterImpl:IHomePresenter {
                     .addOnSuccessListener { location ->
                         val latitude = location?.latitude
                         val longitud = location?.longitude
+                        if (latitude != null && longitud != null) {
+                            val geocoder = Geocoder(context)
+                            val adress = geocoder.getFromLocation(latitude, longitud, 10)
+                            val country = adress.get(0).countryName
+                            val city=GPSUtils.getCity(latitude,longitud,context)
+                            val sub = GPSUtils.getarea(latitude,longitud,context)
+
+                            UserManager.saveplace(country, city, sub, context)
+                        }
                         UserManager.saveposition(latitude.toString(),longitud.toString(),context)
                     }
             }

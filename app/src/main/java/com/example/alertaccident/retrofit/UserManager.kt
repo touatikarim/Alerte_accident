@@ -66,6 +66,7 @@ object UserManager {
         editor.putString("IMAGE_URL",null)
         editor.putString("USER_LAT",null)
         editor.putString("USER_LNG",null)
+        editor.putString("IMAGE_URL",null)
         editor.apply()
     }
     fun saveposition(latitude:String,longitude:String,context: Context){
@@ -83,6 +84,14 @@ object UserManager {
         editor.putString("USER_AREA",area)
         editor.apply()
     }
+    fun saveimageurl(context: Context,url:String){
+        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("IMAGE_URL",url)
+        editor.apply()
+
+    }
+
 
 
 }

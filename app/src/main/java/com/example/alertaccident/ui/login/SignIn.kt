@@ -181,7 +181,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
     }
 
 
-
 }
 
 

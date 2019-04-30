@@ -1,14 +1,21 @@
 package com.example.alertaccident.ui.home
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.presentation.HomePresenterImpl
 import com.example.alertaccident.presentation.IHomePresenter
 import com.example.alertaccident.retrofit.UserManager
@@ -26,6 +33,7 @@ class Home : Fragment() {
     }
     lateinit var homepresenter:IHomePresenter
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -34,6 +42,8 @@ class Home : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homepresenter=HomePresenterImpl()
@@ -45,9 +55,9 @@ class Home : Fragment() {
         val city=sp.getString("USER_CITY","")
         val area=sp.getString("USER_AREA","")
 
-        place.text= "$country,$city,\n $area"
-        lat.text=latitude
-        lng.text=longitude
+        lat.text= "LAT: $latitude"
+        lng.text= "LNG: $longitude"
+        place.text= "$country, $city, \n$area"
 
         create_alert.setOnClickListener {
             homepresenter.getLocation(activity!!)
@@ -55,4 +65,6 @@ class Home : Fragment() {
         }
 
     }
+
+
 }

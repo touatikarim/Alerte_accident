@@ -42,6 +42,7 @@ import com.facebook.*
 
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import retrofit2.*
 import java.util.*
@@ -241,8 +242,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
          override fun getLocation(activity: Activity) {
              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                 if (GPSUtils.checkLocationPermission(activity,context)) {
-                    GPSUtils.buildLocationRequest()
+                 if (GPSUtils.checkLocationPermission(activity, context)) {
+                     GPSUtils.buildLocationRequest()
                      GPSUtils.buildLocationCallback()
                      fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
                      fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
@@ -250,22 +251,25 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                          .addOnSuccessListener { location ->
                              val latitude = location?.latitude
                              val longitud = location?.longitude
-                             val geocoder=Geocoder(context)
-                             val adress=geocoder.getFromLocation(latitude!!,longitud!!,1)
-                             val country=adress.get(0).countryName
-                             var city=adress.get(0).locality
-                             var sub=adress.get(0).subAdminArea
-                             if (city==null){city="Not available"}
-                             if (sub==null){sub="Not available"}
-                             UserManager.saveplace(country,city,sub,context)
-                             UserManager.saveposition(latitude.toString(),longitud.toString(),context)
+                             if (latitude != null && longitud != null) {
+                                 val geocoder = Geocoder(context)
+                                 val adress = geocoder.getFromLocation(latitude, longitud, 10)
+                                 val country = adress.get(0).countryName
+                                 val city=GPSUtils.getCity(latitude,longitud,context)
+                                 val sub = GPSUtils.getarea(latitude,longitud,context)
+
+                                 UserManager.saveplace(country, city, sub, context)
+                             }
+                             UserManager.saveposition(latitude.toString(), longitud.toString(), context)
+
                          }
                  }
-             } else {
-             GPSUtils.buildLocationRequest()
-               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
-                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-            }
+             }
+//              else {
+//             GPSUtils.buildLocationRequest()
+//               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+//                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+//            }
 
          }
 

@@ -3,6 +3,7 @@ package com.example.alertaccident.ui.alertcreation
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -26,11 +27,22 @@ import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isAlertValid
 
 import com.google.android.gms.location.FusedLocationProviderClient
-
+import android.os.Environment.DIRECTORY_PICTURES
+import android.net.Uri
+import android.os.Environment
+import android.util.Log
+import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CreateAlert : Fragment(),CreateAlertView {
-
+    lateinit  var imageFilePath: String
     lateinit var alertpresenter: IcreateAlertPresenter
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
@@ -79,23 +91,62 @@ class CreateAlert : Fragment(),CreateAlertView {
             alertpresenter.setspinner(service_chosen, activity!!)
         }
         accident_photo.setOnClickListener {
-            val intent= Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent,0)
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+                takePictureintent ->  takePictureintent.resolveActivity(activity!!.packageManager)?.also {
+                val photoFile:File?=try {
+                    createImageFile()
+                }catch (ex:IOException){
+                    null
+                }
+               photoFile?.also {
+                   val photoUri=FileProvider.getUriForFile(activity!!.baseContext,"com.example.alertaccident.fileprovider", it)
+                   takePictureintent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri)
+                   startActivityForResult(takePictureintent,1)
+
+               }
+            }
+
+            }
+
+
         }
     }
 
     override fun load() {
         val progressBar = send_alert
         progressBar.setVisibility(View.VISIBLE)
-        Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
-
+        Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 5500)
 
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val bitmap=data!!.extras.get("data") as Bitmap
-        photo_taken.setVisibility(View.VISIBLE)
-        photo_taken.setImageBitmap(bitmap)
+        if(resultCode==Activity.RESULT_OK) {
+            photo_taken.setVisibility(View.VISIBLE)
+            Glide.with(activity!!.baseContext).load(imageFilePath).into(photo_taken)
+            alertpresenter.sendImage(imageFilePath)
+
+
+        }
+        else {
+            onError("operation canceled")
+        }
+
+    }
+
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val imageFileName = "IMG_" + timeStamp + "_"
+        val storageDir = activity!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+       return File.createTempFile(
+            imageFileName, /* prefix */
+            ".jpg", /* suffix */
+            storageDir      /* directory */
+        ).apply {
+           imageFilePath=absolutePath
+       }
 
     }
 }

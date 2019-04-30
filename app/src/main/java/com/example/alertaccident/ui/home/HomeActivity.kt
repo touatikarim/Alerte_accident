@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.facebook.AccessToken
@@ -43,6 +44,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
+        if (!GPSUtils.isLocationEnabled(this))
+            GPSUtils.showAlert(this,this)
         setSupportActionBar(toolbar)
        // val navigationView= findViewById<NavigationView>(R.id.nav_view)
        // val headerLayout =navigationView.getHeaderView(0)
@@ -187,6 +190,8 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
+
 
 
 
