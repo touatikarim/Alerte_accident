@@ -10,4 +10,6 @@ object Constants {
     val request_fastest_interval:Long=3000
     val request_smallestDisplacement=10f
     const val permission_code=1000
+    val REQUEST_IMAGE_CAPTURE=1
+
 }

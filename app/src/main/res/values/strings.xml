@@ -99,7 +99,7 @@
     <string name="location">Enable Location</string>
     <string name="Gpsmsg">Your Locations Settings is set to \'Off\'.\n Please Enable Location to use this app</string>
     <string name="pos_settings">Location Settings</string>
-    <string name="photo">Take a photo</string>
+    <string name="photo">Take a photo:</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>

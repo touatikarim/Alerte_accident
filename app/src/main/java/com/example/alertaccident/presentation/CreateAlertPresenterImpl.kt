@@ -40,27 +40,31 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
 
 
     lateinit var context: Context
-
     var spinnerdialog: SpinnerDialog? = null
-
+    private var url:String?=null
     override fun saveAlert(desc: String, user_id: String, service: String, victims: String) {
         val sp = UserManager.getSharedPref(context)
         val email = sp.getString("USER_EMAIL", "")
         val latitude=sp.getString("USER_LAT","")
         val longitude=sp.getString("USER_LNG","")
+       // val url= sp.getString("IMAGE_URL","")
         createAlertView.load()
-        Handler().postDelayed({val url= sp.getString("IMAGE_URL","")
-
+    Handler().postDelayed({
         ;val ref = FirebaseDatabase.getInstance().getReference("Alerts")
         ;val alert_id = ref.push().key
 
         ;val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url)
 
-    ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
-             createAlertView.onSuccess(context.getString(R.string.send_alert))  }
-        }
-            ,5500)
+        ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
+            createAlertView.onSuccess(context.getString(R.string.send_alert))  }
     }
+    ,3000)
+
+
+    }
+
+
+
     override fun sendImage(path: String) {
         val storage_ref = FirebaseStorage.getInstance().getReference()
         val file=Uri.fromFile(File(path))
@@ -68,7 +72,9 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
         val uploadtask=image.putFile(file)
         uploadtask.addOnSuccessListener {
         image.getDownloadUrl().addOnSuccessListener {
-                uri -> UserManager.saveimageurl(context,uri.toString())
+                uri -> url=uri.toString()
+            //UserManager.saveimageurl(context,uri.toString())
+
 
         }
 

@@ -157,13 +157,11 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
             val imgurl=account?.photoUrl.toString()
             if (name != null && personEmail != null) {
                 val user = User(personEmail, "", name, user_id, "")
-                Log.d("image",imgurl)
                 UserManager.saveCredentials(activity!!.baseContext, user)
                 val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
                 val token = result.signInAccount?.idToken.toString()
                 UserManager.saveGoogleToken(activity!!.baseContext,token,imgurl)
                 if (result.isSuccess) {
-
                     loginpresnter.registerGoogle(name, personEmail, "Mobelite007", token)
                     navigate()
                 }

@@ -3,6 +3,8 @@ package com.example.alertaccident.helper
 import android.app.Activity
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.LocationManager
 
 import android.net.ConnectivityManager
@@ -11,6 +13,7 @@ import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import java.io.ByteArrayOutputStream
 
 object UiUtils {
 
@@ -60,15 +63,17 @@ object UiUtils {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
