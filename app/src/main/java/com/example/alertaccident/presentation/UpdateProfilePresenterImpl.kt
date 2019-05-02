@@ -20,7 +20,8 @@ import com.example.alertaccident.ui.update.UpdateprofileView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.logging.Handler
+import android.os.Handler
+
 
 class UpdateProfilePresenterImpl(internal var updateprofileView: UpdateprofileView):IUpdateProfilePresenter {
 
@@ -37,7 +38,7 @@ class UpdateProfilePresenterImpl(internal var updateprofileView: UpdateprofileVi
 
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     updateprofileView.load()
-                    android.os.Handler().postDelayed({ updateprofileView.onSuccess(response.body()!!.message)}, 1500)
+                    Handler().postDelayed({ updateprofileView.onSuccess(response.body()!!.message)}, 1500)
 
                 }
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {

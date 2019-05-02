@@ -98,9 +98,9 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()
-
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password)
+
 
         }
 

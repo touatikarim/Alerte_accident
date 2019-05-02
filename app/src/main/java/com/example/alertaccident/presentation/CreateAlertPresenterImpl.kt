@@ -5,19 +5,10 @@ import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 
 import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
-import android.location.Geocoder
-import android.location.Location
 import android.net.Uri
 
-import android.os.Build
-
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
+import android.view.View
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 
 import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.ui.alertcreation.CreateAlertView
@@ -30,7 +21,6 @@ import nl.dionsegijn.steppertouch.StepperTouch
 
 import com.example.alertaccident.helper.isAlertValid
 
-import com.google.android.gms.location.*
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
@@ -48,20 +38,21 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
         val latitude=sp.getString("USER_LAT","")
         val longitude=sp.getString("USER_LNG","")
        // val url= sp.getString("IMAGE_URL","")
-        createAlertView.load()
-    Handler().postDelayed({
-        ;val ref = FirebaseDatabase.getInstance().getReference("Alerts")
-        ;val alert_id = ref.push().key
+        createAlertView.load_alert(View.VISIBLE)
 
-        ;val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url)
+            val ref = FirebaseDatabase.getInstance().getReference("Alerts")
+            val alert_id = ref.push().key
+            val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url)
+            ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
+                createAlertView.load_alert(View.GONE)
+                createAlertView.onSuccess(context.getString(R.string.send_alert))
+            }
+        }
 
-        ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
-            createAlertView.onSuccess(context.getString(R.string.send_alert))  }
-    }
-    ,3000)
 
 
-    }
+
+
 
 
 
@@ -73,6 +64,8 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
         uploadtask.addOnSuccessListener {
         image.getDownloadUrl().addOnSuccessListener {
                 uri -> url=uri.toString()
+                createAlertView.load_image(View.GONE)
+                createAlertView.onSuccess("Picture stored successfully")
             //UserManager.saveimageurl(context,uri.toString())
 
 

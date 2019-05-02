@@ -1,19 +1,18 @@
 package com.example.alertaccident.helper
 
 import android.app.Activity
-
+import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.location.LocationManager
-
 import android.net.ConnectivityManager
-
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import java.io.ByteArrayOutputStream
+import com.example.alertaccident.R
+import android.content.DialogInterface
+import android.os.Bundle
+import androidx.fragment.app.DialogFragment
+
 
 object UiUtils {
 
@@ -41,6 +40,7 @@ object UiUtils {
 
     }
 
+
     private fun hideKeyboardByElement(activity: Activity) {
         val inputMethodManager = activity.getSystemService(
             Activity.INPUT_METHOD_SERVICE
@@ -61,6 +61,7 @@ object UiUtils {
         val activeNetwork = cm.activeNetworkInfo
         return (activeNetwork != null)
     }
+
 
 
 }

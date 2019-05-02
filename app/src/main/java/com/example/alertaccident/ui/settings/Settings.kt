@@ -1,7 +1,9 @@
 package com.example.alertaccident.ui.settings
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
-
+import com.example.alertaccident.helper.GPSUtils
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 class Settings : Fragment() {
@@ -43,6 +46,14 @@ class Settings : Fragment() {
 
         view.findViewById<TextView>(R.id.id_change_pass)?.setOnClickListener {
             findNavController().navigate(R.id.action_settings_dest_to_reset_pass,null,options)
+        }
+        view.findViewById<TextView>(R.id.id_desac_acc)?.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_dest_to_desactivate_Acc,null,options)
+        }
+        if(GPSUtils.isLocationEnabled(activity!!.baseContext)){
+            gps_switch.isChecked=true
+            gps.text=activity!!.baseContext.getString(R.string.disablegps)
+
         }
 
 

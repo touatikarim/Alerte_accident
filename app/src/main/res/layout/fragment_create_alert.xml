@@ -78,11 +78,22 @@
                                 tools:ignore="ContentDescription"/>
                         <ImageView
                                 android:id="@+id/photo_taken"
-                                android:layout_width="match_parent"
+                                android:layout_width="220dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:visibility="gone"
                                 tools:ignore="ContentDescription"/>
+                        <ProgressBar
+                                android:id="@+id/store_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:indeterminate="true"
+                                android:layout_marginTop="8dp"
+                        />
+
 
                     </LinearLayout>
 

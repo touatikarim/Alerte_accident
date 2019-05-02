@@ -1,12 +1,11 @@
 package com.example.alertaccident.presentation
 
-import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
+
 import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.widget.TextView
 import nl.dionsegijn.steppertouch.StepperTouch
-import java.io.File
+
 
 
 interface IcreateAlertPresenter {

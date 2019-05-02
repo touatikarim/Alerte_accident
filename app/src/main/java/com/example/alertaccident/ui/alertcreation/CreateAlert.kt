@@ -37,6 +37,9 @@ import java.util.*
 
 
 class CreateAlert : Fragment(),CreateAlertView {
+
+
+
     lateinit  var imageFilePath: String
     lateinit var alertpresenter: IcreateAlertPresenter
     override fun onSuccess(message: String) {
@@ -110,18 +113,24 @@ class CreateAlert : Fragment(),CreateAlertView {
 
     }
 
-    override fun load() {
-        val progressBar = send_alert
-        progressBar.setVisibility(View.VISIBLE)
-        Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 4000)
 
+    override fun load_image(state: Int) {
+        val progressBar=store_image
+        progressBar.visibility=state
     }
+    override fun load_alert(state: Int) {
+        val progressBar=send_alert
+        progressBar.visibility=state
+    }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==Constants.REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK) {
             photo_taken.setVisibility(View.VISIBLE)
             Glide.with(activity!!.baseContext).load(imageFilePath).into(photo_taken)
+            load_image(View.VISIBLE)
             alertpresenter.sendImage(imageFilePath)
 
         }

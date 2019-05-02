@@ -6,13 +6,9 @@ package com.example.alertaccident.presentation
 
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.location.Location
-import android.provider.Settings
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -24,13 +20,7 @@ import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
-
 import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-
-
 import androidx.fragment.app.Fragment
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.GPSUtils.locationCallback
@@ -39,10 +29,8 @@ import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
 import com.example.alertaccident.retrofit.UserManager.saveLoginToken
 import com.facebook.*
-
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import retrofit2.*
 import java.util.*
@@ -50,18 +38,14 @@ import java.util.*
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
      {
 
-
          private var callbackManager: CallbackManager? = null
-        lateinit  var context: Context
+         lateinit  var context: Context
          lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
 
          override fun login(email:String,password:String) {
              val loginModel = LoginModel(email, password)
-
-
-
                  if (isDataValid(email, password) == -1) {
                      if (isDeviceConnectedToInternet(context)) {
                      RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)

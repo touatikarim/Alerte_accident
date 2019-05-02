@@ -38,7 +38,7 @@
                                     android:layout_width="260dp"
                                     android:layout_marginTop="30dp"
                                     android:layout_marginEnd="20dp"
-
+                                    android:textColor="@color/black"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_height="wrap_content"
                                     android:singleLine="true"
@@ -67,10 +67,11 @@
                             android:layout_height="wrap_content"
                             android:singleLine="true"
                             android:padding="8dp"
+                            android:textColor="@color/black"
                             tools:targetApi="m"
                             tools:ignore="Autofill,LabelFor"/>
                     <Switch
-                            android:id="@+id/Switch"
+                            android:id="@+id/gps_switch"
                             android:layout_gravity="end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -89,6 +90,7 @@
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
+                        android:textColor="@color/black"
                         android:layout_marginEnd="20dp"
                         android:singleLine="true"
                         android:padding="8dp"
@@ -109,6 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:singleLine="true"
+                        android:textColor="@color/black"
                         android:padding="8dp"
                         tools:targetApi="m"/>
 
@@ -120,6 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
                         android:singleLine="true"
                         android:padding="8dp"
                         tools:targetApi="m"/>
@@ -133,6 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:singleLine="true"
+                        android:textColor="@color/black"
                         android:padding="8dp"
                         tools:targetApi="m"/>
 

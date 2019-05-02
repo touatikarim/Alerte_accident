@@ -38,6 +38,7 @@
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
         <action android:id="@+id/action_settings_dest_to_reset_pass" app:destination="@id/reset_pass"/>
+        <action android:id="@+id/action_settings_dest_to_desactivate_Acc" app:destination="@id/desactivate_Acc"/>
     </fragment>
     <fragment android:id="@+id/update_profile" android:name="com.example.alertaccident.ui.update.Update_profile"
               tools:layout="@layout/fragment_update_profile" android:label="Settings">
@@ -49,4 +50,11 @@
               android:label="Home" tools:layout="@layout/activity_user"/>
     <fragment android:id="@+id/createAlert" android:name="com.example.alertaccident.ui.alertcreation.CreateAlert"
               android:label="Alert Creation" tools:layout="@layout/fragment_create_alert"/>
+    <fragment android:id="@+id/desactivate_Acc"
+              android:name="com.example.alertaccident.ui.desactivateAcc.Desactivate_Acc"
+              android:label="Desactivate Account" tools:layout="@layout/fragment_desactivate__acc">
+        <action android:id="@+id/action_desactivate_Acc_to_connexion" app:destination="@id/connexion"/>
+    </fragment>
+    <activity android:id="@+id/connexion" android:name="com.example.alertaccident.ui.Connexion"
+              android:label="activity_main" tools:layout="@layout/activity_main"/>
 </navigation>

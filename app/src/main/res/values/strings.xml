@@ -95,11 +95,24 @@
     <string name="victims">Number of victims:</string>
     <string name="description">Description field should not be empty.</string>
     <string name="noservice">Service field should not be empty.</string>
-    <string name="services"><u>List of services</u></string>
+    <string name="services">
+        <u>List of services</u>
+    </string>
     <string name="location">Enable Location</string>
     <string name="Gpsmsg">Your Locations Settings is set to \'Off\'.\n Please Enable Location to use this app</string>
     <string name="pos_settings">Location Settings</string>
     <string name="photo">Take a photo:</string>
+    <string name="desacacc">Desactivate your account</string>
+    <string name="confirmpass">Confirm your password:</string>
+    <string name="desac_msg">Complete your desactivation request by entering the password associated with your
+        account.
+    </string>
+    <string name="desactivate">Desactivate</string>
+    <string name="desactivation">Your account will be desactivated</string>
+    <string name="des_acc">Desactivate your account?</string>
+    <string name="desac_pos">YES, DESACTIVATE</string>
+    <string name="wrongpass">Password incorrect</string>
+    <string name="disablegps">Disable GPS</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>
