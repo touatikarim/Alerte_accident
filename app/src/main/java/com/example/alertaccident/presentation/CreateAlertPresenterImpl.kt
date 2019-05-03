@@ -32,6 +32,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
     lateinit var context: Context
     var spinnerdialog: SpinnerDialog? = null
     private var url:String?=null
+    private var vid_url:String?=null
     override fun saveAlert(desc: String, user_id: String, service: String, victims: String) {
         val sp = UserManager.getSharedPref(context)
         val email = sp.getString("USER_EMAIL", "")
@@ -42,7 +43,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
 
             val ref = FirebaseDatabase.getInstance().getReference("Alerts")
             val alert_id = ref.push().key
-            val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url)
+            val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url,vid_url)
             ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
                 createAlertView.load_alert(View.GONE)
                 createAlertView.onSuccess(context.getString(R.string.send_alert))
@@ -68,9 +69,24 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
                 createAlertView.onSuccess("Picture stored successfully")
             //UserManager.saveimageurl(context,uri.toString())
 
-
+        }
         }
 
+
+    }
+    override fun sendVideo(path: String) {
+        val storage_ref = FirebaseStorage.getInstance().getReference()
+        val file=Uri.fromFile(File(path))
+        val video=storage_ref.child("accident_vids/${file.lastPathSegment}")
+        val uploadtask=video.putFile(file)
+        uploadtask.addOnSuccessListener {
+           video.getDownloadUrl().addOnSuccessListener {
+                    Uri->vid_url=Uri.toString()
+                createAlertView.load_video(View.GONE)
+                createAlertView.onSuccess("Video stored successfully")
+                //UserManager.saveimageurl(context,uri.toString())
+
+            }
         }
 
 

@@ -6,6 +6,7 @@ package com.example.alertaccident.ui.alertcreation
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
@@ -41,6 +42,7 @@ class CreateAlert : Fragment(),CreateAlertView {
 
 
     lateinit  var imageFilePath: String
+    lateinit var videoFilePath:String
     lateinit var alertpresenter: IcreateAlertPresenter
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
@@ -110,6 +112,26 @@ class CreateAlert : Fragment(),CreateAlertView {
 
 
         }
+        accident_video.setOnClickListener {
+            Intent(MediaStore.ACTION_VIDEO_CAPTURE).also {
+                    takeVideoIntent ->
+                takeVideoIntent.resolveActivity(activity!!.packageManager)?.also {
+                    val videoFile: File? = try {
+                        createVideoFile()
+                    } catch (ex: IOException) {
+                        null
+                    }
+                    videoFile?.also{
+                        val videoUri=FileProvider.getUriForFile(activity!!.baseContext,"com.example.alertaccident.fileprovider", it)
+                        takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,videoUri)
+                        startActivityForResult(takeVideoIntent, Constants.REQUEST_VIDEO_CAPTURE)
+                    }
+
+                }
+            }
+        }
+
+
 
     }
 
@@ -120,6 +142,10 @@ class CreateAlert : Fragment(),CreateAlertView {
     }
     override fun load_alert(state: Int) {
         val progressBar=send_alert
+        progressBar.visibility=state
+    }
+    override fun load_video(state: Int) {
+        val progressBar=store_video
         progressBar.visibility=state
     }
 
@@ -134,12 +160,20 @@ class CreateAlert : Fragment(),CreateAlertView {
             alertpresenter.sendImage(imageFilePath)
 
         }
+        else if(requestCode==Constants.REQUEST_VIDEO_CAPTURE && resultCode== RESULT_OK){
+            video_taken.setVisibility(View.VISIBLE)
+            val videoUri: Uri =data!!.data
+            video_taken.setVideoURI(videoUri)
+            load_video(View.VISIBLE)
+            alertpresenter.sendVideo(videoFilePath)
+
+        }
         else {
             onError("operation canceled")
         }
 
-    }
 
+    }
 
 
     @Throws(IOException::class)
@@ -154,6 +188,20 @@ class CreateAlert : Fragment(),CreateAlertView {
         ).apply {
            imageFilePath=absolutePath
        }
+
+    }
+    @Throws(IOException::class)
+    private fun createVideoFile(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val videoFileName = "VID_" + timeStamp + "_"
+        val storageDir = activity!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            videoFileName, /* prefix */
+            ".mp4", /* suffix */
+            storageDir      /* directory */
+        ).apply {
+            videoFilePath=absolutePath
+        }
 
     }
 }

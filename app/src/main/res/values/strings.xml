@@ -116,6 +116,7 @@
     <string name="no_internet">No internet connexion</string>
     <string name="no_internet_msg">You\'re offline,please try again later</string>
     <string name="ok">OK</string>
+    <string name="video">Take a video:</string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>

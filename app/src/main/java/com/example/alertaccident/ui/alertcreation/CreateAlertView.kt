@@ -5,5 +5,6 @@ interface CreateAlertView {
     fun onError(message:String)
     fun load_image(state:Int)
     fun load_alert(state:Int)
+    fun load_video(state: Int)
 
 }

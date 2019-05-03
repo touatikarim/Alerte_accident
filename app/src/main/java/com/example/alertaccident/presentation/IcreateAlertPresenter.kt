@@ -15,6 +15,6 @@ interface IcreateAlertPresenter {
     fun setspinner(service:TextView,activity: Activity)
     fun OncreateAlert(desc: String,service:String,victims:String)
     fun sendImage(path:String)
-
+    fun sendVideo(path:String)
 
 }
