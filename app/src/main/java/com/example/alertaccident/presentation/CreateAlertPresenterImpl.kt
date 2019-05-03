@@ -63,7 +63,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
         val uploadtask=image.putFile(file)
         uploadtask.addOnSuccessListener {
         image.getDownloadUrl().addOnSuccessListener {
-                uri -> url=uri.toString()
+               Uri->url=Uri.toString()
                 createAlertView.load_image(View.GONE)
                 createAlertView.onSuccess("Picture stored successfully")
             //UserManager.saveimageurl(context,uri.toString())

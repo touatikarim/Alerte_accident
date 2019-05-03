@@ -42,7 +42,7 @@ object GPSUtils {
                 val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 activity.startActivity(myIntent)
             }
-            .setNegativeButton("Cancel") { paramDialogInterface, paramInt ->  }
+            .setNegativeButton("Cancel") { paramDialogInterface, paramInt -> activity.finish() }
         dialog.show()
     }
 

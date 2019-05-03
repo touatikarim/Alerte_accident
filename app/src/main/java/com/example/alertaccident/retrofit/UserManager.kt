@@ -2,7 +2,6 @@ package com.example.alertaccident.retrofit
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.model.User
 
 object UserManager {
@@ -63,10 +62,12 @@ object UserManager {
         editor.putString("GOOGLE_SIGNED_IN",null)
         editor.putString("FACEBOOK_SIGNED_IN",null)
         editor.putString("SIGN_TOKEN",null)
-        editor.putString("IMAGE_URL",null)
         editor.putString("USER_LAT",null)
         editor.putString("USER_LNG",null)
         editor.putString("IMAGE_URL",null)
+        editor.putString("USER_COUNTRY",null)
+        editor.putString("USER_CITY",null)
+        editor.putString("USER_AREA",null)
         editor.apply()
     }
     fun saveposition(latitude:String,longitude:String,context: Context){
@@ -84,13 +85,7 @@ object UserManager {
         editor.putString("USER_AREA",area)
         editor.apply()
     }
-    fun saveimageurl(context: Context,url:String){
-        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
-        val editor= sharedPref.edit()
-        editor.putString("IMAGE_URL",url)
-        editor.apply()
 
-    }
 
 
 

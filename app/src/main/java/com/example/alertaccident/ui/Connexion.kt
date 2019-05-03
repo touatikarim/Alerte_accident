@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.GPSUtils
+import com.example.alertaccident.helper.UiUtils
 
 
 class Connexion : AppCompatActivity(){
@@ -15,8 +16,10 @@ class Connexion : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (!GPSUtils.isLocationEnabled(this))
-         GPSUtils.showAlert(this,this)
+        if(!UiUtils.isDeviceConnectedToInternet(this))
+        {UiUtils.showAlert(this,this)}
+           else  if (!GPSUtils.isLocationEnabled(this))
+            {GPSUtils.showAlert(this, this)}
 
     }
 
