@@ -4,11 +4,15 @@ package com.example.alertaccident.presentation
 
 
 
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.location.Geocoder
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
@@ -16,33 +20,32 @@ import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
-
 import android.util.Log
-
-
 import androidx.fragment.app.Fragment
+import com.example.alertaccident.helper.GPSUtils
+import com.example.alertaccident.helper.GPSUtils.locationCallback
+import com.example.alertaccident.helper.GPSUtils.locationRequest
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
+import com.example.alertaccident.retrofit.UserManager.saveLoginToken
 import com.facebook.*
-
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.location.*
 import retrofit2.*
 import java.util.*
 
 class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
      {
 
-
          private var callbackManager: CallbackManager? = null
-        lateinit  var context: Context
+         lateinit  var context: Context
+         lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
 
          override fun login(email:String,password:String) {
              val loginModel = LoginModel(email, password)
-
-
-
                  if (isDataValid(email, password) == -1) {
                      if (isDeviceConnectedToInternet(context)) {
                      RetrofitManager.getInstance(Constants.baseurl).service!!.loginuser(loginModel)
@@ -55,6 +58,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          val id = response.body()!!.data._id
                                          val name = response.body()!!.data.nom
                                          val phone = response.body()!!.data.telephone.toString()
+                                         val login_token=response.body()!!.token
+                                         saveLoginToken(context,login_token)
                                          val user = User(email, password, name, id, phone)
                                          UserManager.saveCredentials(context, user)
                                          signinview.navigate()
@@ -64,21 +69,24 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          )
 
                                      } else {
-                                         val errorJsonString = response.errorBody()?.string()
-                                         val message = JsonParser().parse(errorJsonString)
-                                             .asJsonObject["message"]
-                                             .asString
                                          signinview.load()
-                                         if (message.compareTo("User not found...") == 0)
-                                             Handler().postDelayed(
-                                                 { signinview.onError(context.getString(R.string.no_account)) },
-                                                 1500
-                                             )
-                                         else
-                                             Handler().postDelayed(
-                                                 { signinview.onError(context.getString(R.string.authen_error)) },
-                                                 1500
-                                             )
+                                         Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) },1500)
+//                                         val errorJsonString = response.errorBody()?.string()
+//                                         val message = JsonParser().parse(errorJsonString)
+//                                             .asJsonObject["message"]
+//                                             .asString
+//                                         val message=response.body()!!.message
+//                                         signinview.load()
+//                                         if (message.compareTo("User not found...") == 0)
+//                                             Handler().postDelayed(
+//                                                 { signinview.onError(context.getString(R.string.no_account)) },
+//                                                 1500
+//                                             )
+//                                         else
+//                                             Handler().postDelayed(
+//                                                 { signinview.onError(context.getString(R.string.authen_error)) },
+//                                                 1500
+//                                             )
 
 
                                      }
@@ -120,7 +128,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     if (AccessToken.getCurrentAccessToken() != null){
-                        val activity = context as Activity
+                        //val activity = context as Activity
                         val request = GraphRequest.newMeRequest(
                             AccessToken.getCurrentAccessToken()
                         ) { jsonObject, _ ->
@@ -158,6 +166,9 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                  .enqueue(object :Callback<ApiResponse>{
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if (response.isSuccessful){
+                             val id = response.body()!!.data._id
+                             val user=User(email,password,nom,id,"")
+                             UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
                          }
                          else{
@@ -211,9 +222,42 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 //             v
 //             registerFacebook(name,mail,"Mobelite007",token)
 
+         }
+
+         override fun getLocation(activity: Activity) {
+             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                 if (GPSUtils.checkLocationPermission(activity, context)) {
+                     GPSUtils.buildLocationRequest()
+                     GPSUtils.buildLocationCallback()
+                     fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+                     fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                     fusedLocationClient.lastLocation
+                         .addOnSuccessListener { location ->
+                             val latitude = location?.latitude
+                             val longitud = location?.longitude
+                             if (latitude != null && longitud != null) {
+                                 val geocoder = Geocoder(context)
+                                 val adress = geocoder.getFromLocation(latitude, longitud, 10)
+                                 val country = adress.get(0).countryName
+                                 val city=GPSUtils.getCity(latitude,longitud,context)
+                                 val sub = GPSUtils.getarea(latitude,longitud,context)
+
+                                 UserManager.saveplace(country, city, sub, context)
+                             }
+                             UserManager.saveposition(latitude.toString(), longitud.toString(), context)
+
+                         }
+                 }
+             }
+//              else {
+//             GPSUtils.buildLocationRequest()
+//               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+//                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+//            }
 
          }
 
+     }
 
 
-}
+

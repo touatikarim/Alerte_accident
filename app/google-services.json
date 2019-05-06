@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "310950136179",
+    "firebase_url": "https://stage-pfe-1555321752412.firebaseio.com",
+    "project_id": "stage-pfe-1555321752412",
+    "storage_bucket": "stage-pfe-1555321752412.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310950136179:android:b7a54262b4ad8702",
+        "android_client_info": {
+          "package_name": "com.example.alertaccident"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310950136179-5vtlfhqlddmimfsdo0qof13604b3rr9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alertaccident",
+            "certificate_hash": "46c82f6c8e1ebf9127f4f34615ae86c44de50e83"
+          }
+        },
+        {
+          "client_id": "310950136179-nq1hget7gm088n4uv6r8fo9krogoutp1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrFcjup-hKE9_zFBl3cHM-MYMFFkdciSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310950136179-nq1hget7gm088n4uv6r8fo9krogoutp1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

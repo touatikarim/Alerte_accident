@@ -1,19 +1,16 @@
 package com.example.alertaccident.ui.login
 
 
-import android.app.Dialog
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-
 import android.util.Log
-
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.alertaccident.retrofit.UserManager
-
 import android.widget.Toast
 
 import androidx.navigation.fragment.findNavController
@@ -22,7 +19,6 @@ import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
-import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.User
@@ -37,11 +33,8 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
 
-class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,OnBackPressedListener {
-    override fun onBackPressed() {
-        activity!!.supportFragmentManager.popBackStack()
+class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener {
 
-    }
 
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("bett", "onConnectionFailed:" + connectionResult)
@@ -101,18 +94,19 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         UiUtils.hideKeyboardOntouch(view, activity!!)
         loginpresnter = LoginPresenterImpl(this)
         loginpresnter.setMainViewContext(activity!!.baseContext)
-
+        loginpresnter.getLocation(activity!!)
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()
-
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password)
+
+
         }
 
         btn_login_fb.setOnClickListener {
             if(isDeviceConnectedToInternet(activity!!.baseContext))
-            loginpresnter.signinfb(this)
+            {loginpresnter.signinfb(this) }
             else
                 onError(activity!!.baseContext.getString(R.string.no_connection))
         }
@@ -144,7 +138,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
     }
     back.setOnClickListener {
-        onBackPressed()
+        activity!!.supportFragmentManager.popBackStack()
     }
 
     }
@@ -155,15 +149,18 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
         super.onActivityResult(requestCode, resultCode, data)
        loginpresnter.onActivityResult(requestCode,resultCode, data)
         if (requestCode == RC_SIGN_IN) {
+            val sp = UserManager.getSharedPref(activity!!.baseContext)
+            val user_id=sp.getString("USER_ID","")
             val account = GoogleSignIn.getLastSignedInAccount(activity!!.baseContext)
             val personEmail = account?.email
             val name = account?.displayName
+            val imgurl=account?.photoUrl.toString()
             if (name != null && personEmail != null) {
-                val user = User(personEmail, "", name, "", "")
+                val user = User(personEmail, "", name, user_id, "")
                 UserManager.saveCredentials(activity!!.baseContext, user)
                 val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
                 val token = result.signInAccount?.idToken.toString()
-                UserManager.saveGoogleToken(activity!!.baseContext, token)
+                UserManager.saveGoogleToken(activity!!.baseContext,token,imgurl)
                 if (result.isSuccess) {
                     loginpresnter.registerGoogle(name, personEmail, "Mobelite007", token)
                     navigate()
@@ -173,7 +170,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener,
 
 
     }
-
 
 
 }

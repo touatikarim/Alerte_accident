@@ -5,8 +5,19 @@
              android:orientation="vertical"
              android:background="@color/twitter_blue"
             >
+    <!--<ImageView-->
+            <!--android:id="@+id/user_image"-->
+            <!--android:layout_width="104dp"-->
+            <!--android:layout_height="104dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_gravity="center|top"-->
+            <!--android:background="@drawable/circle"-->
+            <!--tools:ignore="ContentDescription,ObsoleteLayoutParam"/>-->
     <ImageView
+            android:id="@+id/image"
             android:layout_width="104dp"
+
             android:layout_height="104dp"
             android:layout_marginTop="5dp"
             android:layout_gravity="center|top"

@@ -2,7 +2,6 @@ package com.example.alertaccident.ui.register
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +12,16 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
-import com.example.alertaccident.helper.OnBackPressedListener
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.isRegistrationValid
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
-class SignUp : Fragment(),SignupView, OnBackPressedListener {
-    override fun onBackPressed() {
-        activity!!.supportFragmentManager.popBackStack()
-    }
+class SignUp : Fragment(),SignupView {
+
+    internal lateinit var registerpresnter:IregisterPresenter
+
 
     override fun load() {
         val progressBar = submit
@@ -57,7 +55,7 @@ class SignUp : Fragment(),SignupView, OnBackPressedListener {
         Toasty.error(activity!!.baseContext,message, Toast.LENGTH_SHORT).show()
     }
 
-    internal lateinit var registerpresnter:IregisterPresenter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,7 +92,7 @@ class SignUp : Fragment(),SignupView, OnBackPressedListener {
 
         }
         back_signup.setOnClickListener {
-            onBackPressed()
+            activity!!.supportFragmentManager.popBackStack()
         }
     }
 }

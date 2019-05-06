@@ -2,7 +2,6 @@ package com.example.alertaccident.retrofit
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.alertaccident.model.RegisterModel
 import com.example.alertaccident.model.User
 
 object UserManager {
@@ -30,27 +29,65 @@ object UserManager {
         val editor= sharedPref.edit()
         editor.putString("FACEBOOK_SIGNED_IN", token)
         editor.putString("GOOGLE_SIGNED_IN",null)
-       // editor.putString("USER_TYPE","FACEBOOK_SIGNED_IN")
+        editor.putString("SIGN_TOKEN",null)
         editor.apply()
     }
-    fun saveGoogleToken(context: Context, token: String)
+    fun saveGoogleToken(context: Context, token: String,imgurl:String)
     {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor= sharedPref.edit()
         editor.putString("FACEBOOK_SIGNED_IN", null)
         editor.putString("GOOGLE_SIGNED_IN",token)
-        //editor.putString("USER_TYPE","GOOGLE_SIGNED_IN")
+        editor.putString("IMAGE_URL",imgurl)
+        editor.putString("SIGN_TOKEN",null)
+
         editor.apply()
     }
 
+    fun saveLoginToken(context: Context,token:String){
+        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("SIGN_TOKEN",token)
+        editor.putString("GOOGLE_SIGNED_IN",null)
+        editor.putString("FACEBOOK_SIGNED_IN", null)
+        editor.apply()
+
+    }
     fun clearSharedPref(context:Context)
     {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("USER_EMAIL", null)
         editor.putString("USER_NAME", null)
+        editor.putString("GOOGLE_SIGNED_IN",null)
+        editor.putString("FACEBOOK_SIGNED_IN",null)
+        editor.putString("SIGN_TOKEN",null)
+        editor.putString("USER_LAT",null)
+        editor.putString("USER_LNG",null)
+        editor.putString("IMAGE_URL",null)
+        editor.putString("USER_COUNTRY",null)
+        editor.putString("USER_CITY",null)
+        editor.putString("USER_AREA",null)
         editor.apply()
     }
+    fun saveposition(latitude:String,longitude:String,context: Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("USER_LAT",latitude)
+        editor.putString("USER_LNG",longitude)
+        editor.apply()
+    }
+    fun saveplace(country:String?,city:String?,area:String?,context: Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("USER_COUNTRY",country)
+        editor.putString("USER_CITY",city)
+        editor.putString("USER_AREA",area)
+        editor.apply()
+    }
+
+
+
 
 
 }

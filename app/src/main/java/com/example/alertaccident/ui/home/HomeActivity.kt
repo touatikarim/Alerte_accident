@@ -1,7 +1,9 @@
 package com.example.alertaccident.ui.home
 
 import android.app.ActivityOptions
+
 import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,17 +15,18 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
-
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
 import com.google.android.material.navigation.NavigationView
+
 
 import kotlinx.android.synthetic.main.activity_user.*
 
@@ -35,22 +38,22 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
+        if (!GPSUtils.isLocationEnabled(this))
+            GPSUtils.showAlert(this,this)
         setSupportActionBar(toolbar)
+
         val navController = Navigation.findNavController(this,R.id.my_nav_user_fragment)
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
-
-
+        val token_google=sp.getString("GOOGLE_SIGNED_IN","")
 
         setupBottomNavMenu(navController)
-
         setupSideNavigationMenu(navController,mail,name)
-
         setupActionBar(navController)
 
         setsize(logoutfb)
-        setsize(logout)
+        setsize(logoutgoogle)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -62,13 +65,6 @@ class HomeActivity : AppCompatActivity() {
         if(AccessToken.getCurrentAccessToken() != null){
             logoutfb.setVisibility(View.VISIBLE)
             logoutfb.setOnClickListener {
-//                if (AccessToken.getCurrentAccessToken() != null) {
-//                    GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback {
-//                        AccessToken.setCurrentAccessToken(null)
-//                        LoginManager.getInstance().logOut()
-//
-//                    }).executeAsync()
-//                }
                 AccessToken.setCurrentAccessToken(null)
                 LoginManager.getInstance().logOut()
                 UserManager.clearSharedPref(this)
@@ -81,9 +77,9 @@ class HomeActivity : AppCompatActivity() {
             }
 
         }
-        else  {
-            logout.setVisibility(View.VISIBLE)
-            logout.setOnClickListener {
+        else if(token_google!=null)  {
+            logoutgoogle.setVisibility(View.VISIBLE)
+            logoutgoogle.setOnClickListener {
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     object : ResultCallback<Status> {
                         override fun onResult(status: Status) {
@@ -93,11 +89,21 @@ class HomeActivity : AppCompatActivity() {
                             load()
                             Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 
-
                         }
                     })
             }
        }
+        else {
+            logout.setVisibility(View.VISIBLE)
+            logout.setOnClickListener {
+                val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
+                val intent = Intent(applicationContext, Connexion::class.java)
+                UserManager.clearSharedPref(this@HomeActivity)
+                load()
+                Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
+            }
+
+        }
 
 
 
@@ -128,6 +134,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
    private fun setupActionBar(navController: NavController){
        NavigationUI.setupActionBarWithNavController(this,navController,drawer_layout)
    }
@@ -149,10 +156,15 @@ class HomeActivity : AppCompatActivity() {
         val density= getResources().getDisplayMetrics().density
         val width=Math.round(30 * density)
         val height = Math.round(24 * density)
-        val drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.logout, null);
+        val drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.logout, null)
         drawable!!.setBounds(0,0,width,height)
-        textView.setCompoundDrawables(drawable, null, null, null);
+        textView.setCompoundDrawables(drawable, null, null, null)
 
 
     }
+
+
+
+
+
 }

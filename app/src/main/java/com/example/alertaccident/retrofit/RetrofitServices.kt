@@ -2,10 +2,7 @@ package com.example.alertaccident.retrofit
 
 import com.example.alertaccident.model.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 interface RetrofitServices {
@@ -27,5 +24,8 @@ interface RetrofitServices {
 
     @POST("user/forgotPassword/")
     fun forgetpass(@Body body:LoginModel):Call<ApiResponse>
+
+    @DELETE("user/deleteUser/{user_id}")
+    fun desactivateaccount(@Path("user_id") user_id:String):Call<ApiResponse>
 
 }

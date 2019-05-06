@@ -1,18 +1,20 @@
 package com.example.alertaccident.helper
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.example.alertaccident.model.User
-import com.example.alertaccident.retrofit.UserManager
-import com.facebook.AccessToken
-import com.facebook.GraphRequest
+import com.example.alertaccident.R
+import android.content.DialogInterface
+import android.content.Intent
+import android.os.Bundle
+import android.provider.Settings
+import androidx.fragment.app.DialogFragment
+
 
 object UiUtils {
 
@@ -40,6 +42,7 @@ object UiUtils {
 
     }
 
+
     private fun hideKeyboardByElement(activity: Activity) {
         val inputMethodManager = activity.getSystemService(
             Activity.INPUT_METHOD_SERVICE
@@ -61,15 +64,28 @@ object UiUtils {
         return (activeNetwork != null)
     }
 
+    fun showAlert(activity: Activity, context: Context) {
+        val dialog = AlertDialog.Builder(context)
+        dialog.setTitle(context.getString(R.string.no_internet))
+            .setMessage(context.getString(R.string.no_internet_msg))
+            .setPositiveButton(context.getString(R.string.ok)) { paramDialogInterface, paramInt -> activity.finish()
+            }
 
-
-
-
-
-
-
-
-
+        dialog.show()
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
