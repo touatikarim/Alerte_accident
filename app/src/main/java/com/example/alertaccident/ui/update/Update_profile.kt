@@ -33,7 +33,7 @@ class Update_profile : Fragment(),UpdateprofileView {
     }
     override fun load() {
         val progressBar=update
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({progressBar.setVisibility(View.GONE)},1500)
     }
 

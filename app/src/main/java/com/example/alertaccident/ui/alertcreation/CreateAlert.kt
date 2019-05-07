@@ -29,6 +29,7 @@ import com.example.alertaccident.helper.isAlertValid
 
 
 import android.os.Environment
+import android.util.Log
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import java.io.File
@@ -71,6 +72,7 @@ class CreateAlert : Fragment(),CreateAlertView {
         alertpresenter.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
         val user_id = sp.getString("USER_ID", "")
+        Log.d("user_id",user_id)
         btn_send.setOnClickListener {
 
 
@@ -138,15 +140,15 @@ class CreateAlert : Fragment(),CreateAlertView {
 
     override fun load_image(state: Int) {
         val progressBar=store_image
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
     override fun load_alert(state: Int) {
         val progressBar=send_alert
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
     override fun load_video(state: Int) {
         val progressBar=store_video
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
 
 

@@ -47,7 +47,7 @@ class Desactivate_Acc : Fragment(),DesactivateAccView {
 
     override fun load() {
         val progressBar = desac
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
 
     }

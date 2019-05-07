@@ -55,7 +55,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     override fun load() {
         val progressBar = login
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
 
     }

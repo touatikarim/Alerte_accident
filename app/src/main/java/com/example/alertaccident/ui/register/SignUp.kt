@@ -25,7 +25,7 @@ class SignUp : Fragment(),SignupView {
 
     override fun load() {
         val progressBar = submit
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
 
     }

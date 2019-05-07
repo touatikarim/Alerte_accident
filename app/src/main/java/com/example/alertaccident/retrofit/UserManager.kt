@@ -57,6 +57,9 @@ object UserManager {
     {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
+        editor.putString("USER_ID", null)
+        editor.putString("USER_PWD", null)
+        editor.putString("USER_PHONE",null)
         editor.putString("USER_EMAIL", null)
         editor.putString("USER_NAME", null)
         editor.putString("GOOGLE_SIGNED_IN",null)

@@ -23,7 +23,7 @@ lateinit var forgetpasspresenter:IForgotPassPresenter
 
     override fun load() {
         val progressBar = forgot
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
     }
     override fun navigate() {
