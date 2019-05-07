@@ -16,7 +16,7 @@ import android.os.Looper
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
-import com.example.alertaccident.retrofit.RetrofitManager
+
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
@@ -27,6 +27,7 @@ import com.example.alertaccident.helper.GPSUtils.locationCallback
 import com.example.alertaccident.helper.GPSUtils.locationRequest
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
+import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager.saveLoginToken
 import com.facebook.*
 import com.facebook.login.LoginManager

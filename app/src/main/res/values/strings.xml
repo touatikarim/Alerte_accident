@@ -130,4 +130,6 @@
         <item>hospital</item>
         <item>emergency</item>
     </string-array>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD9Ijcv-C4NVfZB9j3kCZKLX58NgImTTtk</string>
+    <string name="browser_key">AIzaSyCyuJmNnafNVdx390P07u5X6JwNiZYySnI </string>
 </resources>
