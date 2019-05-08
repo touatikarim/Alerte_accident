@@ -22,6 +22,7 @@
         <action android:id="@+id/action_alerts_dest_to_home_dest" app:destination="@id/home_dest"
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+        <action android:id="@+id/action_alerts_dest_to_map_dest" app:destination="@id/map_dest"/>
     </fragment>
 
     <fragment android:id="@+id/map_dest"

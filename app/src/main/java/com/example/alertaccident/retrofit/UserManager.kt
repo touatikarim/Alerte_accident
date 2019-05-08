@@ -71,6 +71,8 @@ object UserManager {
         editor.putString("USER_COUNTRY",null)
         editor.putString("USER_CITY",null)
         editor.putString("USER_AREA",null)
+        editor.putString("ALERT_LAT",null)
+        editor.putString("ALERT_LNG",null)
         editor.apply()
     }
     fun saveposition(latitude:String,longitude:String,context: Context){
@@ -87,6 +89,19 @@ object UserManager {
         editor.putString("USER_CITY",city)
         editor.putString("USER_AREA",area)
         editor.apply()
+    }
+
+    fun savealertlocation(latitude: String,longitude: String,context: Context){
+        val editor = sharedPref.edit()
+        editor.putString("ALERT_LAT",latitude)
+        editor.putString("ALERT_LNG",longitude)
+        editor.apply()
+    }
+    fun clearalertpos(context:Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("ALERT_LAT",null)
+        editor.putString("ALERT_LNG",null)
     }
 
 

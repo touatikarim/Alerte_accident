@@ -110,6 +110,7 @@ object GPSUtils {
         val adress = geocoder.getFromLocation(latitude, longitude, 10)
         if (adress != null && adress.size > 0) {
             for (adr in adress) {
+
                 if (adr.subAdminArea != null && adr.subAdminArea.length > 0) {
                     val area = adr.subAdminArea
                     return area
