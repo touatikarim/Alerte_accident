@@ -47,6 +47,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
             ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
                 createAlertView.load_alert(View.GONE)
                 createAlertView.onSuccess(context.getString(R.string.send_alert))
+                createAlertView.navigate()
             }
         }
 

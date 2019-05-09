@@ -9,11 +9,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 import com.example.alertaccident.R
 import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.retrofit.UserManager
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.alert_item.view.*
 
 class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):RecyclerView.Adapter<AlertAdapter.AlertHolder>() {
@@ -28,8 +28,9 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
 
     override fun onBindViewHolder(holder: AlertHolder, position: Int) = holder.bind(items[position])
 
-
-
+    override fun getItemId(position: Int): Long {
+        return items[position].alert_id.hashCode().toLong()
+    }
 
     class AlertHolder(view:View):RecyclerView.ViewHolder(view) {
         val alert_title=view.user_email
@@ -59,7 +60,9 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
             description.text=context.getString(R.string.desc_alert)+alert.desc
             lat.text=alert.latitude
             lng.text=alert.longitude
-            Picasso.with(context).load(alert.imageurl).into(pic)
+            if(!alert.imageurl.isNullOrEmpty()) {
+               Glide.with(context).load(alert.imageurl).into(pic)
+            }
             check_map.setOnClickListener {
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)
                findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null,options)

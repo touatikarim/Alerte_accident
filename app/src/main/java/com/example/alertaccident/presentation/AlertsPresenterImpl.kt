@@ -1,6 +1,7 @@
 package com.example.alertaccident.presentation
 
 import android.content.Context
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
     private lateinit var adapter: AlertAdapter
     private lateinit var alerts:ArrayList<AlertModel>
     override fun showAlerts(recyclerView:RecyclerView) {
+
         val layoutmanager = LinearLayoutManager(context)
         recyclerView.setLayoutManager(layoutmanager)
         val reference= FirebaseDatabase.getInstance().getReference().child("Alerts")
@@ -35,13 +37,19 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
                     alerts.add(p!!)
                 }
                 adapter = AlertAdapter(alerts,context)
+                adapter.setHasStableIds(true)
                 recyclerView.adapter = adapter
                 alertsView.load(View.GONE)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.setItemViewCacheSize(20)
+
+
                 recyclerView.visibility=View.VISIBLE
             }
 
         })
     }
+
     override fun setMainViewContext(context: Context) {
             this.context=context
     }

@@ -31,6 +31,8 @@ import com.example.alertaccident.helper.isAlertValid
 import android.os.Environment
 import android.util.Log
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.bumptech.glide.Glide
 import java.io.File
 import java.io.IOException
@@ -45,6 +47,14 @@ class CreateAlert : Fragment(),CreateAlertView {
     lateinit  var imageFilePath: String
     lateinit var videoFilePath:String
     lateinit var alertpresenter: IcreateAlertPresenter
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -150,7 +160,9 @@ class CreateAlert : Fragment(),CreateAlertView {
         val progressBar=store_video
         progressBar?.visibility=state
     }
-
+    override fun navigate() {
+        findNavController().navigate(R.id.action_createAlert_to_home_dest,null,options)
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

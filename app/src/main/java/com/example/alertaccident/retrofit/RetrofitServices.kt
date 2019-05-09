@@ -28,4 +28,8 @@ interface RetrofitServices {
     @DELETE("user/deleteUser/{user_id}")
     fun desactivateaccount(@Path("user_id") user_id:String):Call<ApiResponse>
 
+   @PUT("user/updatePassword/{email}")
+   fun updatepassword(@Path("email") email:String, @Body body:PasswordModel):Call<ApiResponse>
+
+
 }

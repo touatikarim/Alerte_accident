@@ -6,5 +6,6 @@ interface CreateAlertView {
     fun load_image(state:Int)
     fun load_alert(state:Int)
     fun load_video(state: Int)
+    fun navigate()
 
 }

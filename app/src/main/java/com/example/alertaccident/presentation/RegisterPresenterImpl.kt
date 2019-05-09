@@ -38,7 +38,7 @@ class RegisterPresenterImpl(internal var signupview:SignupView):IregisterPresent
                                Handler().postDelayed({ signupview.onSuccess(response.body()!!.message) }, 1500)
                            } else {
                                val errorJsonString = response.errorBody()?.string()
-                               var message = JsonParser().parse(errorJsonString)
+                               val message = JsonParser().parse(errorJsonString)
                                    .asJsonObject["message"]
                                    .asString
                                signupview.load()

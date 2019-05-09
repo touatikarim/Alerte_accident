@@ -54,7 +54,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/old_pass"
-                                tools:ignore="DuplicateIds">
+                                >
                             <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                                     android:id="@+id/id_password"
                                     android:inputType="textPassword"
@@ -101,7 +101,7 @@
                             <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
                                     android:id="@+id/confirmpass_id"
                                     android:drawableTint="@color/twitter_blue"
-                                    android:inputType="phone"
+                                    android:inputType="textPassword"
                                     android:layout_width="match_parent"
                                     android:layout_marginBottom="20dp"
                                     android:layout_marginTop="16dp"
@@ -131,7 +131,7 @@
 
 
                         <Button
-                                android:id="@+id/btn_sub"
+                                android:id="@+id/btn_sub_reset"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="22dp"
@@ -145,7 +145,7 @@
 
                         />
                         <ProgressBar
-                                android:id="@+id/login"
+                                android:id="@+id/reset_pass"
                                 android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
