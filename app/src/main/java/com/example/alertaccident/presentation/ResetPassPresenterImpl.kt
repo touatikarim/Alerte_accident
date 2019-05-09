@@ -9,6 +9,7 @@ import com.example.alertaccident.model.PasswordModel
 import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.resetpassword.ResetpassView
+import com.google.gson.JsonParser
 import retrofit2.*
 
 class ResetPassPresenterImpl(internal var resetpassView: ResetpassView):IResetPassPresenter {
@@ -25,8 +26,12 @@ class ResetPassPresenterImpl(internal var resetpassView: ResetpassView):IResetPa
                             resetpassView.navigate()
                             Handler().postDelayed({ resetpassView.onSuccess(response.body()!!.message) }, 1500)
                         } else {
+                            val errorJsonString = response.errorBody()?.string()
+                            val message = JsonParser().parse(errorJsonString)
+                                .asJsonObject["message"]
+                                .asString
                             resetpassView.load()
-                            Handler().postDelayed({ resetpassView.onError(response.body()!!.message) }, 1500)
+                            Handler().postDelayed({ resetpassView.onError(message) }, 1500)
                         }
 
 
