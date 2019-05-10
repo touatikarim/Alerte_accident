@@ -129,13 +129,12 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     if (AccessToken.getCurrentAccessToken() != null){
-                        //val activity = context as Activity
                         val request = GraphRequest.newMeRequest(
                             AccessToken.getCurrentAccessToken()
                         ) { jsonObject, _ ->
                             val email = jsonObject?.get("email")?.toString() ?: ""
                             val name = jsonObject.get("name").toString()
-                            registerFacebook(name,email,"Mobelite007",loginResult.accessToken.token)
+                            registerFacebook(Constants.socialType2,email,loginResult.accessToken.token)
                             UserManager.saveCredentials(context,User(email,"",name,"",""))
                         }
                         val parameters = Bundle()
@@ -161,14 +160,16 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
     }
 
 
-         override fun registerGoogle(nom:String,email:String,password:String,googleToken:String) {
-             val registerGoogleModel= RegisterGoogleModel(nom, email, password, googleToken)
+         override fun registerGoogle(socialType:String,email:String,googleToken:String) {
+             val registerGoogleModel= RegisterGoogleModel(socialType, email, googleToken)
              RetrofitManager.getInstance(Constants.baseurl).service!!.registerusergoogle(registerGoogleModel)
                  .enqueue(object :Callback<ApiResponse>{
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if (response.isSuccessful){
+                             val sp = UserManager.getSharedPref(context)
+                             val name=sp.getString("USER_NAME","")
                              val id = response.body()!!.data._id
-                             val user=User(email,password,nom,id,"")
+                             val user=User(email,"",name,id,"")
                              UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
                          }
@@ -187,13 +188,17 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                  })
          }
 
-         override fun registerFacebook(nom: String, email: String, password: String, FbToken: String) {
-            val registerFbModel=RegisterFbModel(nom, email, password,FbToken)
+         override fun registerFacebook(socialType: String, email: String, facebookToken: String) {
+            val registerFbModel=RegisterFbModel(socialType,email,facebookToken)
              RetrofitManager.getInstance(Constants.baseurl).service!!.registeruserfacebook(registerFbModel)
                  .enqueue(object : Callback<ApiResponse>{
 
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if(response.isSuccessful){
+                             val id =response.body()!!.data._id
+                             val sp = UserManager.getSharedPref(context)
+                             val name=sp.getString("USER_NAME","")
+                             UserManager.saveCredentials(context,User(email,"",name,id,""))
                              signinview.onSuccess(response.body()!!.message)
                          }
                          else {
@@ -216,12 +221,6 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
          override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
              callbackManager?.onActivityResult(requestCode, resultCode, data)
 
-//
-//             val mail=sp.getString("USER_EMAIL","")
-//             Log.d("mail",mail)
-//             val name=sp.getString("USER_NAME","")
-//             v
-//             registerFacebook(name,mail,"Mobelite007",token)
 
          }
 

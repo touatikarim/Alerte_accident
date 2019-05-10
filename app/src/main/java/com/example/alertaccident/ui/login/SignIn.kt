@@ -162,7 +162,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
                 val token = result.signInAccount?.idToken.toString()
                 UserManager.saveGoogleToken(activity!!.baseContext,token,imgurl)
                 if (result.isSuccess) {
-                    loginpresnter.registerGoogle(name, personEmail, "Mobelite007", token)
+                    loginpresnter.registerGoogle(Constants.socialType1,personEmail,token)
                     navigate()
                 }
             }

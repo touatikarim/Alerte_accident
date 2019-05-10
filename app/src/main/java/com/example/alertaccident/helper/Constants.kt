@@ -12,5 +12,7 @@ object Constants {
     const val permission_code=1000
     const val REQUEST_IMAGE_CAPTURE=1
     const val REQUEST_VIDEO_CAPTURE = 2
+    val socialType1= "Google"
+    val socialType2="Facebook"
 
 }

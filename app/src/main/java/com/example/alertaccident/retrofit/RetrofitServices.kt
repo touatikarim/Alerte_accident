@@ -13,10 +13,10 @@ interface RetrofitServices {
     @POST("user/addUser")
     fun registeruser(@Body body:RegisterModel):Call<ApiResponse>
 
-    @POST("user/addUser")
+    @POST("user/connectWithSocialMedia")
     fun registerusergoogle(@Body body:RegisterGoogleModel):Call<ApiResponse>
 
-    @POST("user/addUser")
+    @POST("user/connectWithSocialMedia")
     fun registeruserfacebook(@Body body:RegisterFbModel):Call<ApiResponse>
 
     @PUT("user/updateUser/{email}")
