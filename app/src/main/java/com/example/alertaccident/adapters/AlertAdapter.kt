@@ -33,12 +33,14 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
     }
 
     class AlertHolder(view:View):RecyclerView.ViewHolder(view) {
-        val alert_title=view.user_email
+        //val alert_title=view.user_email
         val sender=view.sender_email
         val service=view.service_contacté
         val victim=view.victims
         val description=view.desc
         val pic=view.accident_pic
+        val date=view.date
+        val location=view.location_id
         val lat=view.lat
         val lng=view.lng
 
@@ -53,13 +55,15 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
                     popExit = R.anim.slide_out_right
                 }
             }
-            alert_title.text=context.getString(R.string.email_alert)+alert.email
-            sender.text=context.getString(R.string.name_alert)+alert.desc
+           //alert_title.text=context.getString(R.string.email_alert)+alert.email
+            sender.text=context.getString(R.string.email_alert)+alert.email
             service.text=context.getString(R.string.service_alert)+alert.service
             victim.text=context.getString(R.string.victims_alert)+alert.victims
             description.text=context.getString(R.string.desc_alert)+alert.desc
             lat.text=alert.latitude
             lng.text=alert.longitude
+            date.text=context.getString(R.string.date)+alert.date
+            location.text=context.getString(R.string.accident_location)+alert.location
             if(!alert.imageurl.isNullOrEmpty()) {
                Glide.with(context).load(alert.imageurl).into(pic)
             }

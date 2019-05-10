@@ -3,13 +3,12 @@ package com.example.alertaccident.presentation
 
 import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 
+
 import android.app.Activity
 import android.content.Context
 import android.net.Uri
-
 import android.view.View
 import android.widget.TextView
-
 import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.ui.alertcreation.CreateAlertView
 import com.google.firebase.database.FirebaseDatabase
@@ -18,11 +17,11 @@ import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.retrofit.UserManager
 import nl.dionsegijn.steppertouch.OnStepCallback
 import nl.dionsegijn.steppertouch.StepperTouch
-
 import com.example.alertaccident.helper.isAlertValid
-
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):IcreateAlertPresenter {
@@ -38,12 +37,19 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
         val email = sp.getString("USER_EMAIL", "")
         val latitude=sp.getString("USER_LAT","")
         val longitude=sp.getString("USER_LNG","")
-       // val url= sp.getString("IMAGE_URL","")
+        val country=sp.getString("USER_COUNTRY","")
+        val city=sp.getString("USER_CITY","")
+        val area=sp.getString("USER_AREA","")
+        val current = Date()
+        val formatter = SimpleDateFormat("MMM/dd/yyyy-HH:mma",Locale.getDefault())
+        val date = formatter.format(current)
+        val location=country+","+city+","+area
+
         createAlertView.load_alert(View.VISIBLE)
 
             val ref = FirebaseDatabase.getInstance().getReference("Alerts")
             val alert_id = ref.push().key
-            val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url,vid_url)
+            val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url,vid_url,date,location)
             ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
                 createAlertView.load_alert(View.GONE)
                 createAlertView.onSuccess(context.getString(R.string.send_alert))
