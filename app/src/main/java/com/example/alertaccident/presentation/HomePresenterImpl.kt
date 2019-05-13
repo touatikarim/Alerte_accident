@@ -1,5 +1,6 @@
 package com.example.alertaccident.presentation
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
@@ -7,6 +8,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Looper
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.alertaccident.helper.Constants
@@ -17,7 +19,8 @@ import com.google.android.gms.location.*
 class HomePresenterImpl:IHomePresenter {
     lateinit var context: Context
     lateinit var fusedLocationClient: FusedLocationProviderClient
-    override fun getLocation(activity: Activity) {
+    @SuppressLint("SetTextI18n")
+    override fun getLocation(activity: Activity, Lat: TextView, area: TextView, Lng:TextView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (GPSUtils.checkLocationPermission(activity,context)) {
                 GPSUtils.buildLocationRequest()
@@ -36,6 +39,9 @@ class HomePresenterImpl:IHomePresenter {
                             val country = adress.get(0).countryName
                             val city=GPSUtils.getCity(latitude,longitud,context)
                             val sub = GPSUtils.getarea(latitude,longitud,context)
+                            area.text= "$country,$city,\n$sub"
+                            Lat.text="LAT:"+latitude.toString()
+                            Lng.text="LNG:"+longitud.toString()
 
                             UserManager.saveplace(country, city, sub, context)
                         }

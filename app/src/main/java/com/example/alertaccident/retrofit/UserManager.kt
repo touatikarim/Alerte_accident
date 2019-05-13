@@ -97,13 +97,13 @@ object UserManager {
         editor.putString("ALERT_LNG",longitude)
         editor.apply()
     }
-//    fun clearalertpos(context:Context){
-//        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
-//        val editor = sharedPref.edit()
-//        editor.putString("ALERT_LAT",null)
-//        editor.putString("ALERT_LNG",null)
-//        editor.apply
-//    }
+    fun clearalertpos(context:Context){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("ALERT_LAT",null)
+        editor.putString("ALERT_LNG",null)
+        editor.apply()
+    }
 
 
 

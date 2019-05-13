@@ -14,7 +14,7 @@ interface IloginPresenter {
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     fun registerGoogle(socialType:String,email:String,googleToken:String)
     fun registerFacebook(socialType:String,email:String,facebookToken:String)
-    fun getLocation(activity: Activity)
+
 
 
 

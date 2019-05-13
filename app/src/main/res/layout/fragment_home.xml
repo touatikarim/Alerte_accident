@@ -119,7 +119,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <ImageButton
-                        android:id="@+id/create-alert"
+                        android:id="@+id/createalert"
                         android:layout_marginTop="150dp"
                         android:layout_width="100dp"
                         android:layout_height="100dp"

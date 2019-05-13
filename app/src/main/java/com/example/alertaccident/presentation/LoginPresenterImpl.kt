@@ -224,38 +224,6 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
          }
 
-         override fun getLocation(activity: Activity) {
-             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                 if (GPSUtils.checkLocationPermission(activity, context)) {
-                     GPSUtils.buildLocationRequest()
-                     GPSUtils.buildLocationCallback()
-                     fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
-                     fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-                     fusedLocationClient.lastLocation
-                         .addOnSuccessListener { location ->
-                             val latitude = location?.latitude
-                             val longitud = location?.longitude
-                             if (latitude != null && longitud != null) {
-                                 val geocoder = Geocoder(context)
-                                 val adress = geocoder.getFromLocation(latitude, longitud, 10)
-                                 val country = adress.get(0).countryName
-                                 val city=GPSUtils.getCity(latitude,longitud,context)
-                                 val sub = GPSUtils.getarea(latitude,longitud,context)
-
-                                 UserManager.saveplace(country, city, sub, context)
-                             }
-                             UserManager.saveposition(latitude.toString(), longitud.toString(), context)
-
-                         }
-                 }
-             }
-//              else {
-//             GPSUtils.buildLocationRequest()
-//               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
-//                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-//            }
-
-         }
 
      }
 

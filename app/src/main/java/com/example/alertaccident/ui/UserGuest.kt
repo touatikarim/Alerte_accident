@@ -45,9 +45,9 @@ class UserGuest : Fragment() {
         view.findViewById<Button>(R.id.btn_sign)?.setOnClickListener {
             findNavController().navigate(R.id.action_userGuest_to_signUp, null, options)
         }
-        view.findViewById<Button>(R.id.btn_guest)?.setOnClickListener {
-            findNavController().navigate(R.id.action_userGuest_to_home2, null, options)
-        }
+//        view.findViewById<Button>(R.id.btn_guest)?.setOnClickListener {
+//            findNavController().navigate(R.id.action_userGuest_to_home2, null, options)
+//        }
     }
 
 }

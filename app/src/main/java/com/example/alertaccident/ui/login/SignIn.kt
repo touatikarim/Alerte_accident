@@ -94,7 +94,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
         UiUtils.hideKeyboardOntouch(view, activity!!)
         loginpresnter = LoginPresenterImpl(this)
         loginpresnter.setMainViewContext(activity!!.baseContext)
-        loginpresnter.getLocation(activity!!)
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()

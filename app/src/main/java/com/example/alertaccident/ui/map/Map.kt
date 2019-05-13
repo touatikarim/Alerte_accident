@@ -66,7 +66,7 @@ class Map : Fragment() {
         val user_markerOptions=MarkerOptions()
             .position(LatLng(latitude.toDouble(),longitude.toDouble()))
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-            .title(GPSUtils.getarea(latitude.toDouble(),longitude.toDouble(),activity!!.baseContext))
+            .title("You're here")
 
         it?.addMarker(user_markerOptions)
             it?.moveCamera(CameraUpdateFactory.newLatLng(LatLng(latitude.toDouble(), longitude.toDouble())))
@@ -81,6 +81,7 @@ class Map : Fragment() {
                 it?.addMarker(alert_markerOptions)
                 it?.moveCamera(CameraUpdateFactory.newLatLng(LatLng(alert_lat.toDouble(), alert_lng.toDouble())))
                 it?.animateCamera(CameraUpdateFactory.zoomTo(12f))
+                UserManager.clearalertpos(activity!!.baseContext)
             }
         }
 
