@@ -79,7 +79,7 @@ class CreateAlert : Fragment(),CreateAlertView {
         alertpresenter = CreateAlertPresenterImpl(this)
         alertpresenter.setMainViewContext(activity!!.baseContext)
 
-        alertpresenter.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
+        UiUtils.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
         val user_id = sp.getString("USER_ID", "")
         Log.d("user_id",user_id)
@@ -102,7 +102,7 @@ class CreateAlert : Fragment(),CreateAlertView {
             }
         }
         service_chosen.setOnClickListener {
-            alertpresenter.setspinner(service_chosen, activity!!)
+            UiUtils.setspinner(service_chosen, activity!!)
         }
         accident_photo.setOnClickListener {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {

@@ -74,7 +74,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
                Uri->url=Uri.toString()
                 createAlertView.load_image(View.GONE)
                 createAlertView.onSuccess("Picture stored successfully")
-            //UserManager.saveimageurl(context,uri.toString())
+
 
         }
         }
@@ -100,26 +100,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
     }
 
 
-    override fun setstepper(min: Int, max: Int, stepperTouch: StepperTouch, victims: TextView) {
-        stepperTouch.maxValue = max
-        stepperTouch.minValue = min
-        stepperTouch.sideTapEnabled = true
-        stepperTouch.addStepCallback(object : OnStepCallback {
-            override fun onStep(value: Int, positive: Boolean) {
-                victims.text = value.toString()
-            }
-        })
 
-    }
-
-    override fun setspinner(service: TextView, activity: Activity) {
-        spinnerdialog = SpinnerDialog(activity, Constants.list_of_services,
-            "Select Service", R.style.DialogAnimations_SmileWindow)
-        spinnerdialog!!.bindOnSpinerListener { item, position ->
-            service.setText(Constants.list_of_services[position])
-        }
-        spinnerdialog!!.showSpinerDialog()
-    }
 
     override fun setMainViewContext(context: Context) {
         this.context = context

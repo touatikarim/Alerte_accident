@@ -57,6 +57,9 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
             }
            //alert_title.text=context.getString(R.string.email_alert)+alert.email
             sender.text=context.getString(R.string.email_alert)+alert.email
+            if (alert.email.isEmpty()){
+                sender.text=context.getString(R.string.email_alert)+"Unregistred user"
+            }
             service.text=context.getString(R.string.service_alert)+alert.service
             victim.text=context.getString(R.string.victims_alert)+alert.victims
             description.text=context.getString(R.string.desc_alert)+alert.desc

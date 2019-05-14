@@ -118,20 +118,34 @@
     <string name="ok">OK</string>
     <string name="video">Take a video:</string>
     <string name="list_alert">Alert List</string>
-    <string name="email_alert"><u>Email: </u></string>
-    <string name="name_alert"><u>Name: </u></string>
-    <string name="service_alert"><u>Service alerted: </u></string>
-    <string name="victims_alert"><u>Number of victims: </u></string>
-    <string name="desc_alert"><u>Alert Description: </u></string>
-    <string name="check_map"><u>Check on map</u></string>
+    <string name="email_alert">
+        <u>Email:</u>
+    </string>
+    <string name="name_alert">
+        <u>Name:</u>
+    </string>
+    <string name="service_alert">
+        <u>Service alerted:</u>
+    </string>
+    <string name="victims_alert">
+        <u>Number of victims:</u>
+    </string>
+    <string name="desc_alert">
+        <u>Alert Description:</u>
+    </string>
+    <string name="check_map">
+        <u>Check on map</u>
+    </string>
     <string-array name="services">
         <item>samu</item>
         <item>police</item>
         <item>hospital</item>
         <item>emergency</item>
     </string-array>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD9Ijcv-C4NVfZB9j3kCZKLX58NgImTTtk</string>
-    <string name="browser_key">AIzaSyCyuJmNnafNVdx390P07u5X6JwNiZYySnI </string>
-    <string name="date">Date: </string>
-    <string name="accident_location">Location: </string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyD9Ijcv-C4NVfZB9j3kCZKLX58NgImTTtk
+    </string>
+    <string name="browser_key">AIzaSyCyuJmNnafNVdx390P07u5X6JwNiZYySnI</string>
+    <string name="date">Date:</string>
+    <string name="accident_location">Location:</string>
 </resources>

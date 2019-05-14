@@ -30,7 +30,8 @@
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"
         />
-                <!--app:popEnterAnim="@anim/fade_out" app:popExitAnim="@anim/fade_in"-->
+        <action android:id="@+id/action_userGuest_to_guest" app:destination="@id/guest"/>
+        <!--app:popEnterAnim="@anim/fade_out" app:popExitAnim="@anim/fade_in"-->
 
     </fragment>
 
@@ -66,6 +67,10 @@
     <fragment android:id="@+id/forgot_Pass" android:name="com.example.alertaccident.ui.Forgotpassword.Forgot_Pass"
               android:label="fragment_forgot__pass" tools:layout="@layout/fragment_forgot__pass">
         <action android:id="@+id/action_forgot_Pass_to_signIn" app:destination="@id/signIn"/>
+    </fragment>
+    <fragment android:id="@+id/guest" android:name="com.example.alertaccident.ui.guest.Guest"
+              android:label="fragment_guest" tools:layout="@layout/fragment_guest">
+        <action android:id="@+id/action_guest_to_userGuest" app:destination="@id/userGuest"/>
     </fragment>
 
 

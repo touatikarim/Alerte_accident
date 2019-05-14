@@ -49,34 +49,34 @@ class Home : Fragment() {
         homepresenter.setMainViewContext(activity!!.baseContext)
         homepresenter.getLocation(activity!!, lat, place, lng)
 
-//        createalert.setOnClickListener {
-//            homepresenter.getLocation(activity!!, lat, place, lng)
-//            findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
-//        }
-      createalert.setOnTouchListener (object:View.OnTouchListener{
-
-          override fun onTouch(view: View?, ev: MotionEvent?): Boolean {
-              if (ev!!.action == MotionEvent.ACTION_DOWN){
-                  val v = view as ImageButton
-                   view.background.setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP)
-                   v.invalidate()
-              }
-              else if (ev.action == MotionEvent.ACTION_UP){
-                  homepresenter.getLocation(activity!!, lat, place, lng)
-                  findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
-              }
-              else if (ev.action == MotionEvent.ACTION_BUTTON_RELEASE){
-                  val v = view as ImageButton
-                  view.background.clearColorFilter()
-                  v.invalidate()
-              }
-
-
-              return true
-
-          }
-
-      })
+        createalert.setOnClickListener {
+            homepresenter.getLocation(activity!!, lat, place, lng)
+            findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
+        }
+//      createalert.setOnTouchListener (object:View.OnTouchListener{
+//
+//          override fun onTouch(view: View?, ev: MotionEvent?): Boolean {
+//              if (ev!!.action == MotionEvent.ACTION_DOWN){
+//                  val v = view as ImageButton
+//                   view.background.setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP)
+//                   v.invalidate()
+//              }
+//              else if (ev.action == MotionEvent.ACTION_UP){
+//                  homepresenter.getLocation(activity!!, lat, place, lng)
+//                  findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
+//              }
+//              else if (ev.action == MotionEvent.ACTION_BUTTON_RELEASE){
+//                  val v = view as ImageButton
+//                  view.background.clearColorFilter()
+//                  v.invalidate()
+//              }
+//
+//
+//              return true
+//
+//          }
+//
+//      })
 
 
     }
