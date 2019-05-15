@@ -231,7 +231,7 @@
                                 android:overScrollMode="always"
                                 android:scrollbarStyle="insideInset"
                                 android:scrollbars="vertical"
-                                android:padding="8dp"
+                                android:padding="16dp"
                                 tools:targetApi="m"
                                 tools:ignore="Autofill,LabelFor"/>
 

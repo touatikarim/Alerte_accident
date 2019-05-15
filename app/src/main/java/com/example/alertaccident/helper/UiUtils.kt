@@ -1,5 +1,6 @@
 package com.example.alertaccident.helper
 
+import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -13,11 +14,14 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import nl.dionsegijn.steppertouch.OnStepCallback
+import nl.dionsegijn.steppertouch.StepperTouch
 
 
 object UiUtils {
-
+    var spinnerdialog: SpinnerDialog? = null
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -72,6 +76,25 @@ object UiUtils {
             }
 
         dialog.show()
+    }
+    fun setstepper(min: Int, max: Int, stepperTouch: StepperTouch, victims: TextView) {
+        stepperTouch.maxValue = max
+        stepperTouch.minValue = min
+        stepperTouch.sideTapEnabled = true
+        stepperTouch.addStepCallback(object : OnStepCallback {
+            override fun onStep(value: Int, positive: Boolean) {
+                victims.text = value.toString()
+            }
+        })
+
+    }
+    fun setspinner(service: TextView, activity: Activity) {
+        spinnerdialog = SpinnerDialog(activity, Constants.list_of_services,
+            "Select Service", R.style.DialogAnimations_SmileWindow)
+        spinnerdialog!!.bindOnSpinerListener { item, position ->
+            service.setText(Constants.list_of_services[position])
+        }
+        spinnerdialog!!.showSpinerDialog()
     }
 
 

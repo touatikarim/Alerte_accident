@@ -12,9 +12,9 @@ interface IloginPresenter {
     fun setMainViewContext(context: Context)
     fun signinfb(fragment:Fragment)
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
-    fun registerGoogle(nom:String,email:String,password:String,googleToken:String)
-    fun registerFacebook(nom:String,email:String,password:String,FbToken:String)
-    fun getLocation(activity: Activity)
+    fun registerGoogle(socialType:String,email:String,googleToken:String)
+    fun registerFacebook(socialType:String,email:String,facebookToken:String)
+
 
 
 

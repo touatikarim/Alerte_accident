@@ -18,6 +18,7 @@ import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 
 object GPSUtils {
     lateinit var locationCallback: LocationCallback
@@ -110,6 +111,7 @@ object GPSUtils {
         val adress = geocoder.getFromLocation(latitude, longitude, 10)
         if (adress != null && adress.size > 0) {
             for (adr in adress) {
+
                 if (adr.subAdminArea != null && adr.subAdminArea.length > 0) {
                     val area = adr.subAdminArea
                     return area

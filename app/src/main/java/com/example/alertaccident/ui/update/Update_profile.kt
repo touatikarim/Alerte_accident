@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.isUpdateValid
 import com.example.alertaccident.model.User
@@ -23,17 +24,17 @@ import kotlinx.android.synthetic.main.fragment_update_profile.*
 
 
 class Update_profile : Fragment(),UpdateprofileView {
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     override fun load() {
         val progressBar=update
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({progressBar.setVisibility(View.GONE)},1500)
     }
 
@@ -46,7 +47,7 @@ class Update_profile : Fragment(),UpdateprofileView {
     }
     override fun navigate() {
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_update_profile_to_Home,null, options) }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_update_profile_to_Home,null, Constants.options) }, 1500)
     }
 
 

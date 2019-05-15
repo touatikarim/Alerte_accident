@@ -43,19 +43,19 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     internal lateinit var loginpresnter: IloginPresenter
     lateinit var mGoogleApiClient: GoogleApiClient
     private val RC_SIGN_IN = 9001
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
 
 
     override fun load() {
         val progressBar = login
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
 
     }
@@ -63,7 +63,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     override fun navigate() {
 
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_signIn_to_home2, null, options);activity!!.finish() }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_signIn_to_home2, null, Constants.options);activity!!.finish() }, 1500)
 
 
     }
@@ -94,7 +94,6 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
         UiUtils.hideKeyboardOntouch(view, activity!!)
         loginpresnter = LoginPresenterImpl(this)
         loginpresnter.setMainViewContext(activity!!.baseContext)
-        loginpresnter.getLocation(activity!!)
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()
@@ -135,7 +134,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
 
     forget_pass.setOnClickListener {
-        findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
+        findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,Constants.options)
     }
     back.setOnClickListener {
         activity!!.supportFragmentManager.popBackStack()
@@ -162,7 +161,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
                 val token = result.signInAccount?.idToken.toString()
                 UserManager.saveGoogleToken(activity!!.baseContext,token,imgurl)
                 if (result.isSuccess) {
-                    loginpresnter.registerGoogle(name, personEmail, "Mobelite007", token)
+                    loginpresnter.registerGoogle(Constants.socialType1,personEmail,token)
                     navigate()
                 }
             }

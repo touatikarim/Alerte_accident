@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.ForgotPassPresnterImpl
 import com.example.alertaccident.presentation.IForgotPassPresenter
@@ -23,20 +24,20 @@ lateinit var forgetpasspresenter:IForgotPassPresenter
 
     override fun load() {
         val progressBar = forgot
-        progressBar.setVisibility(View.VISIBLE)
+        progressBar?.setVisibility(View.VISIBLE)
         Handler().postDelayed({ progressBar.setVisibility(View.GONE) }, 1500)
     }
     override fun navigate() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
+//        val options = navOptions {
+//            anim {
+//                enter = R.anim.slide_in_right
+//                exit = R.anim.slide_out_left
+//                popEnter = R.anim.slide_in_left
+//                popExit = R.anim.slide_out_right
+//            }
+//        }
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_forgot_Pass_to_signIn, null, options) }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_forgot_Pass_to_signIn, null, Constants.options) }, 1500)
     }
 
 

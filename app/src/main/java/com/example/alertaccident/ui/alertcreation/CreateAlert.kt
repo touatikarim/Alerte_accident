@@ -29,7 +29,10 @@ import com.example.alertaccident.helper.isAlertValid
 
 
 import android.os.Environment
+import android.util.Log
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.bumptech.glide.Glide
 import java.io.File
 import java.io.IOException
@@ -44,6 +47,14 @@ class CreateAlert : Fragment(),CreateAlertView {
     lateinit  var imageFilePath: String
     lateinit var videoFilePath:String
     lateinit var alertpresenter: IcreateAlertPresenter
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -68,9 +79,10 @@ class CreateAlert : Fragment(),CreateAlertView {
         alertpresenter = CreateAlertPresenterImpl(this)
         alertpresenter.setMainViewContext(activity!!.baseContext)
 
-        alertpresenter.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
+        UiUtils.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
         val user_id = sp.getString("USER_ID", "")
+        Log.d("user_id",user_id)
         btn_send.setOnClickListener {
 
 
@@ -90,7 +102,7 @@ class CreateAlert : Fragment(),CreateAlertView {
             }
         }
         service_chosen.setOnClickListener {
-            alertpresenter.setspinner(service_chosen, activity!!)
+            UiUtils.setspinner(service_chosen, activity!!)
         }
         accident_photo.setOnClickListener {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
@@ -138,17 +150,19 @@ class CreateAlert : Fragment(),CreateAlertView {
 
     override fun load_image(state: Int) {
         val progressBar=store_image
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
     override fun load_alert(state: Int) {
         val progressBar=send_alert
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
     override fun load_video(state: Int) {
         val progressBar=store_video
-        progressBar.visibility=state
+        progressBar?.visibility=state
     }
-
+    override fun navigate() {
+        findNavController().navigate(R.id.action_createAlert_to_home_dest,null,Constants.options)
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

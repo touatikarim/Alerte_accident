@@ -18,8 +18,6 @@ class Connexion : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         if(!UiUtils.isDeviceConnectedToInternet(this))
         {UiUtils.showAlert(this,this)}
-           else  if (!GPSUtils.isLocationEnabled(this))
-            {GPSUtils.showAlert(this, this)}
 
     }
 

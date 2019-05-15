@@ -1,5 +1,8 @@
 package com.example.alertaccident.helper
 
+import androidx.navigation.navOptions
+import com.example.alertaccident.R
+
 object Constants {
     val baseurl="http://internship.mobelite.fr:3000/"
     val clientid="310950136179-bnmgleuh3vquqf6kkie01d65su4c5nm8.apps.googleusercontent.com"
@@ -12,5 +15,14 @@ object Constants {
     const val permission_code=1000
     const val REQUEST_IMAGE_CAPTURE=1
     const val REQUEST_VIDEO_CAPTURE = 2
-
+    val socialType1= "Google"
+    val socialType2="Facebook"
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
 }

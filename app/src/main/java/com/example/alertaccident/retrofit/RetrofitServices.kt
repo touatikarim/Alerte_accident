@@ -13,10 +13,10 @@ interface RetrofitServices {
     @POST("user/addUser")
     fun registeruser(@Body body:RegisterModel):Call<ApiResponse>
 
-    @POST("user/addUser")
+    @POST("user/connectWithSocialMedia")
     fun registerusergoogle(@Body body:RegisterGoogleModel):Call<ApiResponse>
 
-    @POST("user/addUser")
+    @POST("user/connectWithSocialMedia")
     fun registeruserfacebook(@Body body:RegisterFbModel):Call<ApiResponse>
 
     @PUT("user/updateUser/{email}")
@@ -27,5 +27,9 @@ interface RetrofitServices {
 
     @DELETE("user/deleteUser/{user_id}")
     fun desactivateaccount(@Path("user_id") user_id:String):Call<ApiResponse>
+
+   @PUT("user/updatePassword/{email}")
+   fun updatepassword(@Path("email") email:String, @Body body:PasswordModel):Call<ApiResponse>
+
 
 }

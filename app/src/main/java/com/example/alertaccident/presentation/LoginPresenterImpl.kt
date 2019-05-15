@@ -16,7 +16,7 @@ import android.os.Looper
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.isDataValid
-import com.example.alertaccident.retrofit.RetrofitManager
+
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
@@ -27,6 +27,7 @@ import com.example.alertaccident.helper.GPSUtils.locationCallback
 import com.example.alertaccident.helper.GPSUtils.locationRequest
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
 import com.example.alertaccident.model.*
+import com.example.alertaccident.retrofit.RetrofitManager
 import com.example.alertaccident.retrofit.UserManager.saveLoginToken
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -128,13 +129,12 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     if (AccessToken.getCurrentAccessToken() != null){
-                        //val activity = context as Activity
                         val request = GraphRequest.newMeRequest(
                             AccessToken.getCurrentAccessToken()
                         ) { jsonObject, _ ->
                             val email = jsonObject?.get("email")?.toString() ?: ""
                             val name = jsonObject.get("name").toString()
-                            registerFacebook(name,email,"Mobelite007",loginResult.accessToken.token)
+                            registerFacebook(Constants.socialType2,email,loginResult.accessToken.token)
                             UserManager.saveCredentials(context,User(email,"",name,"",""))
                         }
                         val parameters = Bundle()
@@ -160,14 +160,16 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
     }
 
 
-         override fun registerGoogle(nom:String,email:String,password:String,googleToken:String) {
-             val registerGoogleModel= RegisterGoogleModel(nom, email, password, googleToken)
+         override fun registerGoogle(socialType:String,email:String,googleToken:String) {
+             val registerGoogleModel= RegisterGoogleModel(socialType, email, googleToken)
              RetrofitManager.getInstance(Constants.baseurl).service!!.registerusergoogle(registerGoogleModel)
                  .enqueue(object :Callback<ApiResponse>{
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if (response.isSuccessful){
+                             val sp = UserManager.getSharedPref(context)
+                             val name=sp.getString("USER_NAME","")
                              val id = response.body()!!.data._id
-                             val user=User(email,password,nom,id,"")
+                             val user=User(email,"",name,id,"")
                              UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
                          }
@@ -186,13 +188,17 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                  })
          }
 
-         override fun registerFacebook(nom: String, email: String, password: String, FbToken: String) {
-            val registerFbModel=RegisterFbModel(nom, email, password,FbToken)
+         override fun registerFacebook(socialType: String, email: String, facebookToken: String) {
+            val registerFbModel=RegisterFbModel(socialType,email,facebookToken)
              RetrofitManager.getInstance(Constants.baseurl).service!!.registeruserfacebook(registerFbModel)
                  .enqueue(object : Callback<ApiResponse>{
 
                      override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                          if(response.isSuccessful){
+                             val id =response.body()!!.data._id
+                             val sp = UserManager.getSharedPref(context)
+                             val name=sp.getString("USER_NAME","")
+                             UserManager.saveCredentials(context,User(email,"",name,id,""))
                              signinview.onSuccess(response.body()!!.message)
                          }
                          else {
@@ -215,47 +221,9 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
          override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
              callbackManager?.onActivityResult(requestCode, resultCode, data)
 
-//
-//             val mail=sp.getString("USER_EMAIL","")
-//             Log.d("mail",mail)
-//             val name=sp.getString("USER_NAME","")
-//             v
-//             registerFacebook(name,mail,"Mobelite007",token)
 
          }
 
-         override fun getLocation(activity: Activity) {
-             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                 if (GPSUtils.checkLocationPermission(activity, context)) {
-                     GPSUtils.buildLocationRequest()
-                     GPSUtils.buildLocationCallback()
-                     fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
-                     fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-                     fusedLocationClient.lastLocation
-                         .addOnSuccessListener { location ->
-                             val latitude = location?.latitude
-                             val longitud = location?.longitude
-                             if (latitude != null && longitud != null) {
-                                 val geocoder = Geocoder(context)
-                                 val adress = geocoder.getFromLocation(latitude, longitud, 10)
-                                 val country = adress.get(0).countryName
-                                 val city=GPSUtils.getCity(latitude,longitud,context)
-                                 val sub = GPSUtils.getarea(latitude,longitud,context)
-
-                                 UserManager.saveplace(country, city, sub, context)
-                             }
-                             UserManager.saveposition(latitude.toString(), longitud.toString(), context)
-
-                         }
-                 }
-             }
-//              else {
-//             GPSUtils.buildLocationRequest()
-//               fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
-//                 fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-//            }
-
-         }
 
      }
 
