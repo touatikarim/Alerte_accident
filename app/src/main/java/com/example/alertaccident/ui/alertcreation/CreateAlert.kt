@@ -47,14 +47,14 @@ class CreateAlert : Fragment(),CreateAlertView {
     lateinit  var imageFilePath: String
     lateinit var videoFilePath:String
     lateinit var alertpresenter: IcreateAlertPresenter
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -161,7 +161,7 @@ class CreateAlert : Fragment(),CreateAlertView {
         progressBar?.visibility=state
     }
     override fun navigate() {
-        findNavController().navigate(R.id.action_createAlert_to_home_dest,null,options)
+        findNavController().navigate(R.id.action_createAlert_to_home_dest,null,Constants.options)
     }
 
 

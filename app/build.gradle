@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.9'
     implementation 'com.github.DanielMartinus:Stepper-Touch:1.0.1'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 

@@ -15,6 +15,7 @@ import androidx.navigation.navOptions
 
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.DesactivateAccPresenterImpl
 import com.example.alertaccident.presentation.IDesactivateAccPresenter
@@ -24,14 +25,14 @@ import kotlinx.android.synthetic.main.fragment_desactivate__acc.*
 
 class Desactivate_Acc : Fragment(),DesactivateAccView {
    internal lateinit var desactivateaccpresenter:IDesactivateAccPresenter
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -42,7 +43,7 @@ class Desactivate_Acc : Fragment(),DesactivateAccView {
 
     override fun navigate() {
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_desactivate_Acc_to_connexion, null, options);activity!!.finish() }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_desactivate_Acc_to_connexion, null, Constants.options);activity!!.finish() }, 1500)
     }
 
     override fun load() {

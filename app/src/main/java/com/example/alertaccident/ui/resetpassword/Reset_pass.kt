@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.IResetPassPresenter
 import com.example.alertaccident.presentation.ResetPassPresenterImpl
@@ -24,14 +25,14 @@ import kotlinx.android.synthetic.main.fragment_reset_pass.*
 class Reset_pass : Fragment(),ResetpassView {
 
     lateinit var resetpresenter:IResetPassPresenter
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -42,7 +43,7 @@ class Reset_pass : Fragment(),ResetpassView {
 
     override fun navigate() {
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_reset_pass_to_home_dest, null, options) }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_reset_pass_to_home_dest, null, Constants.options) }, 1500)
 
     }
 

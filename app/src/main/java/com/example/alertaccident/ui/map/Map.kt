@@ -12,20 +12,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 import com.example.alertaccident.R
-import com.example.alertaccident.helper.GPSUtils
-import com.example.alertaccident.helper.GPSUtils.buildLocationCallback
-import com.example.alertaccident.helper.GPSUtils.buildLocationRequest
-import com.example.alertaccident.helper.GPSUtils.checkLocationPermission
-import com.example.alertaccident.helper.GPSUtils.locationCallback
-import com.example.alertaccident.helper.GPSUtils.locationRequest
+
 import com.example.alertaccident.presentation.IMapPresenter
 import com.example.alertaccident.presentation.MapPresenterImpl
 import com.example.alertaccident.retrofit.UserManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -39,7 +34,11 @@ import com.google.android.gms.maps.model.MarkerOptions
 class Map : Fragment() {
 
 
+
     lateinit var mappresenter:IMapPresenter
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,16 +52,18 @@ class Map : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mappresenter=MapPresenterImpl()
         mappresenter.setMainViewContext(activity!!.baseContext)
+
+
         val mapFragment = this.childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
-        mapFragment?.getMapAsync{
+       mapFragment?.getMapAsync{
             it.clear()
             mappresenter.getLocation(activity!!)
-            val sp = UserManager.getSharedPref(activity!!.baseContext)
+           val sp = UserManager.getSharedPref(activity!!.baseContext)
         val latitude=sp.getString("USER_LAT","")
         val longitude=sp.getString("USER_LNG","")
-        val alert_lat=sp.getString("ALERT_LAT","")
+       val alert_lat=sp.getString("ALERT_LAT","")
         val alert_lng=sp.getString("ALERT_LNG","")
-            Log.d("pos",alert_lng)
+//            Log.d("pos",alert_lng)
         val user_markerOptions=MarkerOptions()
             .position(LatLng(latitude.toDouble(),longitude.toDouble()))
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))

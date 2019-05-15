@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.retrofit.UserManager
 import kotlinx.android.synthetic.main.alert_item.view.*
@@ -47,14 +48,14 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
 
         @SuppressLint("SetTextI18n")
         fun bind(alert:AlertModel)=with(itemView){
-            val options = navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.slide_out_left
-                    popEnter = R.anim.slide_in_left
-                    popExit = R.anim.slide_out_right
-                }
-            }
+//            val options = navOptions {
+//                anim {
+//                    enter = R.anim.slide_in_right
+//                    exit = R.anim.slide_out_left
+//                    popEnter = R.anim.slide_in_left
+//                    popExit = R.anim.slide_out_right
+//                }
+//            }
            //alert_title.text=context.getString(R.string.email_alert)+alert.email
             sender.text=context.getString(R.string.email_alert)+alert.email
             if (alert.email.isEmpty()){
@@ -72,7 +73,7 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
             }
             check_map.setOnClickListener {
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)
-               findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null,options)
+               findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null, Constants.options)
             }
         }
 

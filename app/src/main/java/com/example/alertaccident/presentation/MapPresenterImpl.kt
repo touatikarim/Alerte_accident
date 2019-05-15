@@ -6,12 +6,18 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Looper
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.retrofit.UserManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 class MapPresenterImpl:IMapPresenter {
 
@@ -20,8 +26,8 @@ class MapPresenterImpl:IMapPresenter {
     override fun getLocation(activity:Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (GPSUtils.checkLocationPermission(activity, context)) {
-                GPSUtils.buildLocationRequest()
-                GPSUtils.buildLocationCallback()
+//                GPSUtils.buildLocationRequest()
+//                GPSUtils.buildLocationCallback()
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
                 fusedLocationProviderClient.requestLocationUpdates(
                     GPSUtils.locationRequest,
@@ -38,10 +44,12 @@ class MapPresenterImpl:IMapPresenter {
                             val sub = GPSUtils.getarea(latitude,longitud,context)
 
                             UserManager.saveplace(country, city, sub, context)
+
                         }
                         UserManager.saveposition(latitude.toString(), longitud.toString(), context)
 
                     }
+
             }
         }
 

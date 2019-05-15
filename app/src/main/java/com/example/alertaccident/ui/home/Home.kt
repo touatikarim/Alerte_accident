@@ -16,20 +16,18 @@ import com.example.alertaccident.R
 import android.widget.ImageButton
 import android.view.MotionEvent
 import android.graphics.PorterDuff
-
-
-
+import com.example.alertaccident.helper.Constants
 
 
 class Home : Fragment() {
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
     lateinit var homepresenter: IHomePresenter
 
 
@@ -51,7 +49,7 @@ class Home : Fragment() {
 
         createalert.setOnClickListener {
             homepresenter.getLocation(activity!!, lat, place, lng)
-            findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
+            findNavController().navigate(R.id.action_home_dest_to_createAlert, null, Constants.options)
         }
 //      createalert.setOnTouchListener (object:View.OnTouchListener{
 //

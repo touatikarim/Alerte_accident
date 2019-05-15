@@ -43,14 +43,14 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     internal lateinit var loginpresnter: IloginPresenter
     lateinit var mGoogleApiClient: GoogleApiClient
     private val RC_SIGN_IN = 9001
-    val options = navOptions {
-        anim {
-            enter = R.anim.slide_in_right
-            exit = R.anim.slide_out_left
-            popEnter = R.anim.slide_in_left
-            popExit = R.anim.slide_out_right
-        }
-    }
+//    val options = navOptions {
+//        anim {
+//            enter = R.anim.slide_in_right
+//            exit = R.anim.slide_out_left
+//            popEnter = R.anim.slide_in_left
+//            popExit = R.anim.slide_out_right
+//        }
+//    }
 
 
     override fun load() {
@@ -63,7 +63,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     override fun navigate() {
 
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_signIn_to_home2, null, options);activity!!.finish() }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_signIn_to_home2, null, Constants.options);activity!!.finish() }, 1500)
 
 
     }
@@ -134,7 +134,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
 
     forget_pass.setOnClickListener {
-        findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,options)
+        findNavController().navigate(R.id.action_signIn_to_forgot_Pass,null,Constants.options)
     }
     back.setOnClickListener {
         activity!!.supportFragmentManager.popBackStack()

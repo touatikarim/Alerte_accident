@@ -12,6 +12,7 @@ import androidx.navigation.navOptions
 import com.example.alertaccident.presentation.IregisterPresenter
 import com.example.alertaccident.presentation.RegisterPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.isRegistrationValid
 import es.dmoral.toasty.Toasty
@@ -31,17 +32,17 @@ class SignUp : Fragment(),SignupView {
     }
 
     override fun navigate() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
+//        val options = navOptions {
+//            anim {
+//                enter = R.anim.slide_in_right
+//                exit = R.anim.slide_out_left
+//                popEnter = R.anim.slide_in_left
+//                popExit = R.anim.slide_out_right
+//            }
+//        }
         load()
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_signUp_to_signIn, null, options)
+            findNavController().navigate(R.id.action_signUp_to_signIn, null, Constants.options)
         }, 1500)
     }
 
