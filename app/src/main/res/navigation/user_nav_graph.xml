@@ -62,4 +62,6 @@
     </fragment>
     <activity android:id="@+id/connexion" android:name="com.example.alertaccident.ui.Connexion"
               android:label="activity_main" tools:layout="@layout/activity_main"/>
+    <fragment android:id="@+id/contact_dest" android:name="com.example.alertaccident.ui.contacts.UserContacts"
+              android:label="Contacts" tools:layout="@layout/fragment_user_contacts"/>
 </navigation>
