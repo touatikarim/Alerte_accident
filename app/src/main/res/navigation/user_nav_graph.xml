@@ -63,5 +63,12 @@
     <activity android:id="@+id/connexion" android:name="com.example.alertaccident.ui.Connexion"
               android:label="activity_main" tools:layout="@layout/activity_main"/>
     <fragment android:id="@+id/contact_dest" android:name="com.example.alertaccident.ui.contacts.UserContacts"
-              android:label="Contacts" tools:layout="@layout/fragment_user_contacts"/>
+              android:label="Contacts" tools:layout="@layout/fragment_user_contacts">
+        <action android:id="@+id/action_contact_dest_to_create_Contact" app:destination="@id/create_Contact"/>
+    </fragment>
+    <fragment android:id="@+id/create_Contact"
+              android:name="com.example.alertaccident.ui.contactcreation.Create_Contact"
+              android:label="Contacts" tools:layout="@layout/fragment_create__contact">
+        <action android:id="@+id/action_create_Contact_to_contact_dest" app:destination="@id/contact_dest"/>
+    </fragment>
 </navigation>

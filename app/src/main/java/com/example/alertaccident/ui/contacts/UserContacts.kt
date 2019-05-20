@@ -4,6 +4,7 @@ package com.example.alertaccident.ui.contacts
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.provider.SyncStateContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +12,15 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import com.example.alertaccident.Local.ContactDataSource
 import com.example.alertaccident.Local.ContactDatabase
 
 import com.example.alertaccident.R
 import com.example.alertaccident.database.ContactRepository
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.model.Contact
+import com.example.alertaccident.retrofit.UserManager
 import com.google.android.gms.common.data.DataBufferObserver
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -33,7 +37,7 @@ class UserContacts : Fragment() {
 
     lateinit var adapter: ArrayAdapter<*>
     var contactList: MutableList<Contact> = ArrayList()
-
+    lateinit var user_id:String
     private var compositeDisposable: CompositeDisposable? = null
     private var contactRepository: ContactRepository? = null
 
@@ -52,40 +56,41 @@ class UserContacts : Fragment() {
         adapter = ArrayAdapter(activity!!.baseContext, android.R.layout.simple_list_item_1, contactList)
         registerForContextMenu(lst_contact)
         lst_contact.adapter = adapter
-
         //Database
         val contactDatabase = ContactDatabase.getInstance(activity!!.baseContext)
         contactRepository = ContactRepository.getInstance(ContactDataSource.getInstance(contactDatabase.contactDAO()))
-
+        val sp = UserManager.getSharedPref(activity!!.baseContext)
+         user_id = sp.getString("USER_ID", "")
         loadData()
         fab_add.setOnClickListener {
-            val disposable = Observable.create(ObservableOnSubscribe<Any> { e ->
-                val contact = Contact()
-                contact.name="ryma"
-                contact.Phone_Number = "95750850"
-                contact.email = "ryma@gmail.com"
-                contact.id="lll"
-                contactRepository!!.insertContact(contact)
-                e.onComplete()
-            })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe( io.reactivex.functions.Consumer {
-                    //success
-                },
-                    io.reactivex.functions.Consumer {
-                        throwable->Log.d("error",throwable.message)
-                    },
-                    Action { loadData() })
-
-            compositeDisposable!!.addAll(disposable)
+            findNavController().navigate(R.id.action_contact_dest_to_create_Contact,null,Constants.options)
+//            val disposable = Observable.create(ObservableOnSubscribe<Any> { e ->
+//                val contact = Contact()
+//                contact.name="ryma"
+//                contact.Phone_Number = "95750850"
+//                contact.email = user_id
+//                contact.id=UUID.randomUUID().toString()
+//                contactRepository!!.insertContact(contact)
+//                e.onComplete()
+//            })
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe({
+//                    //success
+//                },
+//                    {
+//                        throwable->Log.d("error",throwable.message)
+//                    },
+//                    { loadData() })
+//
+//            compositeDisposable!!.addAll(disposable)
 
 
         }
     }
 
     private fun loadData() {
-        val disposable = contactRepository!!.allContacts
+        val disposable = contactRepository!!.getContactById(user_id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ contacts -> onGetAllContactSuccess(contacts) })
@@ -101,16 +106,6 @@ class UserContacts : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
-//            R.id.clear ->deleteAllUsers()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-//    private fun deleteAllUsers() {
-//
-//    }
     override fun onDestroyView() {
     compositeDisposable!!.clear()
         super.onDestroyView()

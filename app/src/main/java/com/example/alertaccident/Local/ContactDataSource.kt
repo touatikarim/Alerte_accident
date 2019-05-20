@@ -9,7 +9,7 @@ class ContactDataSource(private val contactDAO: ContactDAO):IContactDataSource {
     override val allContacts: Flowable<List<Contact>>
         get() = contactDAO.allcontacts
 
-    override fun getContactById(UserId: String): Flowable<Contact> {
+    override fun getContactById(UserId: String): Flowable<List<Contact>> {
         return contactDAO.getContactById(UserId)
     }
 

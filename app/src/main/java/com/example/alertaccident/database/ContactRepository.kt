@@ -8,7 +8,7 @@ class ContactRepository(private val mLocationDataSource: IContactDataSource):ICo
     override val allContacts: Flowable<List<Contact>>
         get() = mLocationDataSource.allContacts
 
-    override fun getContactById(UserId: String): Flowable<Contact> {
+    override fun getContactById(UserId: String): Flowable<List<Contact>> {
         return mLocationDataSource.getContactById(UserId)
     }
 

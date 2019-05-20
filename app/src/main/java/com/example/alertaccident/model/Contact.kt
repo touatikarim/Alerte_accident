@@ -28,8 +28,6 @@ class Contact {
     override fun toString(): String {
         return StringBuilder(name)
             .append("\n")
-            .append(email)
-            .append("\n")
             .append(Phone_Number)
             .toString()
     }

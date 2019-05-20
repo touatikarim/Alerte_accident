@@ -11,8 +11,8 @@ interface ContactDAO {
     @get:Query("SELECT * FROM contacts")
         val allcontacts:Flowable<List<Contact>>
 
-    @Query("SELECT * FROM contacts WHERE id=:UserId")
-    fun getContactById(UserId:String):Flowable<Contact>
+    @Query("SELECT * FROM contacts WHERE email=:UserId")
+    fun getContactById(UserId:String):Flowable<List<Contact>>
 
 
     @Insert

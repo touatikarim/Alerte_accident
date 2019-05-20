@@ -149,4 +149,6 @@
     <string name="date">Date:</string>
     <string name="accident_location">Location:</string>
     <string name="clear">Clear</string>
+    <string name="save">Save changes</string>
+    <string name="add">Add Contact</string>
 </resources>
