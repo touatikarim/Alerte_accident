@@ -50,7 +50,7 @@ class CreateContactPresenterImpl(internal var createContactView: CreateContactVi
                         createContactView.onSuccess("Contact saved")
                         createContactView.navigate() })
     }
-    private fun loadData() {
+     fun loadData() {
         val disposable = contactRepository!!.getContactById(user_id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

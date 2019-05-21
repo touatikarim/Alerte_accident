@@ -26,9 +26,11 @@ class Contact {
     constructor(){}
 
     override fun toString(): String {
-        return StringBuilder(name)
+        return StringBuilder("\n")
+            .append("Contact name:"+" "+name)
             .append("\n")
-            .append(Phone_Number)
+            .append("Phone Number:"+" "+Phone_Number)
+            .append("\n")
             .toString()
     }
 }

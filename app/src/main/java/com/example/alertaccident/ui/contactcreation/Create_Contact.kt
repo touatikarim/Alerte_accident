@@ -15,6 +15,7 @@ import com.example.alertaccident.Local.ContactDatabase
 import com.example.alertaccident.R
 import com.example.alertaccident.database.ContactRepository
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.CreateContactPresenterImpl
 import com.example.alertaccident.presentation.ICreateContactPresenter
 import es.dmoral.toasty.Toasty
@@ -46,13 +47,14 @@ class Create_Contact : Fragment(),CreateContactView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        UiUtils.hideKeyboardOntouch(view, activity!!)
         createcontactpresenter=CreateContactPresenterImpl(this)
         createcontactpresenter.setMainViewContext(activity!!.baseContext)
-
         btn_add.setOnClickListener {
             val name=id_name.text.toString()
             val phone=number.text.toString()
             createcontactpresenter.addContact(name,phone)
+
         }
     }
 }
