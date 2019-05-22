@@ -49,6 +49,7 @@ class CreateContactPresenterImpl(internal var createContactView: CreateContactVi
                     {  loadData()
                         createContactView.onSuccess("Contact saved")
                         createContactView.navigate() })
+        compositeDisposable!!.add(disposable)
     }
      fun loadData() {
         val disposable = contactRepository!!.getContactById(user_id)

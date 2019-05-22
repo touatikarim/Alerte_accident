@@ -41,5 +41,8 @@ class Alerts : Fragment(),AlertsView {
         alertPresenter.setMainViewContext(activity!!.baseContext)
         load(View.VISIBLE)
         alertPresenter.showAlerts(recyclerView)
+
+
+
     }
 }

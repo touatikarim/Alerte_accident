@@ -1,6 +1,9 @@
 package com.example.alertaccident.presentation
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.text.InputType
 import android.text.TextUtils
 import android.util.Log
@@ -12,6 +15,7 @@ import com.example.alertaccident.Local.ContactDataSource
 import com.example.alertaccident.Local.ContactDatabase
 import com.example.alertaccident.R
 import com.example.alertaccident.database.ContactRepository
+import com.example.alertaccident.helper.PermissionUtils
 import com.example.alertaccident.model.Contact
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.contacts.UserContactView
@@ -23,6 +27,8 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 class UserContactsPresenterImpl(internal var userContactView: UserContactView):IUserContactsPresenter {
+
+
     lateinit var context:Context
     private var compositeDisposable: CompositeDisposable? = null
     lateinit var contactRepository: ContactRepository
@@ -110,6 +116,16 @@ class UserContactsPresenterImpl(internal var userContactView: UserContactView):I
             .subscribe({}, { throwable->Log.d("error",throwable.message) }, { userContactView.onSuccess("Contact Updated") })
         compositeDisposable!!.addAll(disposable)
     }
+    override fun callContact(contact: Contact) {
+        if(!PermissionUtils.checkPhoneCallPermission(context))
+            PermissionUtils.requestPhoneCallPermission(context)
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:${contact.Phone_Number}")
+        }
+        if (intent.resolveActivity(context.packageManager) != null) {
+            (context as Activity).startActivity(intent)
+        }
+    }
 
 
 
@@ -117,4 +133,5 @@ class UserContactsPresenterImpl(internal var userContactView: UserContactView):I
     override fun setMainViewContext(context: Context) {
         this.context=context
     }
+
 }

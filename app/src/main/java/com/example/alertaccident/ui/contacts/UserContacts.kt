@@ -79,7 +79,7 @@ class UserContacts : Fragment(),UserContactView {
             findNavController().navigate(R.id.action_contact_dest_to_create_Contact,null,Constants.options)
 
         }
-        
+
     }
 
     private fun loadData() {
@@ -110,6 +110,7 @@ class UserContacts : Fragment(),UserContactView {
         menu.setHeaderTitle("Select action:")
         menu.add(Menu.NONE,0,Menu.NONE,"Update")
         menu.add(Menu.NONE,1,Menu.NONE,"Delete")
+        menu.add(Menu.NONE,2,Menu.NONE,"Call")
 
     }
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -120,11 +121,11 @@ class UserContacts : Fragment(),UserContactView {
             { userContactsPresenterImpl.setUpdateDialog(activity!!,contact) }
             1->
             {userContactsPresenterImpl.setDeleteDialog(activity!!,contact)}
+            2->
+            {userContactsPresenterImpl.callContact(contact)}
         }
         return true
     }
-
-
 
 
 }

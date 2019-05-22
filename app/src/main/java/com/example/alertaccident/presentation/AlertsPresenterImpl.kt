@@ -24,6 +24,7 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
     private lateinit var context:Context
     private lateinit var adapter: AlertAdapter
     private lateinit var alerts:ArrayList<AlertModel>
+    var items:Int=0
 
     override fun showAlerts(recyclerView:RecyclerView) {
         val sp = UserManager.getSharedPref(context)
@@ -50,6 +51,7 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
                 adapter = AlertAdapter(alerts,context)
                 adapter.setHasStableIds(true)
                 recyclerView.adapter = adapter
+                items=adapter.itemCount
                 alertsView.load(View.GONE)
                 recyclerView.setHasFixedSize(true)
                 recyclerView.setItemViewCacheSize(20)
@@ -59,6 +61,7 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
             }
 
         })
+
     }
 
     override fun setMainViewContext(context: Context) {
