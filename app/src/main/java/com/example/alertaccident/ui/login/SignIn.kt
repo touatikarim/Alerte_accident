@@ -15,9 +15,12 @@ import android.widget.Toast
 
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import com.example.alertaccident.Local.ContactDataSource
+import com.example.alertaccident.Local.ContactDatabase
 import com.example.alertaccident.presentation.IloginPresenter
 import com.example.alertaccident.presentation.LoginPresenterImpl
 import com.example.alertaccident.R
+import com.example.alertaccident.database.ContactRepository
 import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.helper.UiUtils.isDeviceConnectedToInternet
@@ -29,6 +32,11 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 
 import es.dmoral.toasty.Toasty
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 
@@ -43,6 +51,8 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
     internal lateinit var loginpresnter: IloginPresenter
     lateinit var mGoogleApiClient: GoogleApiClient
     private val RC_SIGN_IN = 9001
+    private var compositeDisposable: CompositeDisposable? = null
+    private var contactRepository: ContactRepository? = null
 //    val options = navOptions {
 //        anim {
 //            enter = R.anim.slide_in_right
@@ -94,6 +104,24 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
         UiUtils.hideKeyboardOntouch(view, activity!!)
         loginpresnter = LoginPresenterImpl(this)
         loginpresnter.setMainViewContext(activity!!.baseContext)
+        compositeDisposable = CompositeDisposable()
+        val contactDatabase = ContactDatabase.getInstance(activity!!.baseContext)
+        contactRepository = ContactRepository.getInstance(ContactDataSource.getInstance(contactDatabase.contactDAO()))
+        val disposable = Observable.create(ObservableOnSubscribe<Any>{ e->
+            contactRepository!!.insertListContact(Constants.services)
+            e.onComplete()
+        })
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+            },
+                {
+                        throwable->Log.d("error",throwable.message)
+                },
+                {  Log.d("success","emergency list added") })
+        compositeDisposable!!.add(disposable)
+
+
         btn_login.setOnClickListener {
             val email = id_email.text.toString()
             val password = id_password.text.toString()
@@ -170,7 +198,10 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
 
     }
 
-
+    override fun onDestroyView() {
+        compositeDisposable!!.clear()
+        super.onDestroyView()
+    }
 }
 
 

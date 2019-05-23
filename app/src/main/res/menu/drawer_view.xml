@@ -6,7 +6,7 @@
                 android:icon="@drawable/settingsgears"
                 android:title="@string/setting" />
         <item
-                android:id="@+id/nav_second_fragment"
+                android:id="@+id/contact_dest"
                 android:icon="@drawable/contact"
                 android:title="@string/contact" />
         <item

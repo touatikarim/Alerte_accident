@@ -14,6 +14,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import nl.dionsegijn.steppertouch.OnStepCallback
@@ -88,6 +89,7 @@ object UiUtils {
         })
 
     }
+
     fun setspinner(service: TextView, activity: Activity) {
         spinnerdialog = SpinnerDialog(activity, Constants.list_of_services,
             "Select Service", R.style.DialogAnimations_SmileWindow)

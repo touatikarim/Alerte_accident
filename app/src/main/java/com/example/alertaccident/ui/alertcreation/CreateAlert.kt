@@ -4,6 +4,7 @@ package com.example.alertaccident.ui.alertcreation
 
 
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
@@ -34,6 +35,16 @@ import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.bumptech.glide.Glide
+import com.example.alertaccident.Local.ContactDataSource
+import com.example.alertaccident.Local.ContactDatabase
+import com.example.alertaccident.database.ContactRepository
+import com.example.alertaccident.helper.PermissionUtils
+import com.example.alertaccident.model.Contact
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -47,14 +58,11 @@ class CreateAlert : Fragment(),CreateAlertView {
     lateinit  var imageFilePath: String
     lateinit var videoFilePath:String
     lateinit var alertpresenter: IcreateAlertPresenter
-//    val options = navOptions {
-//        anim {
-//            enter = R.anim.slide_in_right
-//            exit = R.anim.slide_out_left
-//            popEnter = R.anim.slide_in_left
-//            popExit = R.anim.slide_out_right
-//        }
-//    }
+    lateinit var contactRepository: ContactRepository
+    private var compositeDisposable: CompositeDisposable? = null
+
+
+
     override fun onSuccess(message: String) {
         Toasty.success(activity!!.baseContext, message, Toast.LENGTH_SHORT).show()
     }
@@ -78,7 +86,9 @@ class CreateAlert : Fragment(),CreateAlertView {
         UiUtils.hideKeyboardOntouch(view, activity!!)
         alertpresenter = CreateAlertPresenterImpl(this)
         alertpresenter.setMainViewContext(activity!!.baseContext)
-
+        val contactDatabase = ContactDatabase.getInstance(activity!!.baseContext)
+        contactRepository = ContactRepository.getInstance(ContactDataSource.getInstance(contactDatabase.contactDAO()))
+        compositeDisposable= CompositeDisposable()
         UiUtils.setstepper(Constants.min_value, Constants.max_value, stepperTouch, nbr)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
         val user_id = sp.getString("USER_ID", "")
@@ -102,8 +112,35 @@ class CreateAlert : Fragment(),CreateAlertView {
             }
         }
         service_chosen.setOnClickListener {
-            UiUtils.setspinner(service_chosen, activity!!)
+            UiUtils.setspinner(service_chosen,activity!!)
+
         }
+        btn_call.setOnClickListener {
+            val service=service_chosen.text.toString()
+            Log.d("service.......",service)
+            val disposable = Observable.create(ObservableOnSubscribe<Any>{ e->
+             val contact= contactRepository.getContactByname(service)
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:${contact.Phone_Number}")
+                }
+                if (intent.resolveActivity(context?.packageManager) != null) {
+                    activity!!.startActivity(intent)
+
+                }
+                e.onComplete()
+            })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                },
+                    {
+                            throwable->Log.d("error",throwable.message)
+                    },
+                    {  Log.d("success","emergency list added") })
+            compositeDisposable!!.add(disposable)
+        }
+
+
         accident_photo.setOnClickListener {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
                 takePictureintent ->  takePictureintent.resolveActivity(activity!!.packageManager)?.also {
@@ -217,6 +254,11 @@ class CreateAlert : Fragment(),CreateAlertView {
             videoFilePath=absolutePath
         }
 
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable?.clear()
+        super.onDestroyView()
     }
 }
 

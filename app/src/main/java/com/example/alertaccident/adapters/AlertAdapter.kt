@@ -48,15 +48,6 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
 
         @SuppressLint("SetTextI18n")
         fun bind(alert:AlertModel)=with(itemView){
-//            val options = navOptions {
-//                anim {
-//                    enter = R.anim.slide_in_right
-//                    exit = R.anim.slide_out_left
-//                    popEnter = R.anim.slide_in_left
-//                    popExit = R.anim.slide_out_right
-//                }
-//            }
-           //alert_title.text=context.getString(R.string.email_alert)+alert.email
             sender.text=context.getString(R.string.email_alert)+alert.email
             if (alert.email.isEmpty()){
                 sender.text=context.getString(R.string.email_alert)+"Unregistred user"
