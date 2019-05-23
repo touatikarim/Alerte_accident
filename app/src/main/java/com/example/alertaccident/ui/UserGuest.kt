@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.GPSUtils
 import kotlinx.android.synthetic.main.activity_user.*
 
 
@@ -47,6 +48,9 @@ class UserGuest : Fragment() {
             findNavController().navigate(R.id.action_userGuest_to_signUp, null, Constants.options)
         }
         view.findViewById<Button>(R.id.btn_guest)?.setOnClickListener {
+            if (!GPSUtils.isLocationEnabled(context!!))
+                GPSUtils.showAlert(activity!!,activity!!)
+            else
             findNavController().navigate(R.id.action_userGuest_to_guest, null, Constants.options)
         }
     }
