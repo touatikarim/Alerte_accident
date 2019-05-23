@@ -21,6 +21,7 @@ import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
 import android.util.Log
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.GPSUtils.locationCallback
@@ -45,7 +46,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
 
 
-         override fun login(email:String,password:String) {
+         override fun login(email:String,password:String,button:Button) {
              val loginModel = LoginModel(email, password)
                  if (isDataValid(email, password) == -1) {
                      if (isDeviceConnectedToInternet(context)) {
@@ -70,25 +71,10 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          )
 
                                      } else {
+
                                          signinview.load()
                                          Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) },1500)
-//                                         val errorJsonString = response.errorBody()?.string()
-//                                         val message = JsonParser().parse(errorJsonString)
-//                                             .asJsonObject["message"]
-//                                             .asString
-//                                         val message=response.body()!!.message
-//                                         signinview.load()
-//                                         if (message.compareTo("User not found...") == 0)
-//                                             Handler().postDelayed(
-//                                                 { signinview.onError(context.getString(R.string.no_account)) },
-//                                                 1500
-//                                             )
-//                                         else
-//                                             Handler().postDelayed(
-//                                                 { signinview.onError(context.getString(R.string.authen_error)) },
-//                                                 1500
-//                                             )
-
+                                         button.setEnabled(true)
 
                                      }
                                  }
