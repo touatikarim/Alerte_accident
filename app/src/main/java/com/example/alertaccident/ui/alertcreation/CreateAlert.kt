@@ -112,7 +112,7 @@ class CreateAlert : Fragment(),CreateAlertView {
             }
         }
         service_chosen.setOnClickListener {
-            UiUtils.setspinner(service_chosen, activity!!)
+            UiUtils.setspinner(service_chosen,activity!!)
 
         }
         btn_call.setOnClickListener {

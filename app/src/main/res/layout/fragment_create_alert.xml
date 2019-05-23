@@ -138,7 +138,7 @@
                                 android:gravity="center"
                                 android:layout_marginStart="50dp"
                                 android:visibility="gone"
-                                android:indeterminidate="true"
+                                android:indeterminate="true"
                                 android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
@@ -170,15 +170,7 @@
                                   android:textColor="@color/black"
 
                         />
-                        <ImageView
-                                android:id="@+id/call_service"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:focusable="true"
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/twitter_blue"
-                                android:src="@drawable/auricular-phone-symbol-in-a-circle"
-                                tools:ignore="ContentDescription"/>
+
 
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent"
@@ -245,35 +237,37 @@
                                 tools:ignore="Autofill,LabelFor"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginBottom="10dp"
+                                  android:gravity="center"
+                                  android:orientation="horizontal">
 
                     <Button
                             android:id="@+id/btn_send"
-                            android:layout_width="fill_parent"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="22dp"
-
                             android:background="@drawable/buttonshape"
                             android:text="@string/submit"
+                            android:gravity="center"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="18sp"
+                            tools:ignore="ButtonStyle"/>
+                        <Button
+                                android:id="@+id/btn_call"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/buttonshape"
+                                android:text="@string/call_button"
+                                android:textAllCaps="false"
 
-                    />
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                tools:ignore="ButtonStyle"/>
 
-                    <Button
-                            android:id="@+id/btn_call"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="22dp"
-
-                            android:background="@drawable/buttonshape"
-                            android:text="@string/call"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-
-                    />
-
+                    </LinearLayout>
 
                     <ProgressBar
                             android:id="@+id/send_alert"
@@ -281,7 +275,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:gravity="center"
+
                             android:indeterminate="true"
                             android:layout_marginTop="8dp"
                     />
