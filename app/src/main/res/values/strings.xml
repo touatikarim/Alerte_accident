@@ -158,4 +158,5 @@
     <string name="contact_list">List of contacts</string>
     <string name="search">Search</string>
     <string name="no_alerts">No Alerts near your location</string>
+    <string name="call">Call</string>
 </resources>

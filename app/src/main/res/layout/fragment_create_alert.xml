@@ -138,7 +138,7 @@
                                 android:gravity="center"
                                 android:layout_marginStart="50dp"
                                 android:visibility="gone"
-                                android:indeterminate="true"
+                                android:indeterminidate="true"
                                 android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
@@ -161,7 +161,7 @@
                         <TextView
                                 android:id="@+id/service_chosen"
                                 android:text="@string/services"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                   android:layout_height="match_parent"
                                   android:layout_marginStart="20dp"
                                   android:layout_marginBottom="20dp"
@@ -169,8 +169,17 @@
                                   android:layout_gravity="center"
                                   android:textColor="@color/black"
 
-
                         />
+                        <ImageView
+                                android:id="@+id/call_service"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:focusable="true"
+                                android:layout_gravity="center"
+                                android:backgroundTint="@color/twitter_blue"
+                                android:src="@drawable/auricular-phone-symbol-in-a-circle"
+                                tools:ignore="ContentDescription"/>
+
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
@@ -245,6 +254,20 @@
 
                             android:background="@drawable/buttonshape"
                             android:text="@string/submit"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+
+                    />
+
+                    <Button
+                            android:id="@+id/btn_call"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="22dp"
+
+                            android:background="@drawable/buttonshape"
+                            android:text="@string/call"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="18sp"

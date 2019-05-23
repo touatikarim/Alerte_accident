@@ -14,6 +14,8 @@ interface ContactDAO {
     @Query("SELECT * FROM contacts WHERE email=:UserId")
     fun getContactById(UserId:String):Flowable<List<Contact>>
 
+    @Query("SELECT * FROM contacts WHERE name=:name")
+        fun getContactByname(name:String):Contact
 
     @Insert
     fun insertContact(vararg contact: Contact)
@@ -26,4 +28,7 @@ interface ContactDAO {
 
     @Query("DELETE  FROM contacts ")
     fun deleteAllContact()
+
+    @Insert
+    fun insertListContact(list:List<Contact>)
 }

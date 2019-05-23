@@ -9,8 +9,17 @@ object Constants {
     val clientid="310950136179-bnmgleuh3vquqf6kkie01d65su4c5nm8.apps.googleusercontent.com"
     val list_of_services= arrayListOf("Police secours","Protection civile Tunis","SAMU","Ambulances médicalisées","Centre Anti-poisons","SOS Médecins","SOS Ambulances",
         "Urgence Le Secours")
-    val services= listOf<Contact>(
-        Contact(id="1",name="Police secours",email="",Phone_Number = "197")
+    val services= listOf(
+        Contact(id="1",name="Protection civile Tunis",email="",Phone_Number = "198"),
+        Contact(id="2",name="Police secours",email="",Phone_Number = "197"),
+        Contact(id="3",name="SAMU",email="",Phone_Number = "190"),
+        Contact(id="4",name="Ambulances médicalisées",email="",Phone_Number = "71780000"),
+        Contact(id="5",name="Centre Anti-poisons",email="",Phone_Number = "71335500"),
+        Contact(id="6",name="SOS Médecins",email="",Phone_Number = "71744215"),
+        Contact(id="7",name="SOS Ambulances",email="",Phone_Number = "71725555"),
+        Contact(id="8",name="SAMU",email="",Phone_Number = "190"),
+        Contact(id="9",name="Urgence Le Secours",email="",Phone_Number = "71351500")
+
     )
     val max_value=20
     val min_value=1

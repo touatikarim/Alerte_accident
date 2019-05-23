@@ -5,6 +5,14 @@ import com.example.alertaccident.model.Contact
 import io.reactivex.Flowable
 
 class ContactRepository(private val mLocationDataSource: IContactDataSource):IContactDataSource {
+    override fun getContactByname(name: String): Contact {
+        return mLocationDataSource.getContactByname(name)
+    }
+
+    override fun insertListContact(list: List<Contact>) {
+        mLocationDataSource.insertListContact(list)
+    }
+
     override val allContacts: Flowable<List<Contact>>
         get() = mLocationDataSource.allContacts
 

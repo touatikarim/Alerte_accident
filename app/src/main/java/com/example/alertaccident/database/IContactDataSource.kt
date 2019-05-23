@@ -10,5 +10,7 @@ interface IContactDataSource {
     fun updateContact(vararg contact:Contact)
     fun deleteContact(contact:Contact)
     fun deleteAllContact()
+    fun insertListContact(list:List<Contact>)
+    fun getContactByname(name:String):Contact
 
 }

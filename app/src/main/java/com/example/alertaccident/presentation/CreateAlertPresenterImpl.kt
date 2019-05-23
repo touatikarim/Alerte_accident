@@ -6,6 +6,7 @@ import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.TextView
@@ -14,10 +15,12 @@ import com.example.alertaccident.ui.alertcreation.CreateAlertView
 import com.google.firebase.database.FirebaseDatabase
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.PermissionUtils
 import com.example.alertaccident.retrofit.UserManager
 import nl.dionsegijn.steppertouch.OnStepCallback
 import nl.dionsegijn.steppertouch.StepperTouch
 import com.example.alertaccident.helper.isAlertValid
+import com.example.alertaccident.model.Contact
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.text.SimpleDateFormat
@@ -29,7 +32,6 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
 
 
     lateinit var context: Context
-    var spinnerdialog: SpinnerDialog? = null
     private var url:String?=null
     private var vid_url:String?=null
     override fun saveAlert(desc: String, user_id: String, service: String, victims: String) {
@@ -98,7 +100,6 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
 
 
     }
-
 
 
 

@@ -6,6 +6,14 @@ import com.example.alertaccident.model.User
 import io.reactivex.Flowable
 
 class ContactDataSource(private val contactDAO: ContactDAO):IContactDataSource {
+    override fun getContactByname(name: String): Contact {
+        return contactDAO.getContactByname(name)
+    }
+
+    override fun insertListContact( list: List<Contact>) {
+        contactDAO.insertListContact(list)
+    }
+
     override val allContacts: Flowable<List<Contact>>
         get() = contactDAO.allcontacts
 
