@@ -22,7 +22,7 @@ import nl.dionsegijn.steppertouch.StepperTouch
 
 
 object UiUtils {
-    var spinnerdialog: SpinnerDialog? = null
+    //private var spinnerdialog: SpinnerDialog? = null
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -91,12 +91,12 @@ object UiUtils {
     }
 
     fun setspinner(service: TextView, activity: Activity) {
-        spinnerdialog = SpinnerDialog(activity, Constants.list_of_services,
+        val spinnerdialog = SpinnerDialog(activity, Constants.list_of_services,
             "Select Service", R.style.DialogAnimations_SmileWindow)
-        spinnerdialog!!.bindOnSpinerListener { item, position ->
+        spinnerdialog.bindOnSpinerListener { item, position ->
             service.setText(Constants.list_of_services[position])
         }
-        spinnerdialog!!.showSpinerDialog()
+        spinnerdialog.showSpinerDialog()
     }
 
 

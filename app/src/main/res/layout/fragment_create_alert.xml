@@ -237,11 +237,15 @@
                                 tools:ignore="Autofill,LabelFor"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:layout_marginBottom="10dp"
-                                  android:gravity="center"
-                                  android:orientation="horizontal">
+
+
+
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="10dp"
+                              android:gravity="center"
+                              android:orientation="horizontal">
 
                     <Button
                             android:id="@+id/btn_send"
@@ -254,32 +258,30 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             tools:ignore="ButtonStyle"/>
-                        <Button
-                                android:id="@+id/btn_call"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:background="@drawable/buttonshape"
-                                android:text="@string/call_button"
-                                android:textAllCaps="false"
-
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                tools:ignore="ButtonStyle"/>
-
-                    </LinearLayout>
-
-                    <ProgressBar
-                            android:id="@+id/send_alert"
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
+                    <Button
+                            android:id="@+id/btn_call"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="@string/call_button"
+                            android:textAllCaps="false"
 
-                            android:indeterminate="true"
-                            android:layout_marginTop="8dp"
-                    />
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:ignore="ButtonStyle"/>
+
                 </LinearLayout>
+                <ProgressBar
+                        android:id="@+id/send_alert"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:indeterminate="true"
+                        android:layout_marginTop="8dp"
+                />
 
             </LinearLayout>
         </ScrollView>
