@@ -75,6 +75,7 @@ class UserContacts : Fragment(),UserContactView {
         val sp = UserManager.getSharedPref(activity!!.baseContext)
          user_id = sp.getString("USER_ID", "")
         loadData()
+        lst_contact.emptyView=empty_list
         fab_add.setOnClickListener {
             findNavController().navigate(R.id.action_contact_dest_to_create_Contact,null,Constants.options)
 
