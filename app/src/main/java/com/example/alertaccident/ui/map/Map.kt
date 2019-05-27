@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.MarkerClusterItem
 
 import com.example.alertaccident.presentation.IMapPresenter
 import com.example.alertaccident.presentation.MapPresenterImpl
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
@@ -41,6 +43,7 @@ class Map : Fragment() {
 
     lateinit var mappresenter:IMapPresenter
     var spinnerdialog: SpinnerDialog?=null
+
 
 
 
@@ -57,12 +60,14 @@ class Map : Fragment() {
         mappresenter=MapPresenterImpl()
         mappresenter.setMainViewContext(activity!!.baseContext)
         spinnerdialog= SpinnerDialog(activity,Constants.list_of_items,"Select Service",R.style.DialogAnimations_SmileWindow)
+
         btnShow.setOnClickListener {
             spinnerdialog!!.showSpinerDialog()
         }
         val mapFragment = this.childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
        mapFragment?.getMapAsync{
             it.clear()
+
             mappresenter.getLocation(activity!!,it)
            val sp = UserManager.getSharedPref(activity!!.baseContext)
         val latitude=sp.getString("USER_LAT","")
