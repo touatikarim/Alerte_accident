@@ -7,6 +7,8 @@ import com.example.alertaccident.model.Contact
 object Constants {
     val baseurl="http://internship.mobelite.fr:3000/"
     val clientid="310950136179-bnmgleuh3vquqf6kkie01d65su4c5nm8.apps.googleusercontent.com"
+    val placeurl="https://maps.googleapis.com/maps/api/place/nearbysearch/"
+
     val list_of_services= arrayListOf("Police secours","Protection civile Tunis","SAMU","Ambulances médicalisées","Centre Anti-poisons","SOS Médecins","SOS Ambulances",
         "Urgence Le Secours")
     val services= listOf(
@@ -21,6 +23,8 @@ object Constants {
         Contact(id="9",name="Urgence Le Secours",email="",Phone_Number = "71351500")
 
     )
+    var list_of_items = arrayListOf("police","doctor","fire_station", "hospital","pharmacy","insurance_agency", "local_government_office",
+          "physiotherapist","car_repair","dentist")
     val max_value=20
     val min_value=1
     val request_interval:Long=5000
