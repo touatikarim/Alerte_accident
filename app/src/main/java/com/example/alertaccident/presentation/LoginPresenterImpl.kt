@@ -34,6 +34,9 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.location.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
 import retrofit2.*
 import java.util.*
 
@@ -43,7 +46,18 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
          private var callbackManager: CallbackManager? = null
          lateinit  var context: Context
          lateinit var fusedLocationClient: FusedLocationProviderClient
+         private fun generateToken(user_id:String){
+             var ref:DatabaseReference
+             FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
+                 if(!it.isSuccessful){
+                     Log.d("error"," getInstanceId failed",it.exception)
+                 }
+                 val token=it.result?.token
+                 ref=FirebaseDatabase.getInstance().reference
+                 ref.child("Tokens").child(user_id).setValue(token)
+             }
 
+            }
 
 
          override fun login(email:String,password:String,button:Button) {
@@ -65,6 +79,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          val user = User(email, password, name, id, phone)
                                          UserManager.saveCredentials(context, user)
                                          signinview.navigate()
+                                         generateToken(id)
                                          Handler().postDelayed(
                                              { signinview.onSuccess(response.body()!!.message) },
                                              1500

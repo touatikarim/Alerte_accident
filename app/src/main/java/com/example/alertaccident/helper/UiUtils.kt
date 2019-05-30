@@ -1,8 +1,7 @@
 package com.example.alertaccident.helper
 
 import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
-import android.app.Activity
-import android.app.AlertDialog
+import android.app.*
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
@@ -12,6 +11,8 @@ import android.widget.EditText
 import com.example.alertaccident.R
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.ImageView
@@ -23,6 +24,7 @@ import nl.dionsegijn.steppertouch.StepperTouch
 
 object UiUtils {
     //private var spinnerdialog: SpinnerDialog? = null
+    private var notificationManager:NotificationManager?=null
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -99,6 +101,50 @@ object UiUtils {
         spinnerdialog.showSpinerDialog()
     }
 
+    fun createNotificationChannel(context: Context) {
+        notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val importance = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NotificationManager.IMPORTANCE_LOW
+        } else {
+            2
+        }
+        val channel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel(Constants.NOTIF_CHANNEL_ID, Constants.APP_NAME, importance)
+        } else {
+            Log.d("here", "sdk < 24")
+            return
+        }
+        channel.enableLights(true)
+        channel.lightColor = Color.RED
+
+        channel.vibrationPattern =
+                longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
+        channel.enableVibration(true)
+        notificationManager?.createNotificationChannel(channel)
+
+    }
+    fun sendNotification(context: Context, title: String, description: String) {
+        if(notificationManager != null) {
+            val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Notification.Builder(context,
+                    Constants.NOTIF_CHANNEL_ID)
+                    .setContentTitle(title)
+                    .setContentText(description)
+                    .setSmallIcon(R.mipmap.mobelite_round)
+                    .setChannelId(Constants.NOTIF_CHANNEL_ID)
+                    .build()
+            } else {
+                Log.d("here", "sdk < 24")
+                return
+            }
+
+            notificationManager?.notify(Constants.NOTIFICATION_ID, notification)
+        }
+        else {
+            createNotificationChannel(context)
+            sendNotification(context, title, description)
+        }
+    }
 
 }
 

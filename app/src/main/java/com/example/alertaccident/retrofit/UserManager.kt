@@ -3,6 +3,8 @@ package com.example.alertaccident.retrofit
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.alertaccident.model.User
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 object UserManager {
     private lateinit var sharedPref: SharedPreferences
@@ -105,7 +107,18 @@ object UserManager {
         editor.apply()
     }
 
+    fun saveToken(context:Context,token: String?) {
+        val sp = UserManager.getSharedPref(context)
+        val id=sp.getString("USER_ID","")
+        val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+        try {
+            database.child("Tokens").child(id).removeValue()
+            database.child("Tokens").child(id).setValue(token)
+        }
+        catch(e: Exception) {
 
+        }
+    }
 
 
 
