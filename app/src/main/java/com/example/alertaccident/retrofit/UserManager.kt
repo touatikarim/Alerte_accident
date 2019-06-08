@@ -93,7 +93,7 @@ object UserManager {
         editor.apply()
     }
 
-    fun savealertlocation(latitude: String,longitude: String,context: Context){
+    fun savealertlocation(latitude: String?,longitude: String?,context: Context){
         val editor = sharedPref.edit()
         editor.putString("ALERT_LAT",latitude)
         editor.putString("ALERT_LNG",longitude)
@@ -118,6 +118,17 @@ object UserManager {
         catch(e: Exception) {
 
         }
+    }
+    fun saveAlert(context: Context,location:String?,imageurl:String?, date:String?, victims:String?,desc:String?){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("NOTIF_LOCATION",location)
+        editor.putString("NOTIF_IMAGE",imageurl)
+        editor.putString("NOTIF_DATE",date)
+        editor.putString("NOTIF_Victims",victims)
+        editor.putString("NOTIF_DESC",desc)
+
+        editor.apply()
     }
 
 

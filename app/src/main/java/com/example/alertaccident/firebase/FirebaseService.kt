@@ -13,7 +13,16 @@ class FirebaseService:FirebaseMessagingService() {
     override fun onMessageReceived(p0: RemoteMessage?) {
         super.onMessageReceived(p0)
         val location=p0!!.data!!.get("location")
-        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!)
+        val imageurl=p0!!.data!!.get("imageurl")
+        val date=p0.data.get("date")
+        val latitude=p0.data.get("latitude")
+        val longititude=p0.data.get("longitude")
+        val victims=p0.data.get("victims")
+        val desc=p0.data.get("desc")
+        UserManager.savealertlocation(latitude,longititude,this@FirebaseService)
+        UserManager.saveAlert(this@FirebaseService,location,imageurl,date,victims,desc)
+        val image=  UiUtils.getBitmapfromUrl(imageurl!!)
+        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!,image!!)
 
 
 

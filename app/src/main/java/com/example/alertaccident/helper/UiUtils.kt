@@ -3,23 +3,26 @@ package com.example.alertaccident.helper
 import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.example.alertaccident.R
-import android.content.DialogInterface
-import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
-import android.os.Bundle
-import android.provider.Settings
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
 import nl.dionsegijn.steppertouch.OnStepCallback
 import nl.dionsegijn.steppertouch.StepperTouch
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Icon
+import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
+import java.net.HttpURLConnection
+import java.net.URL
+import com.example.alertaccident.R
+import com.example.alertaccident.ui.NotificationDetails
 
 
 object UiUtils {
@@ -123,15 +126,24 @@ object UiUtils {
         notificationManager?.createNotificationChannel(channel)
 
     }
-    fun sendNotification(context: Context, title: String, description: String) {
+    fun sendNotification(context: Context, title: String, description: String,image:Bitmap) {
         if(notificationManager != null) {
             val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                Notification.Builder(context,
-                    Constants.NOTIF_CHANNEL_ID)
+                val resultIntent= Intent(context,NotificationDetails::class.java)
+                val pendingIntent=PendingIntent.getActivity(context,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT)
+                val icon = Icon.createWithResource(context, android.R.drawable.ic_dialog_info)
+                val action: Notification.Action =
+                    Notification.Action.Builder(icon,"Open", pendingIntent).build()
+                Notification.Builder(context, Constants.NOTIF_CHANNEL_ID)
                     .setContentTitle(title)
                     .setContentText(description)
                     .setSmallIcon(R.mipmap.mobelite_round)
                     .setChannelId(Constants.NOTIF_CHANNEL_ID)
+                    .setContentIntent(pendingIntent)
+                    .setActions(action)
+                    .setStyle(Notification.BigPictureStyle()
+                    .bigPicture(image)
+                )
                     .build()
             } else {
                 Log.d("here", "sdk < 24")
@@ -142,8 +154,26 @@ object UiUtils {
         }
         else {
             createNotificationChannel(context)
-            sendNotification(context, title, description)
+            sendNotification(context, title, description,image)
         }
+    }
+
+    fun getBitmapfromUrl(imageUrl: String): Bitmap? {
+        try {
+            val url = URL(imageUrl)
+            val connection = url.openConnection() as HttpURLConnection
+            connection.setDoInput(true)
+            connection.connect()
+            val input = connection.getInputStream()
+            return BitmapFactory.decodeStream(input)
+
+        } catch (e: Exception) {
+            // TODO Auto-generated catch block
+            e.printStackTrace()
+            return null
+
+        }
+
     }
 
 }
