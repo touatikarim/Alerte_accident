@@ -95,16 +95,9 @@ class MapPresenterImpl:IMapPresenter {
                         val lng = googlePlace.geometry!!.location.lng
                         val latLng = LatLng(lat, lng)
                         val name = googlePlace.name
-                        val icon_url = googlePlace.icon
                         mClusterManager!!.addItem(MarkerClusterItem(latLng,name))
 
-//                        markerOptions.position(latLng)
-//                        markerOptions.title(name)
-//                        markerOptions.snippet(i.toString())
-//                        val marker =PicassoMarker(mMap.addMarker(markerOptions))
-//                        Picasso.with(context)
-//                            .load(icon_url)
-//                            .into(marker)
+
 
                         mMap.animateCamera(CameraUpdateFactory.zoomTo(17f))
                     }

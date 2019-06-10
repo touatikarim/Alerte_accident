@@ -1,200 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.NotificationDetails">
-    <RelativeLayout
+        tools:context="com.example.alertaccident.ui.NotificationDetails">
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".Interface.MainActivity"
-            android:orientation="vertical"
-            android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
+            android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/login_title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text="@string/alert_details"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-        <ProgressBar
-                android:id="@+id/load_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:indeterminate="true"
-                android:layout_marginTop="8dp"
-        />
-        <ImageView
-                android:layout_marginBottom="8dp"
-                android:id="@+id/accident_pic"
+
+        <fragment
+                android:id="@+id/my_nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription"/>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:orientation="horizontal">
-        <TextView
-                android:id="@+id/description"
-                android:focusable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="@string/desc_alert"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold"/>
-        <TextView
-                android:id="@+id/desc"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/notif_nav_graph" />
     </LinearLayout>
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/twitter_blue" />
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:orientation="horizontal">
-        <TextView
-                android:id="@+id/date"
-                android:focusable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="@string/date_details"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold"/>
-        <TextView
-                android:id="@+id/date_text"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/twitter_blue" />
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:orientation="horizontal">
-        <TextView
-                android:id="@+id/location"
-                android:focusable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="@string/accident_location_details"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold"/>
-        <TextView
-                android:id="@+id/location_id"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/twitter_blue" />
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
-                  android:orientation="horizontal">
-        <TextView
-                android:id="@+id/victims"
-                android:focusable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:text="@string/victims_alert"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold"/>
-        <TextView
-                android:id="@+id/victims_text"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-        <TextView
-                android:id="@+id/check_map"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/check_map"
-                android:focusable="true"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:textColor="@color/black"/>
-
-
-
-
-
-    </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

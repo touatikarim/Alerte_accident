@@ -51,6 +51,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
 
             val ref = FirebaseDatabase.getInstance().getReference("Alerts")
             val alert_id = ref.push().key
+            UserManager.savecurrentAlertId(context,alert_id)
             val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url,vid_url,date,location)
             ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
                 createAlertView.load_alert(View.GONE)

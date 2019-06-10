@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide
 import java.net.HttpURLConnection
 import java.net.URL
 import com.example.alertaccident.R
+import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.NotificationDetails
 
 
@@ -126,35 +127,40 @@ object UiUtils {
         notificationManager?.createNotificationChannel(channel)
 
     }
-    fun sendNotification(context: Context, title: String, description: String,image:Bitmap) {
-        if(notificationManager != null) {
-            val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val resultIntent= Intent(context,NotificationDetails::class.java)
-                val pendingIntent=PendingIntent.getActivity(context,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT)
-                val icon = Icon.createWithResource(context, android.R.drawable.ic_dialog_info)
-                val action: Notification.Action =
-                    Notification.Action.Builder(icon,"Open", pendingIntent).build()
-                Notification.Builder(context, Constants.NOTIF_CHANNEL_ID)
-                    .setContentTitle(title)
-                    .setContentText(description)
-                    .setSmallIcon(R.mipmap.mobelite_round)
-                    .setChannelId(Constants.NOTIF_CHANNEL_ID)
-                    .setContentIntent(pendingIntent)
-                    .setActions(action)
-                    .setStyle(Notification.BigPictureStyle()
-                    .bigPicture(image)
-                )
-                    .build()
-            } else {
-                Log.d("here", "sdk < 24")
-                return
-            }
+    fun sendNotification(context: Context, title: String, description: String,image:Bitmap,alertId:String?) {
+        val sp = UserManager.getSharedPref(context)
+        val last_alert = sp.getString("LAST_ALERT_ID", "")
+        if(alertId!=last_alert) {
+            if (notificationManager != null) {
+                val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val resultIntent = Intent(context, NotificationDetails::class.java)
+                    val pendingIntent =
+                        PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+                    val icon = Icon.createWithResource(context, android.R.drawable.ic_dialog_info)
+                    val action: Notification.Action =
+                        Notification.Action.Builder(icon, "Open", pendingIntent).build()
+                    Notification.Builder(context, Constants.NOTIF_CHANNEL_ID)
+                        .setContentTitle(title)
+                        .setContentText(description)
+                        .setSmallIcon(R.mipmap.mobelite_round)
+                        .setChannelId(Constants.NOTIF_CHANNEL_ID)
+                        .setContentIntent(pendingIntent)
+                        .setActions(action)
+                        .setStyle(
+                            Notification.BigPictureStyle()
+                                .bigPicture(image)
+                        )
+                        .build()
+                } else {
+                    Log.d("here", "sdk < 24")
+                    return
+                }
 
-            notificationManager?.notify(Constants.NOTIFICATION_ID, notification)
-        }
-        else {
-            createNotificationChannel(context)
-            sendNotification(context, title, description,image)
+                notificationManager?.notify(Constants.NOTIFICATION_ID, notification)
+            } else {
+                createNotificationChannel(context)
+                sendNotification(context, title, description, image,alertId)
+            }
         }
     }
 

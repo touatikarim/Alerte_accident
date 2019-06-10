@@ -10,10 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 
@@ -62,7 +60,7 @@ class Map : Fragment() {
         spinnerdialog= SpinnerDialog(activity,Constants.list_of_items,"Select Service",R.style.DialogAnimations_SmileWindow)
 
         btnShow.setOnClickListener {
-            spinnerdialog!!.showSpinerDialog()
+       spinnerdialog!!.showSpinerDialog()
         }
         val mapFragment = this.childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
        mapFragment?.getMapAsync{
@@ -87,10 +85,23 @@ class Map : Fragment() {
                 UserManager.clearalertpos(activity!!.baseContext)
             }
            spinnerdialog!!.bindOnSpinerListener { item, position ->
-               mappresenter.getNearbyPlaces(Constants.list_of_items[position],activity!!.baseContext,it,latitude,longitude)
+               val serviceToAlert = when (Constants.list_of_items[position]){
+                   "Police" -> "police"
+                   "Hospitals" -> "hospital"
+                   "Fire station" -> "fire_station"
+                   "Doctors" -> "doctor"
+                   "Pharmacies" -> "pharmacy"
+                   "Insurance agency" -> "insurance_agency"
+                   "Car repair" ->"Car repair"
+                   else -> "dentist"
+               }
+               mappresenter.getNearbyPlaces(serviceToAlert,activity!!.baseContext,it,latitude,longitude)
+               btnShow.text=serviceToAlert
                mappresenter.getLocation(activity!!,it)
            }
         }
 
     }
+
+
 }

@@ -19,10 +19,11 @@ class FirebaseService:FirebaseMessagingService() {
         val longititude=p0.data.get("longitude")
         val victims=p0.data.get("victims")
         val desc=p0.data.get("desc")
+        val alertId=p0.data.get("alert_id")
         UserManager.savealertlocation(latitude,longititude,this@FirebaseService)
         UserManager.saveAlert(this@FirebaseService,location,imageurl,date,victims,desc)
         val image=  UiUtils.getBitmapfromUrl(imageurl!!)
-        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!,image!!)
+        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!,image!!,alertId)
 
 
 

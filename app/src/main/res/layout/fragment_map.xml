@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".ui.map.Map">
 
 
@@ -12,16 +12,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
+
         <TextView
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_textview"
                 android:id="@+id/btnShow"
                 android:layout_width="150dp"
                 android:text="@string/services"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:layout_height="wrap_content"/>
+                android:gravity="center"
+                android:layout_height="30dp"/>
 
 
 </FrameLayout>

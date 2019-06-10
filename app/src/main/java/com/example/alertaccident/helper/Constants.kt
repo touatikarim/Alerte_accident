@@ -24,8 +24,7 @@ object Constants {
         Contact(id="9",name="Urgence Le Secours",email="",Phone_Number = "71351500")
 
     )
-    var list_of_items = arrayListOf("police","doctor","fire_station", "hospital","pharmacy","insurance_agency", "local_government_office",
-          "physiotherapist","car_repair","dentist")
+    var list_of_items = arrayListOf("Police","Doctors","Fire station", "Hospitals","Pharmacies","Insurance agency","Car repair","Dentist")
     val max_value=20
     val min_value=1
     val request_interval:Long=5000

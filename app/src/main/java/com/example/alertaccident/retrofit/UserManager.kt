@@ -131,6 +131,13 @@ object UserManager {
         editor.apply()
     }
 
+    fun savecurrentAlertId(context:Context,AlertId:String?){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("LAST_ALERT_ID",AlertId)
+        editor.apply()
+    }
+
 
 
 
