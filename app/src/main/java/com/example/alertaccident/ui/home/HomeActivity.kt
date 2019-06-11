@@ -1,5 +1,6 @@
 package com.example.alertaccident.ui.home
 
+import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.app.ActivityOptions
 
 import android.content.Intent
@@ -8,15 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.get
 import androidx.navigation.ui.NavigationUI
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
@@ -28,6 +30,8 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.common.api.Status
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 import kotlinx.android.synthetic.main.activity_user.*
@@ -37,18 +41,20 @@ import kotlinx.android.synthetic.main.activity_user.*
 class HomeActivity : AppCompatActivity() {
 
     lateinit var mGoogleApiClient: GoogleApiClient
+    var spinnerdialog: SpinnerDialog?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
         if (!GPSUtils.isLocationEnabled(this))
             GPSUtils.showAlert(this,this)
         setSupportActionBar(toolbar)
-
+        spinnerdialog= SpinnerDialog(this, Constants.list_of_items,"Select Service",R.style.DialogAnimations_SmileWindow)
         val navController = Navigation.findNavController(this,R.id.my_nav_user_fragment)
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
         val token_google=sp.getString("GOOGLE_SIGNED_IN","")
+        val id=sp.getString("USER_ID","")
 
         setupBottomNavMenu(navController)
         setupSideNavigationMenu(navController,mail,name)
@@ -70,6 +76,7 @@ class HomeActivity : AppCompatActivity() {
                 AccessToken.setCurrentAccessToken(null)
                 LoginManager.getInstance().logOut()
                 UserManager.clearSharedPref(this)
+                cleartoken(id)
                 val options=ActivityOptions.makeCustomAnimation(this,R.anim.slide_in_left,R.anim.slide_out_right)
                 val intent = Intent(applicationContext, Connexion::class.java)
                 load()
@@ -88,6 +95,7 @@ class HomeActivity : AppCompatActivity() {
                             val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
                             val intent = Intent(applicationContext, Connexion::class.java)
                             UserManager.clearSharedPref(this@HomeActivity)
+                            cleartoken(id)
                             load()
                             Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
 
@@ -101,6 +109,7 @@ class HomeActivity : AppCompatActivity() {
                 val options=ActivityOptions.makeCustomAnimation(this@HomeActivity,R.anim.slide_in_left,R.anim.slide_out_right)
                 val intent = Intent(applicationContext, Connexion::class.java)
                 UserManager.clearSharedPref(this@HomeActivity)
+                cleartoken(id)
                 load()
                 Handler().postDelayed({startActivity(intent,options.toBundle());finish()},1500)
             }
@@ -109,6 +118,10 @@ class HomeActivity : AppCompatActivity() {
 
 
 
+    }
+    private fun cleartoken(user_id:String){
+        val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+        database.child("Tokens").child(user_id).removeValue()
     }
 
     private fun load() {
@@ -143,10 +156,9 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val navController=Navigation.findNavController(this,R.id.my_nav_user_fragment)
-        val navigated=NavigationUI.onNavDestinationSelected(item!!,navController)
+        val navController = Navigation.findNavController(this, R.id.my_nav_user_fragment)
+        val navigated = NavigationUI.onNavDestinationSelected(item!!, navController)
         return navigated || super.onOptionsItemSelected(item)
     }
 
@@ -164,5 +176,9 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
+
+
+
 
 }

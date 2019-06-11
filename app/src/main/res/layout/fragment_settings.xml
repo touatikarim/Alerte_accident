@@ -51,6 +51,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
             </LinearLayout>
+                <View
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/twitter_blue" />
 
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -76,6 +83,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                 </LinearLayout>
+                <View
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/twitter_blue" />
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -101,6 +115,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+                <View
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/twitter_blue" />
 
                 <TextView
                         android:id="@+id/id_update"
@@ -114,6 +135,14 @@
                         android:textColor="@color/black"
                         android:padding="8dp"
                         tools:targetApi="m"/>
+                <View
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/twitter_blue" />
 
                 <TextView
                         android:id="@+id/id_change_pass"
@@ -127,6 +156,14 @@
                         android:singleLine="true"
                         android:padding="8dp"
                         tools:targetApi="m"/>
+                <View
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/twitter_blue" />
 
                 <TextView
                         android:id="@+id/id_desac_acc"
@@ -139,6 +176,7 @@
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:padding="8dp"
+                        android:layout_marginBottom="10dp"
                         tools:targetApi="m"/>
 
 

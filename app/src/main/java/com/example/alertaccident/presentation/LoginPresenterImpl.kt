@@ -21,6 +21,7 @@ import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.login.SigninView
 import com.google.gson.JsonParser
 import android.util.Log
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.GPSUtils.locationCallback
@@ -33,6 +34,9 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.location.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
 import retrofit2.*
 import java.util.*
 
@@ -42,10 +46,21 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
          private var callbackManager: CallbackManager? = null
          lateinit  var context: Context
          lateinit var fusedLocationClient: FusedLocationProviderClient
+         private fun generateToken(user_id:String){
+             var ref:DatabaseReference
+             FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
+                 if(!it.isSuccessful){
+                     Log.d("error"," getInstanceId failed",it.exception)
+                 }
+                 val token=it.result?.token
+                 ref=FirebaseDatabase.getInstance().reference
+                 ref.child("Tokens").child(user_id).setValue(token)
+             }
+
+            }
 
 
-
-         override fun login(email:String,password:String) {
+         override fun login(email:String,password:String,button:Button) {
              val loginModel = LoginModel(email, password)
                  if (isDataValid(email, password) == -1) {
                      if (isDeviceConnectedToInternet(context)) {
@@ -64,31 +79,17 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          val user = User(email, password, name, id, phone)
                                          UserManager.saveCredentials(context, user)
                                          signinview.navigate()
+                                         generateToken(id)
                                          Handler().postDelayed(
                                              { signinview.onSuccess(response.body()!!.message) },
                                              1500
                                          )
 
                                      } else {
+
                                          signinview.load()
                                          Handler().postDelayed({ signinview.onError(context.getString(R.string.no_account)) },1500)
-//                                         val errorJsonString = response.errorBody()?.string()
-//                                         val message = JsonParser().parse(errorJsonString)
-//                                             .asJsonObject["message"]
-//                                             .asString
-//                                         val message=response.body()!!.message
-//                                         signinview.load()
-//                                         if (message.compareTo("User not found...") == 0)
-//                                             Handler().postDelayed(
-//                                                 { signinview.onError(context.getString(R.string.no_account)) },
-//                                                 1500
-//                                             )
-//                                         else
-//                                             Handler().postDelayed(
-//                                                 { signinview.onError(context.getString(R.string.authen_error)) },
-//                                                 1500
-//                                             )
-
+                                         button.setEnabled(true)
 
                                      }
                                  }

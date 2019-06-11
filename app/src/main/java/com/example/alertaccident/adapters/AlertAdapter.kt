@@ -2,6 +2,8 @@ package com.example.alertaccident.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.view.DragAndDropPermissions
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +11,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.Constants
@@ -18,6 +26,7 @@ import com.example.alertaccident.retrofit.UserManager
 import kotlinx.android.synthetic.main.alert_item.view.*
 
 class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):RecyclerView.Adapter<AlertAdapter.AlertHolder>() {
+    var circularProgressDrawable = CircularProgressDrawable(context).start()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertHolder {
         return AlertHolder(LayoutInflater.from(context).inflate(R.layout.alert_item,parent,false))
@@ -60,7 +69,21 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
             date.text=context.getString(R.string.date)+alert.date
             location.text=context.getString(R.string.accident_location)+alert.location
             if(!alert.imageurl.isNullOrEmpty()) {
-               Glide.with(context).load(alert.imageurl).into(pic)
+
+               Glide.with(context).load(alert.imageurl)
+                   .listener(object:RequestListener<Drawable>{
+                       override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                           load_image.visibility=View.GONE
+                           return false
+                       }
+
+                       override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            load_image.visibility=View.GONE
+                           return false
+                       }
+
+                   })
+                   .into(pic)
             }
             check_map.setOnClickListener {
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)

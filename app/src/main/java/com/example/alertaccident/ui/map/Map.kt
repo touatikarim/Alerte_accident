@@ -1,5 +1,7 @@
 package com.example.alertaccident.ui.map
 
+import `in`.galaxyofandroid.spinerdialog.OnSpinerItemClick
+import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -8,14 +10,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 import com.example.alertaccident.R
+import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.MarkerClusterItem
 
 import com.example.alertaccident.presentation.IMapPresenter
 import com.example.alertaccident.presentation.MapPresenterImpl
@@ -29,6 +31,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterManager
+import kotlinx.android.synthetic.main.fragment_map.*
 
 
 class Map : Fragment() {
@@ -36,6 +40,7 @@ class Map : Fragment() {
 
 
     lateinit var mappresenter:IMapPresenter
+    var spinnerdialog: SpinnerDialog?=null
 
 
 
@@ -52,26 +57,21 @@ class Map : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mappresenter=MapPresenterImpl()
         mappresenter.setMainViewContext(activity!!.baseContext)
+        spinnerdialog= SpinnerDialog(activity,Constants.list_of_items,"Select Service",R.style.DialogAnimations_SmileWindow)
 
-
+        btnShow.setOnClickListener {
+       spinnerdialog!!.showSpinerDialog()
+        }
         val mapFragment = this.childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
        mapFragment?.getMapAsync{
             it.clear()
-            mappresenter.getLocation(activity!!)
+
+            mappresenter.getLocation(activity!!,it)
            val sp = UserManager.getSharedPref(activity!!.baseContext)
         val latitude=sp.getString("USER_LAT","")
         val longitude=sp.getString("USER_LNG","")
        val alert_lat=sp.getString("ALERT_LAT","")
         val alert_lng=sp.getString("ALERT_LNG","")
-//            Log.d("pos",alert_lng)
-        val user_markerOptions=MarkerOptions()
-            .position(LatLng(latitude.toDouble(),longitude.toDouble()))
-            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-            .title("You're here")
-
-        it?.addMarker(user_markerOptions)
-            it?.moveCamera(CameraUpdateFactory.newLatLng(LatLng(latitude.toDouble(), longitude.toDouble())))
-            it?.animateCamera(CameraUpdateFactory.zoomTo(12f))
 
 
             if(!alert_lat.isEmpty() && !alert_lng.isEmpty() ){
@@ -84,7 +84,24 @@ class Map : Fragment() {
                 it?.animateCamera(CameraUpdateFactory.zoomTo(12f))
                 UserManager.clearalertpos(activity!!.baseContext)
             }
+           spinnerdialog!!.bindOnSpinerListener { item, position ->
+               val serviceToAlert = when (Constants.list_of_items[position]){
+                   "Police" -> "police"
+                   "Hospitals" -> "hospital"
+                   "Fire station" -> "fire_station"
+                   "Doctors" -> "doctor"
+                   "Pharmacies" -> "pharmacy"
+                   "Insurance agency" -> "insurance_agency"
+                   "Car repair" ->"Car repair"
+                   else -> "dentist"
+               }
+               mappresenter.getNearbyPlaces(serviceToAlert,activity!!.baseContext,it,latitude,longitude)
+               btnShow.text=serviceToAlert
+               mappresenter.getLocation(activity!!,it)
+           }
         }
 
     }
+
+
 }

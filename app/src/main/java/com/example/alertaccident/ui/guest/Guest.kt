@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.example.alertaccident.R
 
 
 import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.UiUtils
 import com.example.alertaccident.presentation.GuestPresenterImpl
 import com.example.alertaccident.presentation.IGuestPresenter
@@ -56,7 +58,6 @@ class Guest : Fragment(),GuestView {
         guestPresenter=GuestPresenterImpl(this)
         guestPresenter.setMainViewContext(activity!!.baseContext)
         guestPresenter.getLocation(activity!!)
-
         UiUtils.setstepper(Constants.min_value, Constants.max_value, stepperTouch_guest, nbr_guest)
 
 
@@ -66,7 +67,8 @@ class Guest : Fragment(),GuestView {
             val description = id_description_guest.text.toString()
             val service = service_chosen_guest.text.toString()
             if (UiUtils.isDeviceConnectedToInternet(activity!!.baseContext)) {
-                guestPresenter.saveAlert(description,service,victims,activity!!)
+                guestPresenter.getLocation(activity!!)
+               Handler().postDelayed( {guestPresenter.saveAlert(description,service,victims,activity!!)},2)
                 UserManager.clearSharedPref(activity!!.baseContext)
             }
         }

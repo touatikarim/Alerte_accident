@@ -31,5 +31,8 @@ interface RetrofitServices {
    @PUT("user/updatePassword/{email}")
    fun updatepassword(@Path("email") email:String, @Body body:PasswordModel):Call<ApiResponse>
 
+    @GET
+    fun nearbyPlaces(@Url url:String):Call<GoogleApiResponse>
+
 
 }

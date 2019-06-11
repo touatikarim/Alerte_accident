@@ -57,7 +57,7 @@
                             android:focusable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_marginTop="20dp"
                             android:layout_gravity="start"
                             android:text="@string/photo"
@@ -65,7 +65,7 @@
                             android:textSize="13sp"
                             android:textStyle="bold"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="100dp"
+                                  android:layout_height="wrap_content"
                                   android:layout_marginBottom="10dp"
                                   android:orientation="horizontal">
                         <ImageView
@@ -97,27 +97,31 @@
 
 
                     </LinearLayout>
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/twitter_blue" />
                     <TextView
                             android:id="@+id/video"
                             android:focusable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+
                             android:layout_gravity="start"
                             android:text="@string/video"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="100dp"
-
+                                  android:layout_height="wrap_content"
                                   android:layout_marginBottom="10dp"
                                   android:orientation="horizontal">
                     <ImageView
                             android:id="@+id/accident_video"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
                             android:focusable="true"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_video_call_black_24dp"
@@ -142,6 +146,11 @@
                                 android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/twitter_blue" />
+
                     <LinearLayout android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
                                   android:layout_marginBottom="10dp"
@@ -171,8 +180,12 @@
 
                         />
 
-
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/twitter_blue" />
+
                     <LinearLayout android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
                                   android:layout_marginBottom="10dp"
@@ -212,6 +225,10 @@
 
                     </LinearLayout>
 
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/twitter_blue" />
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/name_input_layout"
@@ -237,11 +254,15 @@
                                 tools:ignore="Autofill,LabelFor"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:layout_marginBottom="10dp"
-                                  android:gravity="center"
-                                  android:orientation="horizontal">
+
+
+
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="10dp"
+                              android:gravity="center"
+                              android:orientation="horizontal">
 
                     <Button
                             android:id="@+id/btn_send"
@@ -254,32 +275,30 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             tools:ignore="ButtonStyle"/>
-                        <Button
-                                android:id="@+id/btn_call"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:background="@drawable/buttonshape"
-                                android:text="@string/call_button"
-                                android:textAllCaps="false"
-
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                tools:ignore="ButtonStyle"/>
-
-                    </LinearLayout>
-
-                    <ProgressBar
-                            android:id="@+id/send_alert"
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
+                    <Button
+                            android:id="@+id/btn_call"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="@string/call_button"
+                            android:textAllCaps="false"
 
-                            android:indeterminate="true"
-                            android:layout_marginTop="8dp"
-                    />
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:ignore="ButtonStyle"/>
+
                 </LinearLayout>
+                <ProgressBar
+                        android:id="@+id/send_alert"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:indeterminate="true"
+                        android:layout_marginTop="8dp"
+                />
 
             </LinearLayout>
         </ScrollView>

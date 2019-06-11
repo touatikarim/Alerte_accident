@@ -3,6 +3,8 @@ package com.example.alertaccident.retrofit
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.alertaccident.model.User
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 object UserManager {
     private lateinit var sharedPref: SharedPreferences
@@ -91,7 +93,7 @@ object UserManager {
         editor.apply()
     }
 
-    fun savealertlocation(latitude: String,longitude: String,context: Context){
+    fun savealertlocation(latitude: String?,longitude: String?,context: Context){
         val editor = sharedPref.edit()
         editor.putString("ALERT_LAT",latitude)
         editor.putString("ALERT_LNG",longitude)
@@ -105,7 +107,36 @@ object UserManager {
         editor.apply()
     }
 
+    fun saveToken(context:Context,token: String?) {
+        val sp = UserManager.getSharedPref(context)
+        val id=sp.getString("USER_ID","")
+        val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+        try {
+            database.child("Tokens").child(id).removeValue()
+            database.child("Tokens").child(id).setValue(token)
+        }
+        catch(e: Exception) {
 
+        }
+    }
+    fun saveAlert(context: Context,location:String?,imageurl:String?, date:String?, victims:String?,desc:String?){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("NOTIF_LOCATION",location)
+        editor.putString("NOTIF_IMAGE",imageurl)
+        editor.putString("NOTIF_DATE",date)
+        editor.putString("NOTIF_Victims",victims)
+        editor.putString("NOTIF_DESC",desc)
+
+        editor.apply()
+    }
+
+    fun savecurrentAlertId(context:Context,AlertId:String?){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("LAST_ALERT_ID",AlertId)
+        editor.apply()
+    }
 
 
 
