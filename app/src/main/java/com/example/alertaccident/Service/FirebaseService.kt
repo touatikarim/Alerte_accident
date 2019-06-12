@@ -1,9 +1,6 @@
-package com.example.alertaccident.firebase
+package com.example.alertaccident.Service
 
-import android.content.Context
-import android.util.Log
 import com.example.alertaccident.helper.UiUtils
-import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.retrofit.UserManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

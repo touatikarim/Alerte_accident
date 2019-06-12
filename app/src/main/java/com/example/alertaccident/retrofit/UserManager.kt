@@ -6,6 +6,7 @@ import com.example.alertaccident.model.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+
 object UserManager {
     private lateinit var sharedPref: SharedPreferences
     fun saveCredentials(context: Context, user: User)
@@ -135,6 +136,13 @@ object UserManager {
         sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
         val editor= sharedPref.edit()
         editor.putString("LAST_ALERT_ID",AlertId)
+        editor.apply()
+    }
+
+    fun detectCrash(context: Context,Crashed:Boolean){
+        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putBoolean("CRASH_ACCURED",Crashed)
         editor.apply()
     }
 
