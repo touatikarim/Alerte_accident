@@ -128,12 +128,12 @@ class HomeActivity : AppCompatActivity() {
         if (CrashStatus) {
             Toast.makeText(this, "CRASHED", Toast.LENGTH_LONG).show()
             val builder = AlertDialog.Builder(this)
-            builder.setMessage("Accident détecté, voulez vous envoyer une alerte et un sms d'urgence?")
+            builder.setMessage("A collision was detected, an SMS and alert will be sent in 10 seconds")
             builder.setPositiveButton(
                 "OK"
             ) { _, _ -> sendCrashAlert()
                 UserManager.detectCrash(this, FALSE)}
-                .setNegativeButton("Non, Je vais bien ") { dialog, _ ->
+                .setNegativeButton("No, Don't send ") { dialog, _ ->
                     dialog.dismiss()
                     UserManager.detectCrash(this, FALSE)
                 }
