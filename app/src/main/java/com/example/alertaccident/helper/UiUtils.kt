@@ -17,11 +17,9 @@ import nl.dionsegijn.steppertouch.OnStepCallback
 import nl.dionsegijn.steppertouch.StepperTouch
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
-import androidx.core.app.NotificationCompat
-import com.bumptech.glide.Glide
+import com.example.alertaccident.R
 import java.net.HttpURLConnection
 import java.net.URL
-import com.example.alertaccident.R
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.NotificationDetails
 
@@ -127,7 +125,7 @@ object UiUtils {
         notificationManager?.createNotificationChannel(channel)
 
     }
-    fun sendNotification(context: Context, title: String, description: String,image:Bitmap,alertId:String?) {
+    fun sendNotification(context: Context, title: String, description: String,image:Bitmap?,alertId:String?) {
         val sp = UserManager.getSharedPref(context)
         val last_alert = sp.getString("LAST_ALERT_ID", "")
         if(alertId!=last_alert) {
@@ -181,6 +179,8 @@ object UiUtils {
         }
 
     }
+
+
 
 
 }

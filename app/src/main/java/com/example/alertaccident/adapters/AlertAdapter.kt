@@ -3,20 +3,16 @@ package com.example.alertaccident.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.view.DragAndDropPermissions
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
 import com.example.alertaccident.R
@@ -85,6 +81,11 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
                    })
                    .into(pic)
             }
+            else {
+                load_image.visibility=View.GONE
+                Glide.with(context).load(R.drawable.no_picture_holder).into(pic)
+            }
+
             check_map.setOnClickListener {
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)
                findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null, Constants.options)

@@ -12,7 +12,10 @@ interface ContactDAO {
         val allcontacts:Flowable<List<Contact>>
 
     @Query("SELECT * FROM contacts WHERE email=:UserId")
-    fun getContactById(UserId:String):Flowable<List<Contact>>
+    fun getContactById(UserId:String):List<Contact>
+
+    @Query("SELECT * FROM contacts WHERE email=:UserId")
+    fun showContactById(UserId:String):Flowable<List<Contact>>
 
     @Query("SELECT * FROM contacts WHERE name=:name")
         fun getContactByname(name:String):Contact

@@ -8,14 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
+
 import com.example.alertaccident.presentation.HomePresenterImpl
 import com.example.alertaccident.presentation.IHomePresenter
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.example.alertaccident.R
-import android.widget.ImageButton
-import android.view.MotionEvent
-import android.graphics.PorterDuff
+
 import com.example.alertaccident.helper.Constants
 
 
@@ -44,30 +42,7 @@ class Home : Fragment() {
             homepresenter.getLocation(activity!!, lat, place, lng)
             findNavController().navigate(R.id.action_home_dest_to_createAlert, null, Constants.options)
         }
-//      createalert.setOnTouchListener (object:View.OnTouchListener{
-//
-//          override fun onTouch(view: View?, ev: MotionEvent?): Boolean {
-//              if (ev!!.action == MotionEvent.ACTION_DOWN){
-//                  val v = view as ImageButton
-//                   view.background.setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP)
-//                   v.invalidate()
-//              }
-//              else if (ev.action == MotionEvent.ACTION_UP){
-//                  homepresenter.getLocation(activity!!, lat, place, lng)
-//                  findNavController().navigate(R.id.action_home_dest_to_createAlert, null, options)
-//              }
-//              else if (ev.action == MotionEvent.ACTION_BUTTON_RELEASE){
-//                  val v = view as ImageButton
-//                  view.background.clearColorFilter()
-//                  v.invalidate()
-//              }
-//
-//
-//              return true
-//
-//          }
-//
-//      })
+
 
 
     }

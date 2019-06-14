@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.home.HomeActivity
+import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 
 
@@ -35,7 +36,7 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
         this.mAccelerometer = this.mSensorManager!!.getDefaultSensor(1)
         mShaker = CrashListener(this)
         mShaker!!.setOnCrashListener(this)
-        Toast.makeText(this@CrashDetectionService, "Service is created!", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this@CrashDetectionService, "Service is created!", Toast.LENGTH_LONG).show()
         Log.d(packageName, "Created the Service!")
         check = 1
     }
@@ -43,15 +44,13 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
 
     override fun onShake() {
         if (check == 1) {
-           // Toast.makeText(this@CrashDetectionService, "SHAKEN!", Toast.LENGTH_LONG).show()
-            //val vib = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-//            VibrationEffect.DEFAULT_AMPLITUDE
 
-            UserManager.detectCrash(this,TRUE)
             val i = Intent()
+            UserManager.detectCrash(this, TRUE)
             i.setClass(this, HomeActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
+
         }
 
     }

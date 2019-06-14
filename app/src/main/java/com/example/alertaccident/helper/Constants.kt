@@ -34,6 +34,7 @@ object Constants {
     const val REQUEST_IMAGE_CAPTURE=1
     const val REQUEST_VIDEO_CAPTURE = 2
     const val REQUEST_PHONE_CALL=1
+    const val REQUEST_SEND_SMS=5
     val NOTIF_CHANNEL_ID="95"
     val NOTIFICATION_ID=90
     val socialType1= "Google"

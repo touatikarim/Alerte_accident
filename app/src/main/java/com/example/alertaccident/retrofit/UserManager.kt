@@ -146,6 +146,13 @@ object UserManager {
         editor.apply()
     }
 
+//    fun acitivityActive(context: Context,isActive:Boolean){
+//        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
+//        val editor= sharedPref.edit()
+//        editor.putBoolean("ACTIVITY_ACTIVE",isActive)
+//        editor.apply()
+//    }
+
 
 
 

@@ -2,15 +2,11 @@ package com.example.alertaccident.ui.home
 
 
 import android.app.ActivityOptions
-import android.content.Context
 import android.content.Intent
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
-import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.telephony.SmsManager
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -21,10 +17,15 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.example.alertaccident.Local.ContactDataSource
+import com.example.alertaccident.Local.ContactDatabase
 import com.example.alertaccident.R
 import com.example.alertaccident.Service.CrashDetectionService
+import com.example.alertaccident.database.ContactRepository
 import com.example.alertaccident.helper.GPSUtils
+import com.example.alertaccident.helper.PermissionUtils
 import com.example.alertaccident.model.AlertModel
+import com.example.alertaccident.model.Contact
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.facebook.AccessToken
@@ -38,6 +39,12 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import es.dmoral.toasty.Toasty
+import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 import kotlinx.android.synthetic.main.activity_user.*
@@ -48,26 +55,36 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
-
+    private var compositeDisposable: CompositeDisposable? = null
+    lateinit var contactList: List<Contact>
+    lateinit var contactRepository: ContactRepository
     lateinit var mGoogleApiClient: GoogleApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
         if (!GPSUtils.isLocationEnabled(this))
             GPSUtils.showAlert(this,this)
+
+
+
+
         setSupportActionBar(toolbar)
+
         startService(Intent(this@HomeActivity,CrashDetectionService::class.java))
+
         val navController = Navigation.findNavController(this,R.id.my_nav_user_fragment)
         val sp = UserManager.getSharedPref(this)
         val mail=sp.getString("USER_EMAIL","")
         val name=sp.getString("USER_NAME","")
         val token_google=sp.getString("GOOGLE_SIGNED_IN","")
         val id=sp.getString("USER_ID","")
+
         setupBottomNavMenu(navController)
         setupSideNavigationMenu(navController,mail,name)
         setupActionBar(navController)
         setsize(logoutfb)
         setsize(logoutgoogle)
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -132,7 +149,11 @@ class HomeActivity : AppCompatActivity() {
             builder.setPositiveButton(
                 "OK"
             ) { _, _ -> sendCrashAlert()
-                UserManager.detectCrash(this, FALSE)}
+                sendSms()
+                UserManager.detectCrash(this, FALSE)
+
+
+            }
                 .setNegativeButton("No, Don't send ") { dialog, _ ->
                     dialog.dismiss()
                     UserManager.detectCrash(this, FALSE)
@@ -140,9 +161,40 @@ class HomeActivity : AppCompatActivity() {
             builder.show()
         }
 
-
+        val contactDatabase = ContactDatabase.getInstance(this)
+        contactRepository = ContactRepository.getInstance(ContactDataSource.getInstance(contactDatabase.contactDAO()))
+        compositeDisposable= CompositeDisposable()
+        val disposable = Observable.create(ObservableOnSubscribe<Any>{ e->
+            contactList=contactRepository.getContactById(id)
+            for(contact:Contact in contactList){
+                Log.d("contact",contact.Phone_Number)
+            }
+            e.onComplete()
+        })
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({}, { throwable-> Log.d("error",throwable.message) }, { })
+        compositeDisposable!!.add(disposable)
 
     }
+
+    private fun sendSms(){
+        if(PermissionUtils.checkSmsPermission(this)){
+        val sms=SmsManager.getDefault()
+        for (contact:Contact in contactList){
+            sms.sendTextMessage(contact.Phone_Number,null,"Help! I've met with an accident at skdjqlkjsdqlk",null,null)
+        }
+            }
+        else (PermissionUtils.requestSendSmsPermission(this))
+    }
+
+
+
+
+
+
+
+
     private fun cleartoken(user_id:String){
         val database: DatabaseReference = FirebaseDatabase.getInstance().reference
         database.child("Tokens").child(user_id).removeValue()

@@ -172,4 +172,20 @@
         <u>Location:</u>
     </string>
     <string name="alert_details">Alert Details</string>
+    <string name="aids">10 Basic First Aid Procedures</string>
+    <string name="arrest">
+        <u>Basic First Aid for Cardiac Arrest:</u>
+    </string>
+    <string name="arrest_details">Cardiopulmonary resuscitation (CPR) is the most important medical procedure of all. If
+        a person is in cardiac arrest and CPR is not performed, that person will die.
+    </string>
+    <string name="bleeding"><u>Basic First Aid for Bleeding:</u></string>
+    <string name="bleeding_details">Regardless of how severe, almost all bleeding can be controlled. Mild bleeding will
+        usually stop on its own. If severe bleeding is not controlled, it may lead to shock and eventually death.
+    </string>
+    <string name="burns"><u>Basic First Aid for Burns:</u></string>
+    <string name="burn_details">The first step to treating a burn is to stop the burning process. Chemicals need to be
+        cleaned off. Electricity needs to be turned off. Heat needs to be cooled down with running water. Sunburn
+        victims need to be covered up or go inside.
+    </string>
 </resources>
