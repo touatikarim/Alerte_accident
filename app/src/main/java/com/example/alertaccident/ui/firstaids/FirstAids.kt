@@ -30,5 +30,17 @@ class FirstAids : Fragment() {
         details_frag.setOnClickListener {
             findNavController().navigate(R.id.action_aids_dest_to_cardiacArrest,null,Constants.options)
         }
+        bleeding_frag.setOnClickListener {
+            findNavController().navigate(R.id.action_aids_dest_to_bleeding2,null,Constants.options)
+        }
+        discomfort_frag.setOnClickListener {
+            findNavController().navigate(R.id.action_aids_dest_to_cardiacDiscomfort,null,Constants.options)
+        }
+        chkoking_frag.setOnClickListener {
+            findNavController().navigate(R.id.action_aids_dest_to_suffocation2,null,Constants.options)
+        }
+        fainting_frag.setOnClickListener {
+            findNavController().navigate(R.id.action_aids_dest_to_unconsciousness2,null,Constants.options)
+        }
     }
 }

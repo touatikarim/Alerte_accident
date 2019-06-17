@@ -66,8 +66,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
-
-
+    implementation 'moe.feng:AlipayZeroSdk:1.1'
+    implementation project(':library')
 
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'

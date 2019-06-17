@@ -2,7 +2,9 @@ package com.example.alertaccident.helper
 
 import android.Manifest
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Context
+import android.content.Context.ACTIVITY_SERVICE
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -49,5 +51,11 @@ object PermissionUtils {
                 Constants.REQUEST_SEND_SMS)
 
         }
+    }
+    fun getCurrentActivity(context: Context):String{
+        val am = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        val taskInfo=am.getRunningTasks(1)
+        return taskInfo.get(0).topActivity.className
+
     }
 }

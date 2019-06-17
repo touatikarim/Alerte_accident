@@ -74,7 +74,20 @@
     <fragment android:id="@+id/aids_dest" android:name="com.example.alertaccident.ui.firstaids.FirstAids"
               android:label="First Aids" tools:layout="@layout/fragment_first_aids">
         <action android:id="@+id/action_aids_dest_to_cardiacArrest" app:destination="@id/cardiacArrest"/>
+        <action android:id="@+id/action_aids_dest_to_bleeding2" app:destination="@+id/bleeding2"/>
+        <action android:id="@+id/action_aids_dest_to_cardiacDiscomfort" app:destination="@id/cardiacDiscomfort"/>
+        <action android:id="@+id/action_aids_dest_to_suffocation2" app:destination="@id/suffocation2"/>
+        <action android:id="@+id/action_aids_dest_to_unconsciousness2" app:destination="@id/unconsciousness2"/>
     </fragment>
     <fragment android:id="@+id/cardiacArrest" android:name="com.example.alertaccident.ui.firstaids.CardiacArrest"
-              android:label="fragment_cardiac_arrest" tools:layout="@layout/fragment_cardiac_arrest"/>
+              android:label="Cardiac Arrest" tools:layout="@layout/fragment_cardiac_arrest"/>
+    <fragment android:id="@+id/bleeding2" android:name="com.example.alertaccident.ui.firstaids.Bleeding"
+              android:label="Bleeding" tools:layout="@layout/fragment_bleeding"/>
+    <fragment android:id="@+id/cardiacDiscomfort"
+              android:name="com.example.alertaccident.ui.firstaids.CardiacDiscomfort"
+              android:label="Cardiac Discomfort" tools:layout="@layout/fragment_cardiac_discomfort"/>
+    <fragment android:id="@+id/suffocation2" android:name="com.example.alertaccident.ui.firstaids.Suffocation"
+              android:label="Suffocation" tools:layout="@layout/fragment_suffocation"/>
+    <fragment android:id="@+id/unconsciousness2" android:name="com.example.alertaccident.ui.firstaids.Unconsciousness"
+              android:label="Unconsciousness" tools:layout="@layout/fragment_unconsciousness"/>
 </navigation>

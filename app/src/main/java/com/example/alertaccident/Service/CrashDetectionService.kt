@@ -12,6 +12,7 @@ import android.hardware.SensorManager
 import android.os.*
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.alertaccident.helper.PermissionUtils
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.home.HomeActivity
 import java.lang.Boolean.FALSE
@@ -44,13 +45,14 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
 
     override fun onShake() {
         if (check == 1) {
+            if (PermissionUtils.getCurrentActivity(this@CrashDetectionService) != "com.example.alertaccident.ui.home.HomeActivity") {
+                val i = Intent()
+                UserManager.detectCrash(this, TRUE)
+                i.setClass(this, HomeActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(i)
 
-            val i = Intent()
-            UserManager.detectCrash(this, TRUE)
-            i.setClass(this, HomeActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-
+            }
         }
 
     }
