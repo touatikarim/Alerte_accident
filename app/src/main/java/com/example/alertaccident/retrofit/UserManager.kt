@@ -139,13 +139,20 @@ object UserManager {
         editor.apply()
     }
 
-    fun detectCrash(context: Context,Crashed:Boolean){
-        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
-        val editor= sharedPref.edit()
-        editor.putBoolean("CRASH_ACCURED",Crashed)
-        editor.apply()
+    fun getAccidentDetectionService(context: Context): Boolean {
+        val o = getSharedPref(context).getBoolean("AUTO_DETECT_ACCIDENTS",false)
+        return o
     }
-
+    fun setAccidentDetectionService(b: Boolean, context: Context) {
+        getSharedPref(context).edit().putBoolean("AUTO_DETECT_ACCIDENTS", b).apply()
+    }
+    fun getNotifService(context: Context): Boolean {
+        val o = getSharedPref(context).getBoolean("NOTIF_SERVICE",false)
+        return o
+    }
+    fun setNotifService(b: Boolean, context: Context) {
+        getSharedPref(context).edit().putBoolean("NOTIF_SERVICE", b).apply()
+    }
 //    fun acitivityActive(context: Context,isActive:Boolean){
 //        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
 //        val editor= sharedPref.edit()

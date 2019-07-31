@@ -112,7 +112,7 @@
                                     android:layout_marginTop="16dp"
                                     android:layout_gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:drawableStart="@drawable/idcard"
+                                    android:drawableStart="@drawable/ic_credit_card_black_24dp"
                                     android:padding="12dp"
                                     tools:targetApi="m"
                                     tools:ignore="Autofill,LabelFor"/>

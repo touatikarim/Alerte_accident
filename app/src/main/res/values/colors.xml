@@ -12,6 +12,8 @@
     <color name="twitter_blue">#38A1F3</color>
     <color name="stroke">#878787</color>
     <color name="grad_color">#A6FFCB</color>
+    <color name="gray_shade">#F5F5F5</color>
+
 
 
 </resources>

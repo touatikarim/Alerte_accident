@@ -26,6 +26,7 @@ import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.PermissionUtils
 import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.model.Contact
+import com.example.alertaccident.model.User
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.Connexion
 import com.facebook.AccessToken
@@ -59,6 +60,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var contactList: List<Contact>
     lateinit var contactRepository: ContactRepository
     lateinit var mGoogleApiClient: GoogleApiClient
+    private var CrashStatus:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
@@ -141,7 +143,8 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-        val CrashStatus=sp.getBoolean("CRASH_ACCURED",FALSE)
+        //val CrashStatus=sp.getBoolean("CRASH_ACCURED",true)
+         CrashStatus=UserManager.getAccidentDetectionService(this)
         if (CrashStatus) {
             Toast.makeText(this, "CRASHED", Toast.LENGTH_LONG).show()
             val builder = AlertDialog.Builder(this)
@@ -150,13 +153,13 @@ class HomeActivity : AppCompatActivity() {
                 "OK"
             ) { _, _ -> sendCrashAlert()
                 sendSms()
-                UserManager.detectCrash(this, FALSE)
+               // UserManager.detectCrash(this, FALSE)
 
 
             }
                 .setNegativeButton("No, Don't send ") { dialog, _ ->
                     dialog.dismiss()
-                    UserManager.detectCrash(this, FALSE)
+                   // UserManager.detectCrash(this, FALSE)
                 }
             builder.show()
         }

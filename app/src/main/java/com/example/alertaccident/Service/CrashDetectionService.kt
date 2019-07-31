@@ -37,7 +37,7 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
         this.mAccelerometer = this.mSensorManager!!.getDefaultSensor(1)
         mShaker = CrashListener(this)
         mShaker!!.setOnCrashListener(this)
-        //Toast.makeText(this@CrashDetectionService, "Service is created!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this@CrashDetectionService, "Service is created!", Toast.LENGTH_LONG).show()
         Log.d(packageName, "Created the Service!")
         check = 1
     }
@@ -47,15 +47,19 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
         if (check == 1) {
             if (PermissionUtils.getCurrentActivity(this@CrashDetectionService) != "com.example.alertaccident.ui.home.HomeActivity") {
                 val i = Intent()
-                UserManager.detectCrash(this, TRUE)
-                i.setClass(this, HomeActivity::class.java)
-                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(i)
+                //UserManager.detectCrash(this, true)
+                if (UserManager.getAccidentDetectionService(this)) {
+                    i.setClass(this, HomeActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(i)
 
+
+                }
             }
         }
 
     }
+
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

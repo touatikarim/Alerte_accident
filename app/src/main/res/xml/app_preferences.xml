@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+    <PreferenceCategory
+            android:title="Basic Settings"
+
+    >
+        <SwitchPreference
+                android:key="notif"
+                android:icon="@drawable/ic_notifications_black_24dp"
+                android:summary="Tap to receive notifications"
+                app:iconSpaceReserved="false"
+                android:title="Alert notification"/>
+        <SwitchPreference
+                android:key="Gps"
+                app:allowDividerBelow="true"
+                app:allowDividerAbove="true"
+                android:icon="@drawable/ic_location_on_black_24dp"
+                app:iconSpaceReserved="false"
+                android:summary="Tap to enable/Disable GPS"
+                android:title="GPS"/>
+        <SwitchPreference
+                android:key="accident"
+                app:allowDividerAbove="true"
+                app:iconSpaceReserved="false"
+                android:icon="@drawable/ic_directions_car_black_24dp"
+                android:summary="Tap to enable/Disable automatic accident detection"
+                android:title="Accident Detection"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Profile Settings">
+        <Preference
+                android:icon="@drawable/ic_person_black_24dp"
+                android:key="update"
+                android:selectable="true"
+                android:summary="Change your profile details"
+                app:iconSpaceReserved="false"
+                android:title="Update Profile"/>
+        <Preference
+                android:key="update_pass"
+                android:icon="@drawable/ic_lock_black_24dp"
+                app:allowDividerBelow="true"
+                android:selectable="true"
+                app:allowDividerAbove="true"
+                app:iconSpaceReserved="false"
+                android:summary="Change your password"
+                android:title="Update password"/>
+        <Preference
+                android:key="dess_acc"
+                android:icon="@drawable/ic_remove_circle_black_24dp"
+                app:allowDividerBelow="true"
+                app:allowDividerAbove="true"
+                android:selectable="true"
+                app:iconSpaceReserved="false"
+                android:summary="Remove your account completely"
+                android:title="Desactivate Account"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
