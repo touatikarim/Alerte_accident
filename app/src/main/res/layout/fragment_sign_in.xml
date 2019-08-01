@@ -63,6 +63,7 @@
                                 android:id="@+id/text_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/email">
                             <EditText
                                     android:id="@+id/id_email"
@@ -83,6 +84,7 @@
                                 android:id="@+id/pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/password"
                                 tools:ignore="DuplicateIds">
                             <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText

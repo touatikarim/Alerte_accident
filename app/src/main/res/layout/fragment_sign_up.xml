@@ -13,7 +13,8 @@
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent"
+                    tools:ignore="RedundantNamespace">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
@@ -62,6 +63,7 @@
                                 android:id="@+id/name_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/name">
                             <EditText
                                     android:id="@+id/id_name"
@@ -83,6 +85,7 @@
                                 android:id="@+id/number_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/number">
                             <EditText
                                     android:id="@+id/id_phone"
@@ -103,6 +106,7 @@
                                 android:id="@+id/CIN_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/cin">
                             <EditText
                                     android:id="@+id/id_CIN"
@@ -123,6 +127,7 @@
                                 android:id="@+id/text_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/email">
                             <EditText
                                     android:id="@+id/id_email"
@@ -143,6 +148,7 @@
                                 android:id="@+id/pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/password"
                                 tools:ignore="DuplicateIds">
                             <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
@@ -163,6 +169,7 @@
                                 android:id="@+id/confirm_pass_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/confirmpassword"
                                 tools:ignore="DuplicateIds">
                         <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
