@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_alerts.*
 import android.location.Location.distanceBetween
+import android.widget.LinearLayout
 import com.example.alertaccident.retrofit.UserManager
 
 
@@ -26,7 +27,7 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
     private lateinit var alerts:ArrayList<AlertModel>
     var items:Int=0
 
-    override fun showAlerts(recyclerView:RecyclerView) {
+    override fun showAlerts(recyclerView:RecyclerView,emptyRecyclerView:LinearLayout) {
         val sp = UserManager.getSharedPref(context)
         val user_latitude=sp.getString("USER_LAT","").toDouble()
         val user_longitude=sp.getString("USER_LNG","").toDouble()   
@@ -55,9 +56,15 @@ class AlertsPresenterImpl(internal var alertsView: AlertsView):IAlertsPresenter 
                 alertsView.load(View.GONE)
                 recyclerView.setHasFixedSize(true)
                 recyclerView.setItemViewCacheSize(20)
+                if (alerts.isEmpty()){
+                   emptyRecyclerView.visibility=View.VISIBLE
 
+                }
+                else{
 
-                recyclerView.visibility=View.VISIBLE
+                    emptyRecyclerView.visibility=View.GONE
+                    recyclerView.visibility=View.VISIBLE
+            }
             }
 
         })

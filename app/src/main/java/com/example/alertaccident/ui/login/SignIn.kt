@@ -128,7 +128,7 @@ class SignIn : Fragment(),SigninView,GoogleApiClient.OnConnectionFailedListener 
             val password = id_password.text.toString()
             loginpresnter.onLogin(email, password)
             loginpresnter.login(email, password,btn_login)
-            btn_login.setEnabled(false)
+
 
         }
 

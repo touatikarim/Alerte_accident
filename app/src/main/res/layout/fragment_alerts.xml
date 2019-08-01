@@ -31,17 +31,33 @@
                 android:indeterminate="true"
                 android:layout_marginTop="180dp"
         />
-        <TextView
-                android:id="@+id/no_alerts"
-                android:layout_width="fill_parent"
+        <LinearLayout
+                android:id="@+id/empty_recycler"
+                android:layout_marginTop="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="350dp"
-                android:text="@string/no_alerts"
-                android:visibility="gone"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+            <ImageView android:layout_width="90dp"
+                       android:layout_height="90dp"
+                       android:layout_gravity="center"
+                       tools:ignore="ContentDescription"
+                       android:src="@drawable/ic_search_black_24dp"/>
+            <TextView
+                    android:id="@+id/msg"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:text="@string/no_alerts"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
