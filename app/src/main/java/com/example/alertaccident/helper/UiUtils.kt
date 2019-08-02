@@ -27,7 +27,7 @@ import com.example.alertaccident.ui.NotificationDetails
 object UiUtils {
     //private var spinnerdialog: SpinnerDialog? = null
     private var notificationManager:NotificationManager?=null
-    private var notif:Boolean=false
+    private var notif:Boolean=true
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -129,6 +129,7 @@ object UiUtils {
     fun sendNotification(context: Context, title: String, description: String,image:Bitmap?,alertId:String?) {
         val sp = UserManager.getSharedPref(context)
         val last_alert = sp.getString("LAST_ALERT_ID", "")
+        notif=UserManager.getNotifService(context)
         if(alertId!=last_alert && notif) {
             if (notificationManager != null) {
                 val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

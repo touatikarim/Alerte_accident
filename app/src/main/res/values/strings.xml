@@ -264,4 +264,5 @@
     </string>
     <string name="step4_fainting">Regularly check if the victim is breathing until help arrives.</string>
     <string name="fields">Invalide password</string>
+    <string name="email_pattern">Please enter a valid email address</string>
 </resources>

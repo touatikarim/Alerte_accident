@@ -118,6 +118,8 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
              val isLoginsucces= isDataValid(email,password)
              if (isLoginsucces==0)
                  signinview.onError(context.getString(R.string.email_address))
+             else if(isLoginsucces==1)
+                signinview.onError(context.getString(R.string.email_pattern))
              else if(isLoginsucces==2)
                  signinview.onError(context.getString(R.string.nopassword))
              else if(isLoginsucces==3)

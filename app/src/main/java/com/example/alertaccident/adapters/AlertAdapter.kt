@@ -90,6 +90,10 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)
                findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null, Constants.options)
             }
+            accident_pic.setOnClickListener {
+                UserManager.setAlertPic(alert.imageurl,context)
+                findNavController().navigate(R.id.action_alerts_dest_to_accidentPic,null,Constants.options)
+            }
         }
 
     }

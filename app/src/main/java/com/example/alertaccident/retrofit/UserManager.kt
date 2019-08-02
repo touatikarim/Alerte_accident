@@ -153,12 +153,13 @@ object UserManager {
     fun setNotifService(b: Boolean, context: Context) {
         getSharedPref(context).edit().putBoolean("NOTIF_SERVICE", b).apply()
     }
-//    fun acitivityActive(context: Context,isActive:Boolean){
-//        sharedPref = context.getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE)
-//        val editor= sharedPref.edit()
-//        editor.putBoolean("ACTIVITY_ACTIVE",isActive)
-//        editor.apply()
-//    }
+    fun getAlertPic(context: Context):String{
+        val ch= getSharedPref(context).getString("PIC_URL","")
+        return  ch
+    }
+    fun setAlertPic(ch:String?,context: Context){
+        getSharedPref(context).edit().putString("PIC_URL",ch).apply()
+    }
 
 
 

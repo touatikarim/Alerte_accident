@@ -86,8 +86,10 @@
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="@color/twitter_blue"
                                 android:hint="@string/password"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="@color/twitter_blue"
                                 tools:ignore="DuplicateIds">
-                            <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/id_password"
                                     android:inputType="textPassword"
                                     android:layout_width="match_parent"
@@ -97,8 +99,6 @@
                                     android:layout_marginBottom="20dp"
                                     android:drawableTint="@color/twitter_blue"
                                     android:drawableStart="@drawable/ic_lock_black_24dp"
-                                    app:drawable_show="@drawable/ic_visibility_off_black_24dp"
-                                    app:drawable_hide="@drawable/ic_visibility_black_24dp"
                                     android:padding="12dp"
                                     tools:targetApi="m"/>
                         </com.google.android.material.textfield.TextInputLayout>

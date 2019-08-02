@@ -23,6 +23,7 @@
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
         <action android:id="@+id/action_alerts_dest_to_map_dest" app:destination="@id/map_dest"/>
+        <action android:id="@+id/action_alerts_dest_to_accidentPic" app:destination="@id/accidentPic"/>
     </fragment>
 
     <fragment android:id="@+id/map_dest"
@@ -90,4 +91,6 @@
               android:label="Suffocation" tools:layout="@layout/fragment_suffocation"/>
     <fragment android:id="@+id/unconsciousness2" android:name="com.example.alertaccident.ui.firstaids.Unconsciousness"
               android:label="Unconsciousness" tools:layout="@layout/fragment_unconsciousness"/>
+    <fragment android:id="@+id/accidentPic" android:name="com.example.alertaccident.ui.AccidentPic"
+              android:label="Accident Picture" tools:layout="@layout/fragment_accident_pic"/>
 </navigation>
