@@ -35,166 +35,261 @@
                         android:textColor="@color/black"
                         android:textSize="26sp"
                         android:textStyle="bold"/>
+                <!--<ProgressBar-->
+                        <!--android:id="@+id/load_image"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:gravity="center"-->
+                        <!--android:indeterminate="true"-->
+                        <!--android:layout_marginTop="8dp"-->
+                <!--/>-->
+
+
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
+
+
                 <ProgressBar
                         android:id="@+id/load_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:indeterminate="true"
-                        android:layout_marginTop="8dp"
-                />
+                        android:layout_marginTop="10dp"/>
                 <ImageView
                         android:layout_marginBottom="8dp"
                         android:id="@+id/accident_pic"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="300dp"
                         android:scaleType="centerCrop"
+                        android:focusable="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="ContentDescription"/>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:layout_marginBottom="10dp"
-                              android:orientation="horizontal">
-                    <TextView
-                            android:id="@+id/description"
-                            android:focusable="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center"
-                            android:text="@string/desc_alert"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
-                            android:textStyle="bold"/>
-                    <TextView
-                            android:id="@+id/desc"
-                            android:textSize="16sp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/twitter_blue" />
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:layout_marginBottom="10dp"
-                              android:orientation="horizontal">
-                    <TextView
-                            android:id="@+id/date"
-                            android:focusable="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center"
-                            android:text="@string/date_details"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
-                            android:textStyle="bold"/>
-                    <TextView
-                            android:id="@+id/date_text"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/twitter_blue" />
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:layout_marginBottom="10dp"
-                              android:orientation="horizontal">
-                    <TextView
-                            android:id="@+id/location"
-                            android:focusable="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center"
-                            android:text="@string/accident_location_details"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
-                            android:textStyle="bold"/>
-                    <TextView
-                            android:id="@+id/location_id"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/twitter_blue" />
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:layout_marginBottom="10dp"
-                              android:orientation="horizontal">
-                    <TextView
-                            android:id="@+id/victims"
-                            android:focusable="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_gravity="center"
-                            android:text="@string/victims_alert"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
-                            android:textStyle="bold"/>
-                    <TextView
-                            android:id="@+id/victims_text"
-                            android:layout_marginBottom="10dp"
-                            android:textSize="16sp"
-                            android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
+                <TextView
+                        android:id="@+id/desc"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_height="wrap_content"/>
 
                 <TextView
-                        android:id="@+id/check_map"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/check_map"
-                        android:focusable="true"
+                        android:id="@+id/nbr_victims"
+                        android:layout_marginBottom="10dp"
                         android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:drawableStart="@drawable/ic_accessibility_black_24dp"
+                        android:drawableTint="@color/twitter_blue"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+
+                <TextView
+                        android:id="@+id/date_notif"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:drawableStart="@drawable/ic_access_time_black_24dp"
+                        android:drawableTint="@color/twitter_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+                <TextView
+                        android:id="@+id/location_notif"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:drawableStart="@drawable/ic_location_on_black_24dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <ImageView
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/map_notif"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_arrow_forward_black_24dp"
+                        android:focusable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        tools:ignore="ContentDescription"/>
+            </LinearLayout>
 
 
 
 
 
             </LinearLayout>
-        </ScrollView>
+     </ScrollView>
+
     </RelativeLayout>
 
 </FrameLayout>
+
+        <!--<ImageView-->
+                        <!--android:layout_marginBottom="8dp"-->
+                        <!--android:id="@+id/accident_pic"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="200dp"-->
+                        <!--android:scaleType="centerCrop"-->
+                        <!--app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--app:layout_constraintStart_toStartOf="parent"-->
+                        <!--app:layout_constraintTop_toTopOf="parent"-->
+                        <!--tools:ignore="ContentDescription"/>-->
+                <!--<LinearLayout android:layout_width="match_parent"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:layout_marginBottom="10dp"-->
+                              <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/description"-->
+                            <!--android:focusable="true"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="20dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="@string/desc_alert"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="13sp"-->
+                            <!--android:textStyle="bold"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/desc"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_marginStart="20dp"-->
+                            <!--android:layout_height="wrap_content"/>-->
+
+                <!--</LinearLayout>-->
+
+                <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
+                <!--<LinearLayout android:layout_width="match_parent"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:layout_marginBottom="10dp"-->
+                              <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/date"-->
+                            <!--android:focusable="true"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="20dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="@string/date_details"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="13sp"-->
+                            <!--android:textStyle="bold"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/date_text"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginStart="20dp"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"/>-->
+                <!--</LinearLayout>-->
+                <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
+                <!--<LinearLayout android:layout_width="match_parent"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:layout_marginBottom="10dp"-->
+                              <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/location"-->
+                            <!--android:focusable="true"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="20dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="@string/accident_location_details"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="13sp"-->
+                            <!--android:textStyle="bold"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/location_id"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_marginStart="20dp"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"/>-->
+                <!--</LinearLayout>-->
+                <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
+                <!--<LinearLayout android:layout_width="match_parent"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:layout_marginBottom="10dp"-->
+                              <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/victims"-->
+                            <!--android:focusable="true"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="20dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:text="@string/victims_alert"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="13sp"-->
+                            <!--android:textStyle="bold"/>-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/victims_text"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_marginStart="20dp"-->
+                            <!--android:layout_height="wrap_content"/>-->
+                <!--</LinearLayout>-->
+
+                <!--<TextView-->
+                        <!--android:id="@+id/check_map"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/check_map"-->
+                        <!--android:focusable="true"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:textColor="@color/black"/>-->
+
+
+
+
+
+            <!--</LinearLayout>-->
+        <!--</ScrollView>-->

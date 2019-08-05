@@ -61,6 +61,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var contactRepository: ContactRepository
     lateinit var mGoogleApiClient: GoogleApiClient
     private var CrashStatus:Boolean=false
+    private var CrashNotif:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
@@ -143,9 +144,9 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-        //val CrashStatus=sp.getBoolean("CRASH_ACCURED",true)
-         CrashStatus=UserManager.getAccidentDetectionService(this)
-        if (CrashStatus) {
+        CrashStatus=UserManager.getDetectCrash(this)
+        CrashNotif=UserManager.getAccidentDetectionService(this)
+        if (CrashStatus && CrashNotif) {
             Toast.makeText(this, "CRASHED", Toast.LENGTH_LONG).show()
             val builder = AlertDialog.Builder(this)
             builder.setMessage("A collision was detected, an SMS and alert will be sent in 10 seconds")
@@ -153,13 +154,13 @@ class HomeActivity : AppCompatActivity() {
                 "OK"
             ) { _, _ -> sendCrashAlert()
                 sendSms()
-               // UserManager.detectCrash(this, FALSE)
+               UserManager.setDetectCrash(false,this)
 
 
             }
                 .setNegativeButton("No, Don't send ") { dialog, _ ->
                     dialog.dismiss()
-                   // UserManager.detectCrash(this, FALSE)
+                    UserManager.setDetectCrash(false,this)
                 }
             builder.show()
         }
@@ -256,7 +257,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    fun sendCrashAlert(){
+    fun  sendCrashAlert(){
         val sp = UserManager.getSharedPref(this)
         val email = sp.getString("USER_EMAIL", "")
         val latitude=sp.getString("USER_LAT","")

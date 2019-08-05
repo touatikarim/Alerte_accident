@@ -134,7 +134,7 @@
         <u>Alert Description:</u>
     </string>
     <string name="check_map">
-        <u>Check on map</u>
+        <u>\u0020 Check on map</u>
     </string>
     <string-array name="services">
         <item>samu</item>
@@ -265,4 +265,13 @@
     <string name="step4_fainting">Regularly check if the victim is breathing until help arrives.</string>
     <string name="fields">Invalide password</string>
     <string name="email_pattern">Please enter a valid email address</string>
+    <string name="no_cars">No vehicles added</string>
+    <string name="add_vehicle">Add your vehicle</string>
+    <string name="matricule">\u0020 Registration number</string>
+    <string name="car">\u0020 Car name</string>
+    <string name="color">\u0020 Car color</string>
+    <string name="car_doors">Number of doors:</string>
+    <string name="car_list">Vehicles</string>
+    <string name="Reports">Reports</string>
+    <string name="no_reports">No accident Reports</string>
 </resources>

@@ -160,7 +160,13 @@ object UserManager {
     fun setAlertPic(ch:String?,context: Context){
         getSharedPref(context).edit().putString("PIC_URL",ch).apply()
     }
-
+    fun setDetectCrash(b:Boolean,context: Context){
+        getSharedPref(context).edit().putBoolean("CRASH_ACCURED",b).apply()
+    }
+    fun getDetectCrash(context: Context):Boolean{
+      val  b=getSharedPref(context).getBoolean("CRASH_ACCURED",false)
+        return b
+    }
 
 
 

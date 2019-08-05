@@ -1,5 +1,6 @@
 package com.example.alertaccident.ui.alerts
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -32,6 +33,7 @@ class NotifDetails : Fragment() {
         return inflater.inflate(R.layout.fragment_notif_details, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sp = UserManager.getSharedPref(activity!!.baseContext)
@@ -55,10 +57,10 @@ class NotifDetails : Fragment() {
             })
             .into(accident_pic)
         desc.text=description
-        date_text.text=date
-        location_id.text=location
-        victims_text.text=victims
-        check_map.setOnClickListener {
+        date_notif.text=" "+date
+        location_notif.text=" "+location
+        nbr_victims.text=" "+victims+" victims"
+        map_notif.setOnClickListener {
             findNavController().navigate(R.id.action_notifDetails_to_map2,null,Constants.options)
 
         }

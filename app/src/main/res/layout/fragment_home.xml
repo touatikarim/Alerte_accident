@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".ui.home.Home">
     <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -79,6 +79,7 @@
                         android:backgroundTint="@color/twitter_blue"
                         android:layout_gravity="center"
                         android:layout_width="match_parent"
+                        android:layout_marginBottom="190dp"
                         android:layout_height="wrap_content"
                         card_view:cardCornerRadius="30dp">
 
@@ -116,16 +117,24 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <ImageButton
+                <!--<ImageButton-->
+                        <!--android:id="@+id/createalert"-->
+                        <!--android:layout_marginTop="150dp"-->
+                        <!--android:layout_width="100dp"-->
+                        <!--android:layout_height="100dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:focusable="true"-->
+                        <!--android:tint="@color/twitter_blue"-->
+                        <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+                        <!--android:src="@drawable/plus" android:contentDescription="@string/logo"/>-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/createalert"
-                        android:layout_marginTop="150dp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        style="@style/Widget.MaterialComponents.FloatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:focusable="true"
-                        android:tint="@color/twitter_blue"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/plus" android:contentDescription="@string/logo"/>
+                        android:layout_margin="10dp"
+                        app:srcCompat="@drawable/ic_add_white_24dp"/>
                 <TextView
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"

@@ -47,7 +47,7 @@ class CrashDetectionService:Service(),CrashListener.OnCrashListener {
         if (check == 1) {
             if (PermissionUtils.getCurrentActivity(this@CrashDetectionService) != "com.example.alertaccident.ui.home.HomeActivity") {
                 val i = Intent()
-                //UserManager.detectCrash(this, true)
+                UserManager.setDetectCrash(true,this)
                 if (UserManager.getAccidentDetectionService(this)) {
                     i.setClass(this, HomeActivity::class.java)
                     i.flags = Intent.FLAG_ACTIVITY_NEW_TASK

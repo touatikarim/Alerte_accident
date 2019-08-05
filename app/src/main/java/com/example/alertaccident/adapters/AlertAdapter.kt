@@ -53,17 +53,17 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
 
         @SuppressLint("SetTextI18n")
         fun bind(alert:AlertModel)=with(itemView){
-            sender.text=context.getString(R.string.email_alert)+alert.email
+            sender.text=" "+alert.email //context.getString(R.string.email_alert)+
             if (alert.email.isEmpty()){
-                sender.text=context.getString(R.string.email_alert)+"Unregistred user"
+                sender.text="Unregistred user"//context.getString(R.string.email_alert)+
             }
-            service.text=context.getString(R.string.service_alert)+alert.service
-            victim.text=context.getString(R.string.victims_alert)+alert.victims
-            description.text=context.getString(R.string.desc_alert)+alert.desc
+            service.text=" "+alert.service//context.getString(R.string.service_alert)+
+            victim.text=" "+alert.victims+" victims"//context.getString(R.string.victims_alert)+
+            description.text=alert.desc//context.getString(R.string.desc_alert)+
             lat.text=alert.latitude
             lng.text=alert.longitude
-            date.text=context.getString(R.string.date)+alert.date
-            location.text=context.getString(R.string.accident_location)+alert.location
+            date.text=" "+alert.date//context.getString(R.string.date)+
+            location.text=" "+alert.location//context.getString(R.string.accident_location)+
             if(!alert.imageurl.isNullOrEmpty()) {
 
                Glide.with(context).load(alert.imageurl)
@@ -86,7 +86,7 @@ class AlertAdapter(var items:ArrayList<AlertModel>,val context: Context):Recycle
                 Glide.with(context).load(R.drawable.no_picture_holder).into(pic)
             }
 
-            check_map.setOnClickListener {
+            map.setOnClickListener {
                 UserManager.savealertlocation(lat.text.toString(),lng.text.toString(),context)
                findNavController().navigate(R.id.action_alerts_dest_to_map_dest,null, Constants.options)
             }
