@@ -98,7 +98,9 @@
         <action android:id="@+id/action_list_vehicle_to_add_Vehicle" app:destination="@id/add_Vehicle"/>
     </fragment>
     <fragment android:id="@+id/add_Vehicle" android:name="com.example.alertaccident.ui.Vehicule.Add_Vehicle"
-              android:label="Vehicle Creation" tools:layout="@layout/fragment_add__vehicle"/>
+              android:label="Vehicle Creation" tools:layout="@layout/fragment_add__vehicle">
+        <action android:id="@+id/action_add_Vehicle_to_Vehicles" app:destination="@id/Vehicles"/>
+    </fragment>
     <fragment android:id="@+id/accident_Reports" android:name="com.example.alertaccident.ui.reports.Accident_Reports"
               android:label="Accident Reports" tools:layout="@layout/fragment_accident__reports"/>
 </navigation>

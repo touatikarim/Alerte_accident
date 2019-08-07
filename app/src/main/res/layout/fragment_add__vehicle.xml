@@ -91,15 +91,35 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/CIN_input_layout"
+                            android:id="@+id/color_input_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/twitter_blue"
                             android:hint="@string/color">
                         <EditText
-                                android:id="@+id/id_CIN"
+                                android:id="@+id/id_color"
                                 android:drawableTint="@color/twitter_blue"
-                                android:inputType="phone"
+                                android:inputType="text"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="16dp"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_color_lens_black_24dp"
+                                android:padding="12dp"
+                                tools:targetApi="m"
+                                tools:ignore="Autofill,LabelFor"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/assurance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/twitter_blue"
+                            android:hint="@string/assurance">
+                        <EditText
+                                android:id="@+id/id_assurance"
+                                android:drawableTint="@color/twitter_blue"
+                                android:inputType="text"
                                 android:layout_width="match_parent"
                                 android:layout_marginTop="16dp"
                                 android:layout_gravity="center"
@@ -129,7 +149,7 @@
                                 android:textStyle="bold"/>
 
                         <nl.dionsegijn.steppertouch.StepperTouch
-                                android:id="@+id/stepperTouch"
+                                android:id="@+id/stepperTouch_doors"
                                 android:layout_width="150dp"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="25dp"
@@ -137,7 +157,7 @@
                                 app:stepperBackgroundColor="@color/twitter_blue"
                         />
                         <TextView
-                                android:id="@+id/nbr"
+                                android:id="@+id/nbr_doors"
                                 android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -160,6 +180,16 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
 
+                    />
+                    <ProgressBar
+                            android:id="@+id/submit_car"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:indeterminate="true"
+                            android:layout_marginTop="8dp"
                     />
                 </LinearLayout>
             </LinearLayout>

@@ -274,4 +274,6 @@
     <string name="car_list">Vehicles</string>
     <string name="Reports">Reports</string>
     <string name="no_reports">No accident Reports</string>
+    <string name="assurance">Insurance</string>
+
 </resources>
