@@ -275,5 +275,11 @@
     <string name="Reports">Reports</string>
     <string name="no_reports">No accident Reports</string>
     <string name="assurance">Insurance</string>
+    <string name="add_vehicle_success">Vehicle added succesfully</string>
+    <string name="driver_b">Driver B identity:</string>
+    <string name="permis">Driver licence</string>
+    <string name="vehicle_b">Vehicle B description:</string>
+    <string name="car_name">Car type</string>
+    <string name="send">Send Report</string>
 
 </resources>

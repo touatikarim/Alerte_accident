@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+    <ImageView
+            android:id="@+id/car_pic"
+            android:layout_marginBottom="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            tools:ignore="ContentDescription"/>
+        <TextView
+                android:id="@+id/car_number"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+        <TextView
+                android:id="@+id/car_name"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+        <TextView
+                android:id="@+id/car_color"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+        <TextView
+                android:id="@+id/car_insurance"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
 
+        <CheckBox android:id="@+id/checkbox_meat"
+                  android:focusable="true"
+                  android:layout_width="wrap_content"
+                  android:layout_gravity="center_vertical"
+                  android:layout_marginStart="100dp"
+                  android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/darker_shade" />
 </LinearLayout>

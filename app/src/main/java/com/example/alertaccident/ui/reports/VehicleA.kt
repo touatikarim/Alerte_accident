@@ -3,41 +3,34 @@ package com.example.alertaccident.ui.reports
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.alertaccident.R
+import com.example.alertaccident.adapters.VehicleAccidentAdapter
+import com.example.alertaccident.adapters.VehicleAdapter
+import com.example.alertaccident.helper.Constants
+import com.example.alertaccident.model.VehiculeModel
+import com.example.alertaccident.retrofit.UserManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_vehicle.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [VehicleA.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [VehicleA.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class VehicleA : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+lateinit var vehicles:ArrayList<VehiculeModel>
+    private lateinit var adapter:VehicleAccidentAdapter
+    var items:Int=0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,58 +39,55 @@ class VehicleA : Fragment() {
         return inflater.inflate(R.layout.fragment_vehicle, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val sp = UserManager.getSharedPref(activity!!.baseContext)
+        val name = sp.getString("USER_NAME", "")
+        user_name.text = name
+        getListVehicule(recyclerView_car_accident)
+        next_page.setOnClickListener {
+            findNavController().navigate(R.id.action_vehicleA_to_vehicleB,null,Constants.options)
         }
-    }
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
+    fun getListVehicule(recyclerView: RecyclerView) {
+        val sp = UserManager.getSharedPref(activity!!.baseContext)
+        val user_id=sp.getString("USER_ID","")
+        val layoutmanager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutmanager
+        val reference= FirebaseDatabase.getInstance().getReference().child("Vehicules")
+        reference.addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.d("error",p0.toString())
+            }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                vehicles= ArrayList<VehiculeModel>()
+                for (dataSnapshot1 in dataSnapshot.children){
+                    val p = dataSnapshot1.getValue(VehiculeModel::class.java)
+                    val vehicule_user_id=p!!.id
+                    if(user_id==vehicule_user_id){
+                        vehicles.add(p)
+                    }
+                }
+                adapter = VehicleAccidentAdapter(vehicles,activity!!.baseContext)
+                adapter.setHasStableIds(true)
+                recyclerView.adapter = adapter
+                items=adapter.itemCount
+                //listvehicleView.load(View.GONE)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.setItemViewCacheSize(20)
+                if (vehicles.isEmpty()){
+                    empty_recycler.visibility=View.VISIBLE
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VehicleA.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VehicleA().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                }
+                else{
+                    empty_recycler.visibility=View.GONE
+                    recyclerView_car_accident.visibility=View.VISIBLE
                 }
             }
+
+
+        })
     }
 }

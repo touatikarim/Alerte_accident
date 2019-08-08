@@ -102,5 +102,15 @@
         <action android:id="@+id/action_add_Vehicle_to_Vehicles" app:destination="@id/Vehicles"/>
     </fragment>
     <fragment android:id="@+id/accident_Reports" android:name="com.example.alertaccident.ui.reports.Accident_Reports"
-              android:label="Accident Reports" tools:layout="@layout/fragment_accident__reports"/>
+              android:label="Accident Reports" tools:layout="@layout/fragment_accident__reports">
+        <action android:id="@+id/action_accident_Reports_to_vehicleA" app:destination="@id/vehicleA"/>
+    </fragment>
+    <fragment android:id="@+id/vehicleA" android:name="com.example.alertaccident.ui.reports.VehicleA"
+              android:label="Vehicle A" tools:layout="@layout/fragment_vehicle">
+        <action android:id="@+id/action_vehicleA_to_vehicleB" app:destination="@id/vehicleB"/>
+    </fragment>
+    <fragment android:id="@+id/vehicleB" android:name="com.example.alertaccident.ui.reports.VehicleB"
+              android:label="Vehicle B" tools:layout="@layout/fragment_vehicle_b">
+        <action android:id="@+id/action_vehicleB_to_accident_Reports" app:destination="@id/accident_Reports"/>
+    </fragment>
 </navigation>

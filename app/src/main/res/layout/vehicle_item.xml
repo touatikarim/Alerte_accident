@@ -18,21 +18,23 @@
             tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
 
 
-        <!--<ProgressBar-->
-                <!--android:id="@+id/load_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:indeterminate="true"-->
-                <!--android:layout_marginTop="10dp"/>-->
+        <ProgressBar
+                android:id="@+id/load_image_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:indeterminate="true"
+                />
         <ImageView
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:id="@+id/accident_pic"
-                android:layout_width="180dp"
+                android:id="@+id/car_pic"
+                android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:focusable="true"
-                android:layout_gravity="start"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,37 +46,29 @@
             tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
         <TextView
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:drawableStart="@drawable/ic_directions_car_black_24dp"
-                android:drawableTint="@color/twitter_blue"
+                android:textSize="19sp"
+                android:textStyle="bold"
                 android:id="@+id/car_name"
+
                 android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
         <TextView
                 android:id="@+id/registration_number"
                 android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:drawableStart="@drawable/ic_credit_card_black_24dp"
-                android:drawableTint="@color/twitter_blue"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:layout_gravity="center"
+                android:gravity="center"
+
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
-        <TextView
-                android:id="@+id/color"
-                android:layout_marginBottom="50dp"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/ic_color_lens_black_24dp"
-                android:drawableTint="@color/twitter_blue"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+
 
 
     </LinearLayout>

@@ -167,6 +167,15 @@ object UserManager {
       val  b=getSharedPref(context).getBoolean("CRASH_ACCURED",false)
         return b
     }
+    fun saveVehicle(context:Context,color:String,assurance:String,name:String,number:String){
+        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("CAR_COLOR",color)
+        editor.putString("CAR_INSURANCE",assurance)
+        editor.putString("CAR_NAME",name)
+        editor.putString("CAR_NUMBER",number)
+        editor.apply()
+    }
 
 
 

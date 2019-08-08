@@ -5,4 +5,5 @@ interface AddVehicleView {
     fun onError(message:String)
     fun load()
     fun navigate()
+    fun load_image(state:Int)
 }
