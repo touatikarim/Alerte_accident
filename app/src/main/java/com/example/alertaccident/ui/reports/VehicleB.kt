@@ -44,7 +44,7 @@ class VehicleB : Fragment(),VehicleBView {
 
     override fun navigate() {
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_vehicleB_to_accident_Reports ,null, Constants.options) }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_vehicleB_to_accident_Reports ,null, Constants.options) }, 1700)
     }
 
 

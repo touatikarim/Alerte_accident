@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
     <LinearLayout
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
@@ -62,15 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
 
-        <CheckBox android:id="@+id/checkbox_meat"
-                  android:focusable="true"
-                  android:layout_width="wrap_content"
-                  android:layout_gravity="center_vertical"
-                  android:layout_marginStart="100dp"
-                  android:layout_height="wrap_content"
-        />
 
 </LinearLayout>
+    <CheckBox android:id="@+id/checkbox_meat"
+              android:focusable="true"
+              android:layout_width="wrap_content"
+              android:layout_gravity="end|center"
+              android:layout_height="wrap_content"
+    />
     <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

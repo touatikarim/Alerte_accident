@@ -56,7 +56,7 @@ class Add_Vehicle : Fragment(),AddVehicleView {
 
     override fun navigate() {
         load()
-        Handler().postDelayed({ findNavController().navigate(R.id.action_add_Vehicle_to_Vehicles,null, Constants.options) }, 1500)
+        Handler().postDelayed({ findNavController().navigate(R.id.action_add_Vehicle_to_Vehicles,null, Constants.options) }, 1700)
 
     }
 
