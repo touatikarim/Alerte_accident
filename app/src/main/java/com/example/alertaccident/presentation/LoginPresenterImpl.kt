@@ -181,6 +181,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                              val user=User(email,"",name,id,"")
                              UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
+                             generateToken(id)
                          }
                          else{
                              val errorJsonString = response.errorBody()?.string()
@@ -209,6 +210,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                              val name=sp.getString("USER_NAME","")
                              UserManager.saveCredentials(context,User(email,"",name,id,""))
                              signinview.onSuccess(response.body()!!.message)
+                             generateToken(id)
                          }
                          else {
                              val errorJsonString = response.errorBody()?.string()
