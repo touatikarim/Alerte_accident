@@ -148,17 +148,24 @@ class HomeActivity : AppCompatActivity() {
         CrashNotif=UserManager.getAccidentDetectionService(this)
         if (CrashStatus && CrashNotif) {
             Toast.makeText(this, "CRASHED", Toast.LENGTH_LONG).show()
+            val handler=Handler()
+            val r= Runnable {
+                sendCrashAlert()
+                sendSms()
+                Toasty.success(this,"Alert Sent", Toast.LENGTH_SHORT).show()
+                UserManager.setDetectCrash(false,this)
+            }
+            handler.postDelayed(r,10000)
             val builder = AlertDialog.Builder(this)
             builder.setMessage("A collision was detected, an SMS and alert will be sent in 10 seconds")
-            builder.setPositiveButton(
-                "OK"
-            ) { _, _ -> sendCrashAlert()
-                sendSms()
-               UserManager.setDetectCrash(false,this)
-
-
-            }
+//            builder.setPositiveButton("OK") { _, _ ->
+//
+//                sendCrashAlert()
+//                sendSms()
+//               UserManager.setDetectCrash(false,this)
+//            }
                 .setNegativeButton("No, Don't send ") { dialog, _ ->
+                    handler.removeCallbacks(r)
                     dialog.dismiss()
                     UserManager.setDetectCrash(false,this)
                 }
@@ -275,7 +282,8 @@ class HomeActivity : AppCompatActivity() {
         UserManager.savecurrentAlertId(this,alert_id)
         val alert = AlertModel(alert_id, user_id, "Road Accident", "Hospital", email, "1",latitude,longitude,"","",date,location)
         ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
-            Toasty.success(this,"Alert Sent", Toast.LENGTH_SHORT).show()
+//            Toasty.success(this,"Alert Sent", Toast.LENGTH_SHORT).show()
+            Log.d("msg","sent")
         }
     }
 

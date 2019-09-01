@@ -281,5 +281,6 @@
     <string name="vehicle_b">Vehicle B description:</string>
     <string name="car_name">Car type</string>
     <string name="send">Send Report</string>
+    <string name="add_alert_success">Alert sent succefully</string>
 
 </resources>

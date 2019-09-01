@@ -55,7 +55,7 @@ class CreateAlertPresenterImpl(internal var createAlertView: CreateAlertView):Ic
             val alert = AlertModel(alert_id, user_id, desc, service, email, victims,latitude,longitude,url,vid_url,date,location)
             ref.child(alert_id!!).setValue(alert).addOnCompleteListener {
                 createAlertView.load_alert(View.GONE)
-                createAlertView.onSuccess(context.getString(R.string.add_vehicle_success))
+                createAlertView.onSuccess(context.getString(R.string.add_alert_success))
                 createAlertView.navigate()
             }
         }
