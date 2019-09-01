@@ -114,7 +114,7 @@ class MapPresenterImpl:IMapPresenter {
         val googlePlaceUrl=StringBuilder(Constants.placeurl)
         googlePlaceUrl.append("json?")
         googlePlaceUrl.append("location=$latitude,$longitude")
-        googlePlaceUrl.append("&radius=1000")
+        googlePlaceUrl.append("&radius=10000")
         googlePlaceUrl.append("&type=$typePlace")
         googlePlaceUrl.append("&key=AIzaSyCyuJmNnafNVdx390P07u5X6JwNiZYySnI")
         return googlePlaceUrl.toString()
