@@ -84,7 +84,7 @@ class UserContacts : Fragment(),UserContactView {
     }
 
     private fun loadData() {
-        val disposable = contactRepository!!.getContactById(user_id)
+        val disposable = contactRepository!!.showContactById(user_id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({ contacts -> onGetAllContactSuccess(contacts) })

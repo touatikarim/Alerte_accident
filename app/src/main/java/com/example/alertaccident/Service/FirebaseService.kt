@@ -1,9 +1,8 @@
-package com.example.alertaccident.firebase
+package com.example.alertaccident.Service
 
-import android.content.Context
-import android.util.Log
+import android.graphics.Bitmap
+import com.example.alertaccident.R
 import com.example.alertaccident.helper.UiUtils
-import com.example.alertaccident.model.AlertModel
 import com.example.alertaccident.retrofit.UserManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -22,9 +21,13 @@ class FirebaseService:FirebaseMessagingService() {
         val alertId=p0.data.get("alert_id")
         UserManager.savealertlocation(latitude,longititude,this@FirebaseService)
         UserManager.saveAlert(this@FirebaseService,location,imageurl,date,victims,desc)
-        val image=  UiUtils.getBitmapfromUrl(imageurl!!)
-        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!,image!!,alertId)
+        if(!imageurl.isNullOrEmpty()){
+        val image=  UiUtils.getBitmapfromUrl(imageurl)
+        UiUtils.sendNotification(this@FirebaseService,"Notification",location!!,image,alertId)}
+        else {
 
+            UiUtils.sendNotification(this@FirebaseService, "Notification", location!!, null, alertId)
+        }
 
 
     }

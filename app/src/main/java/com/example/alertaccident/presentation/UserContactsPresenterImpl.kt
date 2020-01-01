@@ -26,7 +26,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
-class UserContactsPresenterImpl(internal var userContactView: UserContactView):IUserContactsPresenter {
+class  UserContactsPresenterImpl(internal var userContactView: UserContactView):IUserContactsPresenter {
 
 
     lateinit var context:Context

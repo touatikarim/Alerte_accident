@@ -6,6 +6,7 @@ import com.example.alertaccident.model.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+
 object UserManager {
     private lateinit var sharedPref: SharedPreferences
     fun saveCredentials(context: Context, user: User)
@@ -138,6 +139,43 @@ object UserManager {
         editor.apply()
     }
 
+    fun getAccidentDetectionService(context: Context): Boolean {
+        val o = getSharedPref(context).getBoolean("AUTO_DETECT_ACCIDENTS",false)
+        return o
+    }
+    fun setAccidentDetectionService(b: Boolean, context: Context) {
+        getSharedPref(context).edit().putBoolean("AUTO_DETECT_ACCIDENTS", b).apply()
+    }
+    fun getNotifService(context: Context): Boolean {
+        val o = getSharedPref(context).getBoolean("NOTIF_SERVICE",false)
+        return o
+    }
+    fun setNotifService(b: Boolean, context: Context) {
+        getSharedPref(context).edit().putBoolean("NOTIF_SERVICE", b).apply()
+    }
+    fun getAlertPic(context: Context):String{
+        val ch= getSharedPref(context).getString("PIC_URL","")
+        return  ch
+    }
+    fun setAlertPic(ch:String?,context: Context){
+        getSharedPref(context).edit().putString("PIC_URL",ch).apply()
+    }
+    fun setDetectCrash(b:Boolean,context: Context){
+        getSharedPref(context).edit().putBoolean("CRASH_ACCURED",b).apply()
+    }
+    fun getDetectCrash(context: Context):Boolean{
+      val  b=getSharedPref(context).getBoolean("CRASH_ACCURED",false)
+        return b
+    }
+    fun saveVehicle(context:Context,color:String,assurance:String,name:String,number:String){
+        sharedPref=context.getSharedPreferences("PREF_NAME",Context.MODE_PRIVATE)
+        val editor= sharedPref.edit()
+        editor.putString("CAR_COLOR",color)
+        editor.putString("CAR_INSURANCE",assurance)
+        editor.putString("CAR_NAME",name)
+        editor.putString("CAR_NUMBER",number)
+        editor.apply()
+    }
 
 
 

@@ -134,7 +134,7 @@
         <u>Alert Description:</u>
     </string>
     <string name="check_map">
-        <u>Check on map</u>
+        <u>\u0020 Check on map</u>
     </string>
     <string-array name="services">
         <item>samu</item>
@@ -161,7 +161,7 @@
     <string name="deletemsg">Are you sure you want to delete this ?</string>
     <string name="contact_list">List of contacts</string>
     <string name="search">Search</string>
-    <string name="no_alerts">No Alerts near your location</string>
+    <string name="no_alerts">There are no Alerts near your location</string>
     <string name="call">Call</string>
     <string name="call_button">Call Service</string>
     <string name="contact_empty">Your contact list is empty.why not start by tapping the plus to add a friend</string>
@@ -172,4 +172,115 @@
         <u>Location:</u>
     </string>
     <string name="alert_details">Alert Details</string>
+    <string name="aids">5 Basic First Aid Procedures</string>
+    <string name="arrest">
+        <u>Basic First Aid for Cardiac Arrest:</u>
+    </string>
+    <string name="arrest_details">Cardiopulmonary resuscitation (CPR) is the most important medical procedure of all. If
+        a person is in cardiac arrest and CPR is not performed, that person will die.
+    </string>
+    <string name="bleeding">
+        <u>Basic First Aid for Bleeding:</u>
+    </string>
+    <string name="bleeding_details">Regardless of how severe, almost all bleeding can be controlled. Mild bleeding will
+        usually stop on its own. If severe bleeding is not controlled, it may lead to shock and eventually death.
+    </string>
+    <string name="burns">
+        <u>Basic First Aid for Cardiac Discomfort:</u>
+    </string>
+    <string name="burn_details">The victim complains of a pain tightening his chest.
+        The pain may radiate to other parts of the body (including the arm, shoulder, neck, lower jaw, or stomach).
+        These signs may be accompanied by breathing difficulties, sweating, nausea, or even abdominal pain.
+    </string>
+    <string name="next">Next</string>
+    <string name="step0">Command someone to call 911 or the medical alert system for the locale.</string>
+    <string name="step1">Immediately start chest compressions regardless of your training. Compress hard and fast in the
+        center of the chest, allowing recoil between compressions. Hand this task over to those who are trained if and
+        when they arrive.
+    </string>
+    <string name="step2">If you are trained, use chest compressions and rescue breathing.</string>
+    <string name="step3">An AED should be applied and used. But it is essential not to delay chest compressions, so
+        finding one should be commanded to someone else while you are doing chest compressions.
+    </string>
+    <string name="intervention">Intervention Steps</string>
+    <string name="previous">Previous</string>
+    <string name="done">Done</string>
+    <string name="step0_bleeding">Avoid, if possible, any contact with the blood of the victim: ask him to compress the
+        wound himself.
+    </string>
+    <string name="step1_bleeding">Otherwise,Cover the wound with a gauze or a cloth and apply direct pressure to stop
+        the blood flow. Don\'t remove the cloth. Add more layers if needed. The cloth will help clots form to stop the
+        flow.
+    </string>
+    <string name="step2_bleeding">Lay the victim in a horizontal position.</string>
+    <string name="step3_bleeding">Ask someone present to alert the authorities or do it yourself if you are alone.
+    </string>
+    <string name="step4_bleeding">If the wound continues to bleed, compress it even more firmly.Continue compression on
+        the wound until help arrives.
+    </string>
+    <string name="step5_bleeding">Wash your hands after doing these first aid.</string>
+    <string name="step0_cardiac">Ask the victim questions: how long has this discomfort lasted? Is this the first time?
+        Has the victim been hospitalized or is taking medication for this?
+    </string>
+    <string name="step1_cardiac">Ask someone present to immediately alert the rescuers(SAMU:190) , or do it
+        yourself if you are alone.
+    </string>
+    <string name="step2_cardiac">Rest the victim in a comfortable position (lying down or, if desired, in a semi-sitting
+        or sitting position).
+    </string>
+    <string name="step3_cardiac">Check regularly that the victim is conscious and is breathing normally.</string>
+    <string name="suffocation">
+        <u>Basic First Aid for Suffocation:</u>
+    </string>
+    <string name="suffocation_details">Choking is a blockage of the upper airway by food or other objects, which
+        prevents a person from breathing effectively.
+        Choking can cause a simple coughing fit, but complete blockage of the airway may lead to death.
+    </string>
+    <string name="step0_choking">Give a maximum of 5 slaps on the back of the victim. After each slap, check if
+        everything goes in order.
+    </string>
+    <string name="step1_choking">If the slaps in the back have no effect, give a maximum of 5 abdominal compressions.
+    </string>
+    <string name="step2_choking">If the problem is still not resolved, alternate 5 slaps on the back and 5 abdominal
+        compressions.
+    </string>
+    <string name="step3_choking">If the victim becomes unconscious, place the victim gently on the ground and
+        immediately alert the emergency services, then undertake a cardiopulmonary resuscitation starting with 30 chest
+        compressions
+    </string>
+    <string name="step4_choking">Continue resuscitation until rescuers arrives or the victim resumes normal breathing.
+    </string>
+    <string name="unconsciousness_details">Unconsciousness is when a person suddenly becomes unable to respond to
+        stimuli and appears to be asleep. A person may be unconscious for a few seconds(as in fainting )or for longer
+        periods of time.
+    </string>
+    <string name="unconsciousness">
+        <u>Basic First Aid for Unconsciousness:</u>
+    </string>
+    <string name="step0_fainting">Check that the victim does not react.</string>
+    <string name="step1_fainting">Check that the victim is breathing.</string>
+    <string name="step2_fainting">Turn the casualty to the side in a safe lateral position.</string>
+    <string name="step3_fainting">Ask someone to call emergency services, ask for help yourself if you are alone.
+    </string>
+    <string name="step4_fainting">Regularly check if the victim is breathing until help arrives.</string>
+    <string name="fields">Invalide password</string>
+    <string name="email_pattern">Please enter a valid email address</string>
+    <string name="no_cars">No vehicles added</string>
+    <string name="add_vehicle">Add your vehicle</string>
+    <string name="matricule">\u0020 Registration number</string>
+    <string name="car">\u0020 Car name</string>
+    <string name="color">\u0020 Car color</string>
+    <string name="car_doors">Number of doors:</string>
+    <string name="car_list">Vehicles</string>
+    <string name="Reports">Reports</string>
+    <string name="no_reports">No accident Reports</string>
+    <string name="assurance">Insurance</string>
+    <string name="add_vehicle_success">Vehicle added succesfully</string>
+    <string name="driver_b">Driver B identity:</string>
+    <string name="permis">Driver licence</string>
+    <string name="vehicle_b">Vehicle B description:</string>
+    <string name="car_name">Car type</string>
+    <string name="send">Send Report</string>
+    <string name="add_alert_success">Alert sent succefully</string>
+
 </resources>

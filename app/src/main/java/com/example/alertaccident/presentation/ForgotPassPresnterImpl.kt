@@ -39,7 +39,9 @@ class ForgotPassPresnterImpl(internal var ForgotPassview:ForgotPassView):IForgot
                    }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    ForgotPassview.onError(t.message!!)
+                    ForgotPassview.load()
+
+                    Handler().postDelayed({ForgotPassview.onError(t.message!!)},1500)
                 }
 
             })

@@ -9,6 +9,7 @@ import android.os.Bundle
 import com.example.alertaccident.R
 import com.example.alertaccident.helper.GPSUtils
 import com.example.alertaccident.helper.UiUtils
+import com.example.alertaccident.retrofit.UserManager
 
 
 class Connexion : AppCompatActivity(){

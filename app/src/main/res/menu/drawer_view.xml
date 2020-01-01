@@ -10,7 +10,7 @@
                 android:icon="@drawable/contact"
                 android:title="@string/contact" />
         <item
-                android:id="@+id/nav_third_fragment"
+                android:id="@+id/aids_dest"
                 android:icon="@drawable/aids"
                 android:title="@string/first_aids" />
     </group>

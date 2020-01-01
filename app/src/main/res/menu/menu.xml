@@ -3,12 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
      >
 
-    <item
-            android:id="@+id/map_dest"
-            android:enabled="true"
-            android:icon="@drawable/ic_place_black_24dp"
-            android:title="@string/bottom_navigation_menu_android"
-            app:showAsAction="ifRoom" />
+
     <item
             android:id="@+id/home_dest"
             android:enabled="true"
@@ -21,5 +16,27 @@
             android:icon="@drawable/ic_priority_high_black_24dp"
             android:title="@string/bottom_navigation_menu_landscape"
             app:showAsAction="ifRoom" />
+    <item
+            android:id="@+id/Vehicles"
+            android:enabled="true"
+            android:icon="@drawable/ic_directions_car_black_24dp"
+            android:title="@string/car_list"
+            app:showAsAction="ifRoom" />
+
+    <item
+            android:id="@+id/accident_Reports"
+            android:enabled="true"
+            android:icon="@drawable/ic_insert_drive_file_black_24dp"
+            android:title="@string/Reports"
+            app:showAsAction="ifRoom" />
+
+    <item
+            android:id="@+id/map_dest"
+            android:enabled="true"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="@string/bottom_navigation_menu_android"
+            app:showAsAction="ifRoom" />
+
+
 
 </menu>

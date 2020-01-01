@@ -34,5 +34,14 @@ interface RetrofitServices {
     @GET
     fun nearbyPlaces(@Url url:String):Call<GoogleApiResponse>
 
+//    @POST("vehicule/addVehicule/")
+//    fun addVehicule(@Body body:VehiculeModel):Call<ApiResponse>
+//
+//    @GET("vehicule/listeVehicules/")
+//    fun getVehicule():Call<ApiResponse>
+
+
+    @POST("constat/addConstat/")
+    fun addReport(@Body body:ReportModel):Call<ApiResponse>
 
 }

@@ -4,185 +4,190 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".ui.settings.Settings">
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".Interface.MainActivity"
             android:orientation="vertical"
-            android:scrollbarAlwaysDrawVerticalTrack="true" tools:ignore="UselessParent">
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical"
-            >
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:ignore="UselessParent">
+        <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+                    <!--xmlns:tools="http://schemas.android.com/tools"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent">-->
+            <!--<LinearLayout android:layout_width="match_parent"-->
+                          <!--android:layout_height="wrap_content"-->
+                          <!--android:orientation="vertical"-->
+            <!--&gt;-->
 
 
-                        <ImageView
-                                android:id="@+id/user_profile_photo"
-                                android:layout_marginTop="50dp"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/notification" tools:ignore="ContentDescription"/>
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal">
-                            <TextView
-                                    android:id="@+id/notif"
-                                    android:text="@string/notification"
-                                    android:layout_width="260dp"
-                                    android:layout_marginTop="30dp"
-                                    android:layout_marginEnd="20dp"
-                                    android:textColor="@color/black"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:padding="8dp"
-                                    tools:targetApi="m"
-                                    tools:ignore="Autofill,LabelFor"/>
-                        <Switch
-                                android:id="@+id/simpleSwitch"
-                                android:layout_gravity="end"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-            </LinearLayout>
-                <View
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/twitter_blue" />
+                        <!--<ImageView-->
+                                <!--android:id="@+id/user_profile_photo"-->
+                                <!--android:layout_marginTop="50dp"-->
+                                <!--android:layout_width="100dp"-->
+                                <!--android:layout_height="100dp"-->
+                                <!--android:layout_gravity="center"-->
+                                <!--android:src="@drawable/notification" tools:ignore="ContentDescription"/>-->
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-                    <TextView
-                            android:id="@+id/gps"
-                            android:text="@string/GPS"
-                            android:layout_width="260dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_height="wrap_content"
-                            android:singleLine="true"
-                            android:padding="8dp"
-                            android:textColor="@color/black"
-                            tools:targetApi="m"
-                            tools:ignore="Autofill,LabelFor"/>
-                    <Switch
-                            android:id="@+id/gps_switch"
-                            android:layout_gravity="end"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <View
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/twitter_blue" />
+            <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:orientation="horizontal">-->
+                            <!--<TextView-->
+                                    <!--android:id="@+id/notif"-->
+                                    <!--android:text="@string/notification"-->
+                                    <!--android:layout_width="260dp"-->
+                                    <!--android:layout_marginTop="30dp"-->
+                                    <!--android:layout_marginEnd="20dp"-->
+                                    <!--android:textColor="@color/black"-->
+                                    <!--android:layout_gravity="center_horizontal"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:singleLine="true"-->
+                                    <!--android:padding="8dp"-->
+                                    <!--tools:targetApi="m"-->
+                                    <!--tools:ignore="Autofill,LabelFor"/>-->
+                        <!--<Switch-->
+                                <!--android:id="@+id/simpleSwitch"-->
+                                <!--android:layout_gravity="end"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"/>-->
+            <!--</LinearLayout>-->
+                <!--<View-->
+                        <!--android:layout_marginStart="30dp"-->
+                        <!--android:layout_marginEnd="30dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:orientation="horizontal">-->
+                    <!--<TextView-->
+                            <!--android:id="@+id/gps"-->
+                            <!--android:text="@string/GPS"-->
+                            <!--android:layout_width="260dp"-->
+                            <!--android:layout_marginTop="30dp"-->
+                            <!--android:layout_marginEnd="20dp"-->
+                            <!--android:layout_gravity="center_horizontal"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:singleLine="true"-->
+                            <!--android:padding="8dp"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--tools:targetApi="m"-->
+                            <!--tools:ignore="Autofill,LabelFor"/>-->
+                    <!--<Switch-->
+                            <!--android:id="@+id/gps_switch"-->
+                            <!--android:layout_gravity="end"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"/>-->
+                <!--</LinearLayout>-->
+                <!--<View-->
+                        <!--android:layout_marginStart="30dp"-->
+                        <!--android:layout_marginEnd="30dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
 
-                <TextView
-                        android:id="@+id/id_accident"
-                        android:text="@string/accident"
-                        android:layout_gravity="start"
-                        android:layout_width="260dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:textColor="@color/black"
-                        android:layout_marginEnd="20dp"
-                        android:singleLine="true"
-                        android:padding="8dp"
-                        tools:targetApi="m"/>
-                <Switch
-                        android:id="@+id/Switch2"
-                        android:layout_gravity="end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-            </LinearLayout>
-                <View
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/twitter_blue" />
+            <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:orientation="horizontal">-->
 
-                <TextView
-                        android:id="@+id/id_update"
-                        android:text="@string/profile"
-                        android:focusable="true"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:padding="8dp"
-                        tools:targetApi="m"/>
-                <View
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/twitter_blue" />
-
-                <TextView
-                        android:id="@+id/id_change_pass"
-                        android:text="@string/change_pass"
-                        android:focusable="true"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/black"
-                        android:singleLine="true"
-                        android:padding="8dp"
-                        tools:targetApi="m"/>
-                <View
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/twitter_blue" />
-
-                <TextView
-                        android:id="@+id/id_desac_acc"
-                        android:text="@string/desac_acc"
-                        android:focusable="true"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:padding="8dp"
-                        android:layout_marginBottom="10dp"
-                        tools:targetApi="m"/>
+                <!--<TextView-->
+                        <!--android:id="@+id/id_accident"-->
+                        <!--android:text="@string/accident"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_width="260dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="30dp"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:layout_marginEnd="20dp"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:padding="8dp"-->
+                        <!--tools:targetApi="m"/>-->
+                <!--<Switch-->
+                        <!--android:id="@+id/Switch2"-->
+                        <!--android:layout_gravity="end"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"/>-->
+                    <!--</LinearLayout>-->
 
 
+                <!--<View-->
+                        <!--android:layout_marginStart="30dp"-->
+                        <!--android:layout_marginEnd="30dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
 
-                    </LinearLayout>
+                <!--<TextView-->
+                        <!--android:id="@+id/id_update"-->
+                        <!--android:text="@string/profile"-->
+                        <!--android:focusable="true"-->
+                        <!--android:layout_gravity="start|center_vertical"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:padding="8dp"-->
+                        <!--tools:targetApi="m"/>-->
+                <!--<View-->
+                        <!--android:layout_marginTop="20dp"-->
+                        <!--android:layout_marginStart="30dp"-->
+                        <!--android:layout_marginEnd="30dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
 
-        </ScrollView>
+                <!--<TextView-->
+                        <!--android:id="@+id/id_change_pass"-->
+                        <!--android:text="@string/change_pass"-->
+                        <!--android:focusable="true"-->
+                        <!--android:layout_gravity="start|center_vertical"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:padding="8dp"-->
+                        <!--tools:targetApi="m"/>-->
+                <!--<View-->
+                        <!--android:layout_marginStart="30dp"-->
+                        <!--android:layout_marginEnd="30dp"-->
+                        <!--android:layout_marginTop="20dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/twitter_blue" />-->
+
+                <!--<TextView-->
+                        <!--android:id="@+id/id_desac_acc"-->
+                        <!--android:text="@string/desac_acc"-->
+                        <!--android:focusable="true"-->
+                        <!--android:layout_gravity="start|center_vertical"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:padding="8dp"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--tools:targetApi="m"/>-->
+
+
+
+                    <!--</LinearLayout>-->
+
+        <!--</ScrollView>-->
     </RelativeLayout>
 </FrameLayout>

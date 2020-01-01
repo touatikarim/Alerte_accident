@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".ui.AccidentPic">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Interface.MainActivity"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
+
+
+        <ProgressBar
+                android:id="@+id/load_full_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:layout_marginTop="10dp"/>
+        <ImageView
+                android:layout_marginBottom="8dp"
+                android:id="@+id/full_accident_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:focusable="true"
+                tools:ignore="ContentDescription"/>
+    </LinearLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+    </RelativeLayout>
+</FrameLayout>

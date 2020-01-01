@@ -24,14 +24,7 @@ import kotlinx.android.synthetic.main.fragment_update_profile.*
 
 
 class Update_profile : Fragment(),UpdateprofileView {
-//    val options = navOptions {
-//        anim {
-//            enter = R.anim.slide_in_right
-//            exit = R.anim.slide_out_left
-//            popEnter = R.anim.slide_in_left
-//            popExit = R.anim.slide_out_right
-//        }
-//    }
+
     override fun load() {
         val progressBar=update
         progressBar?.setVisibility(View.VISIBLE)
@@ -72,6 +65,7 @@ class Update_profile : Fragment(),UpdateprofileView {
         val phone=sp.getString("USER_PHONE","")
         phone_id.setHint(phone)
         name_id.setHint(nameuser)
+        email_id.setHint(usermail)
         btn_sub.setOnClickListener {
            val name = name_id.text.toString()
            val telephone=phone_id.text.toString()

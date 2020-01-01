@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/twitter_blue"
-
     />
 
     <fragment
@@ -39,6 +38,7 @@
             android:layout_height="wrap_content"
             app:itemIconTint="@drawable/bottom_navigation_colors"
             app:itemTextColor="@drawable/bottom_navigation_colors"
+            app:itemBackground="@color/gray_shade"
             app:menu="@menu/menu"/>
 
     </LinearLayout>

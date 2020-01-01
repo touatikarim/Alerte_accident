@@ -17,11 +17,9 @@ import nl.dionsegijn.steppertouch.OnStepCallback
 import nl.dionsegijn.steppertouch.StepperTouch
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
-import androidx.core.app.NotificationCompat
-import com.bumptech.glide.Glide
+import com.example.alertaccident.R
 import java.net.HttpURLConnection
 import java.net.URL
-import com.example.alertaccident.R
 import com.example.alertaccident.retrofit.UserManager
 import com.example.alertaccident.ui.NotificationDetails
 
@@ -29,6 +27,7 @@ import com.example.alertaccident.ui.NotificationDetails
 object UiUtils {
     //private var spinnerdialog: SpinnerDialog? = null
     private var notificationManager:NotificationManager?=null
+    private var notif:Boolean=true
     fun hideKeyboardOntouch(view: View?, activity: Activity) {
 
            if (view !is EditText && view != null) {
@@ -127,10 +126,11 @@ object UiUtils {
         notificationManager?.createNotificationChannel(channel)
 
     }
-    fun sendNotification(context: Context, title: String, description: String,image:Bitmap,alertId:String?) {
+    fun sendNotification(context: Context, title: String, description: String,image:Bitmap?,alertId:String?) {
         val sp = UserManager.getSharedPref(context)
         val last_alert = sp.getString("LAST_ALERT_ID", "")
-        if(alertId!=last_alert) {
+        notif=UserManager.getNotifService(context)
+        if(alertId!=last_alert && notif) {
             if (notificationManager != null) {
                 val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val resultIntent = Intent(context, NotificationDetails::class.java)
@@ -181,6 +181,9 @@ object UiUtils {
         }
 
     }
+
+
+
 
 }
 

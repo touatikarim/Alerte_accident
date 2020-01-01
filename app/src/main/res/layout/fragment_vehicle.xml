@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".ui.reports.VehicleA">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Interface.MainActivity"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" tools:ignore="RedundantNamespace,ScrollViewCount">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ExtraText,ScrollViewSize,UseCompoundDrawables,UselessParent">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ExtraText,UseCompoundDrawables,UselessParent">
+        <ImageView
+                android:src="@drawable/ic_person_black_24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/user_pic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                tools:ignore="ContentDescription"/>
+        <TextView
+                android:id="@+id/user_name"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/stroke"
+                android:textSize="19sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:ignore="UnusedAttribute"/>
+    </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darker_shade" />
+        <LinearLayout
+                android:id="@+id/empty_recycler"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+            <ImageView android:layout_width="90dp"
+                       android:layout_height="90dp"
+                       android:layout_gravity="center"
+                       tools:ignore="ContentDescription"
+                       android:src="@drawable/ic_search_black_24dp"/>
+            <TextView
+                    android:id="@+id/msg"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:text="@string/no_cars"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_car_accident"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="10dp"
+        />
+        <ImageView
+                android:layout_gravity="end"
+                android:layout_alignParentBottom = "true"
+                android:id="@+id/next_page"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:focusable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                tools:ignore="ContentDescription,ObsoleteLayoutParam"/>
+    </LinearLayout>
+    </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

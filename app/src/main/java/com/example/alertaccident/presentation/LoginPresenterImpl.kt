@@ -69,7 +69,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                              override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>?) {
 
                                  if (response != null) {
-
+                                     button.setEnabled(false)
                                      if (response.code() == 200) {
                                          val id = response.body()!!.data._id
                                          val name = response.body()!!.data.nom
@@ -80,6 +80,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                                          UserManager.saveCredentials(context, user)
                                          signinview.navigate()
                                          generateToken(id)
+
                                          Handler().postDelayed(
                                              { signinview.onSuccess(response.body()!!.message) },
                                              1500
@@ -97,6 +98,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
 
                              override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                                  signinview.onError(t.message!!)//context.getString(R.string.Server))
+                                 button.setEnabled(true)
                              }
                          })
 
@@ -104,8 +106,10 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                      else {
                          signinview.load()
                        Handler().postDelayed({signinview.onError(context.getString(R.string.no_connection))},1500)
+                         button.setEnabled(true)
                      }
              }
+
 
          }
 
@@ -114,8 +118,12 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
              val isLoginsucces= isDataValid(email,password)
              if (isLoginsucces==0)
                  signinview.onError(context.getString(R.string.email_address))
+             else if(isLoginsucces==1)
+                signinview.onError(context.getString(R.string.email_pattern))
              else if(isLoginsucces==2)
                  signinview.onError(context.getString(R.string.nopassword))
+             else if(isLoginsucces==3)
+                 signinview.onError(context.getString(R.string.fields))
 
          }
 
@@ -173,6 +181,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                              val user=User(email,"",name,id,"")
                              UserManager.saveCredentials(context, user)
                              signinview.onSuccess(response.body()!!.message)
+                             generateToken(id)
                          }
                          else{
                              val errorJsonString = response.errorBody()?.string()
@@ -201,6 +210,7 @@ class LoginPresenterImpl(internal var signinview:SigninView):IloginPresenter
                              val name=sp.getString("USER_NAME","")
                              UserManager.saveCredentials(context,User(email,"",name,id,""))
                              signinview.onSuccess(response.body()!!.message)
+                             generateToken(id)
                          }
                          else {
                              val errorJsonString = response.errorBody()?.string()
